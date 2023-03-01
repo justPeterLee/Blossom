@@ -22,6 +22,8 @@ router.get("/", rejectUnauthenticated, (req, res) => {
         console.log("Error with getting user's garden data, ", err);
         res.sendStatus(500);
       });
+  } else {
+    res.sendStatus(403);
   }
 });
 
