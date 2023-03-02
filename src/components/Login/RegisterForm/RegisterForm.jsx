@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import styles from "./RegisterForm.module.css";
+
+import { BiUser } from "react-icons/bi";
+import { FiUnlock } from "react-icons/fi";
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -21,38 +25,41 @@ function RegisterForm() {
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+       <p className={styles.title}>Register User</p>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
         </h3>
       )}
-      <div>
+      <div className={styles.input}>
         <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={username}
-            required
-            onChange={(event) => setUsername(event.target.value)}
-          />
+          <BiUser size={25} />
         </label>
+        <input
+          type="text"
+          name="username"
+          required
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+          placeholder={"Username"}
+        />
       </div>
-      <div>
+      <div className={styles.input}>
         <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={password}
-            required
-            onChange={(event) => setPassword(event.target.value)}
-          />
+          <FiUnlock size={22}/>
         </label>
+        <input
+          type="password"
+          name="password"
+          required
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+
+          placeholder={"Password"}
+        />
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        <input className={styles.btn} type="submit" name="submit" value="CREATE" />
       </div>
     </form>
   );

@@ -5,7 +5,7 @@ body,
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: openSans;
   margin: 0px;
 }
 
@@ -13,6 +13,22 @@ img {
   display: inline-block;
   max-width: 100%;
 }
+
+/*-------------------------------------------------------------------------------- 
+font family  
+--------------------------------------------------------------------------------*/
+@font-face {
+  font-family: openSans;
+  src: url('../../../public/media/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf');
+}
+
+@font-face{
+  font-family: openSansLight;
+  src: url('../../../public/media/Open_Sans/static/OpenSans/OpenSans-Light.ttf');
+}
+
+
+
 
 /* --------------------------------------------------------------------------------
 Container
@@ -96,16 +112,6 @@ Form Treatment
 -------------------------------------------------------------------------------- */
 
 .formPanel {
-  box-sizing: border-box;
-  width: 400px;
-  max-width: 100%;
-  padding: 25px;
-  margin: 0 auto 20px;
-  background-color: #efefef;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
-
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,9 +126,10 @@ input {
 
 /* ------- container -------- */
 
-.login-container{
+.login_container{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh
 }
