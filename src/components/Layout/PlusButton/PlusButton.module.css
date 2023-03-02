@@ -1,0 +1,98 @@
+
+.container {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+
+  font-family: rubik;
+}
+
+/* main button animation */
+.plus_Clicked {
+  transform: rotate(-135deg);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.1s;
+  color: rgb(245, 100, 100);
+}
+.plus_unClicked {
+  transform: rotate(0);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.1s;
+
+  color: #c4cea1;
+}
+
+.addMainButton {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+/* add button (sub) */
+.addNewButton {
+  border-radius: 100%;
+  margin-left: 2px;
+  height: 2.8rem;
+  width: 2.8rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconButton {
+  color: black;
+}
+
+.addButtons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.text {
+  width: 6rem;
+}
+.iconButtonContainer {
+  position: relative;
+}
+.addButtons {
+  position: absolute;
+  right: -210px;
+}
+
+.addButtons:nth-child(1) {
+  bottom: 7.7rem;
+}
+.addButtons:nth-child(2) {
+  bottom: 3.7rem;
+}
+.addButtons:nth-child(3) {
+  bottom: -0.7rem;
+}
+
+/* sub buttons animation  */
+.addButtons.iconButton_Clicked:nth-child(1) {
+  transform: translate(-210px);
+  transition: transform 0.2s;
+}
+.addButtons.iconButton_Clicked:nth-child(2) {
+  transform: translate(-210px);
+  transition: transform 0.3s;
+}
+.addButtons.iconButton_Clicked:nth-child(3) {
+  transform: translate(-210px);
+  transition: transform 0.4s;
+}
+
+.addButtons.iconButton_unClicked{
+    transform: translate(0);
+    transition: 0.3s;
+}
+
+
+.addButtons{
+  padding-left: 1rem;
+  border-radius: 10px;
+}
+.addButtons:active{
+  background-color: rgb(150,150,150);
+}

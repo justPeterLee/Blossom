@@ -1,0 +1,31 @@
+.topContainer {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100vw;
+
+  
+}
+.bottomContainer {
+  position: fixed;
+  display:flex;
+  justify-content: flex-end;
+  bottom: 0;
+  width: 100vw;
+}
+
+.container{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+}
+
+
+.user{
+    margin-top:0rem;
+    margin-right: 1.8rem;
+}
+
+

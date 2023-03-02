@@ -1,0 +1,118 @@
+
+/* burger menu (3 line) */
+.linesContainer{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    height: 20px;
+    margin: 1rem;
+    margin-top: 0;
+    margin-bottom: 0;
+
+
+}
+.burger_class{
+    width: 2rem;
+    height: 3px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+/* burger menu animation */
+.burger_class.clicked:nth-child(1){
+    transform: rotate(45deg) translate(.5em, .5em) scaleX(.7);
+    transition: ease-out 0.2s;
+}
+
+.burger_class.clicked:nth-child(2){
+    transform: scale(0.01);
+    transition: ease-out 0.2s;
+}
+
+.burger_class.clicked:nth-child(3){
+    transform: rotate(-225deg) translate(-.2em, .25em) scaleX(.7);
+    transition: ease-out 0.2s;
+}
+
+/* unclicked */
+.burger_class.unClicked {
+    transform: rotate(0) translate(0);
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1) 0.2s;
+}
+
+ 
+/* --------- icons ---------- */
+.iconContainer{
+    position: relative;
+}
+.icons{
+    display: flex;
+    justify-content: left;
+}
+
+.home, .garden, .plants, .task{
+}
+
+.iconTextContainer{
+    margin-top: 1.25rem;
+    margin-left: .75rem;
+    display: flex;
+    align-items:center;
+    gap: 1.1rem;
+
+
+    position: absolute;
+    left: -200px;
+
+    z-index: 1;
+}
+
+
+.iconTextContainer:nth-child(2){
+    top: 5rem;
+}
+.iconTextContainer:nth-child(3){
+    top: 10rem;
+
+}
+.iconTextContainer:nth-child(4){
+    top: 15rem;
+
+}
+
+
+
+
+
+
+
+.iconTextContainer.ClickedIcon:nth-child(1){  
+    transform: translate(200px);
+    transition: transform .2s;
+}
+.iconTextContainer.ClickedIcon:nth-child(2){  
+    transform: translate(200px);
+    transition: transform .3s;
+}
+.iconTextContainer.ClickedIcon:nth-child(3){  
+    transform: translate(200px);
+    transition: transform .4s;
+}
+.iconTextContainer.ClickedIcon:nth-child(4){  
+    transform: translate(200px);
+    transition:  transform .5s;
+}
+
+
+.iconTextContainer.unClickedIcon{
+    transform: translate(0);
+    transition:  transform 0.4s;
+}
+
+.iconTextContainer{
+    width: 10rem;
+    border-radius: 10px;
+}
+
+
+
