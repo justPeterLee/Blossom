@@ -21,6 +21,8 @@ import LoginPage from '../Login/LoginPage/LoginPage';
 import RegisterPage from '../Login/RegisterPage/RegisterPage';
 
 import './App.css';
+import LogOutButton from '../Layout/LogOutButton/LogOutButton';
+import Home from '../Pages/Home/Home';
 
 function App() {
   const dispatch = useDispatch();
@@ -83,6 +85,10 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+          <ProtectedRoute exact path="/home">
+            <Home/>
+          </ProtectedRoute>
+
 
 
 
@@ -94,7 +100,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/home" />
               :
               // Otherwise, show the login page
               <LoginPage />
@@ -111,7 +117,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/home" />
               :
               // Otherwise, show the registration page
               <RegisterPage />
@@ -119,20 +125,6 @@ function App() {
           </Route>
 
 
-
-          <Route
-            exact
-            path="/home"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the Landing page
-              <LoginPage />
-            }
-          </Route>
 
 
 
