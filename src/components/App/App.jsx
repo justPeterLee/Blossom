@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../../notneeded/Nav/Nav';
 import Footer from '../Footer/Footer';
+import Layout from '../Layout/Layout';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
@@ -19,11 +20,11 @@ import InfoPage from '../Pages/InfoPage/InfoPage'
 import LandingPage from '../../notneeded/LandingPage/LandingPage'
 import LoginPage from '../Login/LoginPage/LoginPage';
 import RegisterPage from '../Login/RegisterPage/RegisterPage';
-
-import './App.css';
 import LogOutButton from '../Layout/LogOutButton/LogOutButton';
 import Home from '../Pages/Home/Home';
 
+
+import './App.css';
 function App() {
   const dispatch = useDispatch();
 
@@ -36,7 +37,7 @@ function App() {
   return (
     <Router>
       <div>
-       
+       <Layout>
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -137,6 +138,7 @@ function App() {
 
         </Switch>
         {/* <Footer /> */}
+        </Layout>
       </div>
     </Router>
   );

@@ -18,3 +18,5 @@ function* fetchPlant() {
     console.log("Error with GETting plant data: ", err);
   }
 }
+
+export default plantSaga;

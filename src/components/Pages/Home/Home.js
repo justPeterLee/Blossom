@@ -4,14 +4,17 @@ export default function Home(){
     const dispatch = useDispatch();
     
     const garden = useSelector(store=>store.garden);
-
+    const plant = useSelector(store=>store.plant);
 
     useEffect(()=>{
-        dispatch({type:"FETCH_GARDEN"})
+        dispatch({type:"FETCH_GARDEN"});
+        dispatch({type:"FETCH_PLANT"})
     },[])
 
     return(
-        JSON.stringify(garden)
-   
+        <div className="page_container">
+            {JSON.stringify(plant)}
+        </div>
+        
     )
 }
