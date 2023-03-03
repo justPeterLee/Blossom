@@ -6,6 +6,7 @@ import { TbPlant } from "react-icons/tb";
 import { SlNotebook } from "react-icons/sl";
 
 import { useHistory } from "react-router-dom";
+import LogOutButton from "../LogOutButton/LogOutButton";
 export default function Menu() {
   const history = useHistory();
 
@@ -142,6 +143,7 @@ export default function Menu() {
           </div>
           <p style={{fontSize: "24px"}}>tasks</p>
         </div>
+
       </div>
     </div>
   );

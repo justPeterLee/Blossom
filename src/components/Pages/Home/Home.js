@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import GardenItem from "../Garden/GardenItem/GardenItem";
 export default function Home(){
     const dispatch = useDispatch();
     
@@ -13,7 +14,9 @@ export default function Home(){
 
     return(
         <div className="page_container">
-            {JSON.stringify(plant)}
+            <GardenItem/>
+            <GardenItem/>
+            <GardenItem/>
         </div>
         
     )

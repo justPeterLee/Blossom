@@ -46,12 +46,20 @@ Alert
 /* ------- container -------- */
 
 .page_container{
-  
+  margin-top: 2rem;
+  gap:1rem;
 }
-.login_container{
+.login_container, .login_container_all, .page_container{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh
+}
+
+.login_container_all{
+  gap:2rem;
+}
+
+.login_logo_image{
+  margin-top: 2.5rem;
 }

@@ -42,7 +42,7 @@ function RegisterForm() {
   }
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
+    <form className={styles.registar_container} onSubmit={registerUser}>
        <p className={styles.title}>Register User</p>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">

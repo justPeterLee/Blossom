@@ -47,7 +47,7 @@ function LoginForm() {
     setPassFocus(false)
   }
   return (
-    <form className="formPanel" onSubmit={login}>
+    <form className={styles.form_container} onSubmit={login}>
       <p className={styles.title}>SIGN IN</p>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">

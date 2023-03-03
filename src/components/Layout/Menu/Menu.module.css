@@ -6,7 +6,7 @@
     gap:5px;
     height: 20px;
     margin: 1rem;
-    margin-top: 0;
+    margin-top: -15px;
     margin-bottom: 0;
 
 
@@ -64,7 +64,6 @@
     position: absolute;
     left: -200px;
 
-    z-index: 1;
 }
 
 
@@ -114,5 +113,7 @@
     border-radius: 10px;
 }
 
-
+.iconTextContainer p{
+    font-family: openSansLight;
+  }
 

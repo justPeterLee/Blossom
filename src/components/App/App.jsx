@@ -37,7 +37,7 @@ function App() {
   return (
     <Router>
       <div>
-       <Layout>
+       <Layout auth={user.id}>
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
