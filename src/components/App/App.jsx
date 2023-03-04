@@ -25,6 +25,7 @@ import Home from '../Pages/Home/Home';
 
 
 import './App.css';
+import Garden from '../Pages/Garden/Garden';
 function App() {
   const dispatch = useDispatch();
 
@@ -86,8 +87,14 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+          {/* create pages */}
           <ProtectedRoute exact path="/home">
             <Home/>
+          </ProtectedRoute>
+
+
+          <ProtectedRoute exact path="/garden">
+            <Garden/>
           </ProtectedRoute>
 
 

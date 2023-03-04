@@ -30,4 +30,9 @@
     margin-right: 1.8rem;
 }
 
-
+.textContainer{
+  width:15rem;
+}
+.textContainer p{
+  padding-bottom: 10px;
+}

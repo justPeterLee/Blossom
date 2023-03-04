@@ -144,6 +144,7 @@ export default function Menu() {
           <p style={{fontSize: "24px"}}>tasks</p>
         </div>
 
+        <LogOutButton/>
       </div>
     </div>
   );

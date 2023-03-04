@@ -1,7 +1,9 @@
 .container{
-    border: solid 1px black;
     border-radius: 10px;
-    width: 22rem;
+    width: 23.5rem;
+    box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
+    background-color: rgb(252,252,252);
+    height: 9.5rem;
 }
 
 .title, .description, .extraDescription{
@@ -11,7 +13,7 @@
 .description{
     flex-direction: column;
     text-align: start;
-    
+
 }
 
 .extraDescription{
@@ -20,27 +22,34 @@
 }
 
 .title p{
-    font-size: 22px;
+    font-size: 14px;
     margin: 0;
     padding: 0;
-    margin-top:1rem;
+    margin-top:1.5rem;
     margin-left: 1rem;
+    margin-bottom: .2rem;
+    color: rgb(50,50,50);
 }
 .description p{
     margin: 0;
     padding: 0;
-    margin-top:1rem;
+    margin-top:.4em;
     margin-left: 1rem;
+    color: rgb(20,20,20);
 }
 .extraDescription p{
     font-size: 12px;
     margin: 0;
     padding: 0;
-    margin-top:1rem;
+    margin-top:.6rem;
     margin-left: 1rem;
-    margin-bottom:1rem;
+    margin-bottom:1.5rem;
 }
 
 .arrow{
     padding-right: 1rem;
+}
+
+.date p{
+    color: rgb(170,170,170);
 }

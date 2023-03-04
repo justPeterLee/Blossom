@@ -4,6 +4,7 @@ body,
 body {
   font-family: openSans;
   margin: 0px;
+  background-color: rgb(255, 253, 252);
 }
 
 
@@ -46,8 +47,8 @@ Alert
 /* ------- container -------- */
 
 .page_container{
-  margin-top: 2rem;
-  gap:1rem;
+  margin-top: 4rem;
+  gap:.5rem;
 }
 .login_container, .login_container_all, .page_container{
   display: flex;

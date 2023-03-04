@@ -1,0 +1,35 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: .5rem;
+
+    padding:.5rem;
+}
+.image{
+    height: 12rem;
+    width: 11rem;
+    box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
+    border-radius: 5px;
+}
+
+.description{
+    width: 11rem;
+    text-align: start;
+
+}
+.name, .spes{
+    margin: 0;
+
+}
+.name{
+    font-size: 17px;
+    padding-top: 7px;
+    padding-bottom: 1px;
+}
+.spes{
+    color:rgb(150,150,150);
+    font-size: 13px;
+}

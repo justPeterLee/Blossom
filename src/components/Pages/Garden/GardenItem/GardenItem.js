@@ -2,7 +2,7 @@ import styles from './GardenItem.module.css';
 
 import {BsArrowRight} from 'react-icons/bs'
 
-export default function GardenItem(){
+export default function GardenItem({name, type, num, create}){
     return(
         <div className={styles.container}>
 
@@ -12,8 +12,8 @@ export default function GardenItem(){
   
   
         <div className={styles.description}>
-          <p>Type: type of garden</p>
-          <p>platns: number of plants</p>
+          <p>type: type of garden</p>
+          <p>plants: number of plants</p>
         </div>
   
   

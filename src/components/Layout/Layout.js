@@ -14,6 +14,10 @@ export default function Layout(props) {
           <div className={styles.iconContainer}>
           <Menu />
           </div>
+
+          <div className={styles.textContainer}>
+            <p style={{margin:"0"}}>Page Title</p>
+          </div>
           
           <div className={styles.iconContainer}>
             <HiOutlineUserCircle size={35} className={styles.user} />

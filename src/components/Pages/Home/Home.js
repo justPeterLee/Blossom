@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import GardenItem from "../Garden/GardenItem/GardenItem";
+import PlantsItem from "../Plants/PlantItem/PlantItem";
+import FeaturePlants from "./FeaturePlants/FeaturePlants";
 export default function Home(){
     const dispatch = useDispatch();
     
@@ -15,8 +17,7 @@ export default function Home(){
     return(
         <div className="page_container">
             <GardenItem/>
-            <GardenItem/>
-            <GardenItem/>
+            <FeaturePlants/>
         </div>
         
     )
