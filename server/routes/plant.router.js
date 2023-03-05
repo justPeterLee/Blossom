@@ -7,14 +7,19 @@ const {
 /**
  * GET route template
  */
+
+
+// Show Plants (GET)
 router.get("/", rejectUnauthenticated, (req, res) => {
   // GET route code here
-  const user = req.user;
-  const queryText = `SELECT * FROM "plant" WHERE "user_id" = $1;`;
-
   if (req.isAuthenticated()) {
+    const user = req.user;
+    const queryText = `SELECT "plant"."id", "plant"."plant_name", "plant_info"."scientific_name" FROM "plant_info" 
+    JOIN "plant" ON "plant"."plant_info_id" = "plant_info"."id" 
+    JOIN "user" ON "user"."id" = "plant"."user_id"
+    WHERE "user"."id" = $1 AND "plant"."user_id" = $2;`;
     pool
-      .query(queryText, [user.id])
+      .query(queryText, [user.id, user.id])
       .then((results) => {
         res.send(results.rows);
       })

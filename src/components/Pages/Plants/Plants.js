@@ -16,8 +16,9 @@ export default function Plants(){
             {plants.map((plant)=>{return(
                 <PlantsItem 
                 key={plant.id}
+                id={plant.id}
                 name={plant.plant_name}
-                species={'Rose'}/>
+                species={plant.scientific_name}/>
             )})}
             </div>
         </div>
