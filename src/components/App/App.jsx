@@ -26,6 +26,7 @@ import Home from '../Pages/Home/Home';
 
 import './App.css';
 import Garden from '../Pages/Garden/Garden';
+import Plants from '../Pages/Plants/Plants';
 function App() {
   const dispatch = useDispatch();
 
@@ -37,7 +38,7 @@ function App() {
 
   return (
     <Router>
-      <div>
+
        <Layout auth={user.id}>
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -88,13 +89,20 @@ function App() {
           </ProtectedRoute>
 
           {/* create pages */}
+
+          {/* home page */}
           <ProtectedRoute exact path="/home">
             <Home/>
           </ProtectedRoute>
 
-
+          {/* garden page */}
           <ProtectedRoute exact path="/garden">
             <Garden/>
+          </ProtectedRoute>
+
+          {/* plants page */}
+          <ProtectedRoute expact path="/plants">
+            <Plants/>
           </ProtectedRoute>
 
 
@@ -146,7 +154,6 @@ function App() {
         </Switch>
         {/* <Footer /> */}
         </Layout>
-      </div>
     </Router>
   );
 }

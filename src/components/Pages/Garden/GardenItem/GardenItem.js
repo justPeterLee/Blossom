@@ -4,23 +4,23 @@ import {BsArrowRight} from 'react-icons/bs'
 
 export default function GardenItem({name, type, num, create}){
     return(
-        <div className={styles.container}>
+        <div className={`${styles.container} clickable`} onClick={()=>{console.log("go to garden, ")}}>
 
         <div className={styles.title}>
-          <p>Garden Name</p>
+          <p>{name}</p>
         </div>
   
   
         <div className={styles.description}>
-          <p>type: type of garden</p>
-          <p>plants: number of plants</p>
+          <p>type: {type}</p>
+          <p>plants: {num}</p>
         </div>
   
   
         <div className={styles.extraDescription}>
   
           <div className={styles.date}>
-              <p>created: June 18th, 2023</p>
+              <p>created: {create}</p>
           </div>
   
           <div className={styles.arrow}></div>

@@ -11,7 +11,11 @@ const {
 router.get("/", rejectUnauthenticated, (req, res) => {
   // GET route code here
   const user = req.user;
-  const queryText = `SELECT * FROM "garden" WHERE "user_id" = $1`;
+  const queryText = `SELECT "garden"."id", "garden"."garden_name", "garden"."garden_created_at", "garden"."garden_type", "garden"."garden_theme", COUNT(*) FROM "plant" 
+  JOIN "garden" ON "garden"."id" = "plant"."garden_id"
+  WHERE "plant"."user_id" = $1 and "garden"."user_id" = $1
+  GROUP BY "garden"."id";
+  `;
   if (req.isAuthenticated()) {
     pool
       .query(queryText, [user.id])

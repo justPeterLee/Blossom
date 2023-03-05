@@ -30,12 +30,14 @@ export default function Menu() {
 
   return (
     <div className={styles.menuContainer} onMouseEnter={()=>{setIsHover(true); console.log(isHover)}} onMouseLeave={()=>{setIsHover(false); console.log(isHover)}}>
+
+      {/* three bars (burger menu) */}
       <div className={styles.linesContainer} onClick={updateMenu}>
         <div
           className={
             !isBurgerClicked
               ? `${styles.burger_class} ${styles.unClicked}`
-              : `${styles.burger_class} ${styles.clicked}`
+              : `${styles.burger_class} ${styles.clicked} ${styles.clickable}`
           }
         ></div>
         <div
@@ -54,6 +56,8 @@ export default function Menu() {
         ></div>
       </div>
 
+
+      {/* home icon */}
       <div className={styles.iconContainer}>
         <div
           className={
@@ -77,11 +81,13 @@ export default function Menu() {
           <p style={{fontSize: "24px"}}>home</p>
         </div>
 
+
+        {/* garden icon */}
         <div
           className={
             !isBurgerClicked
               ? `${styles.iconTextContainer} ${styles.unClickedIcon}`
-              : `${styles.iconTextContainer} ${styles.ClickedIcon}`
+              : `${styles.iconTextContainer} ${styles.ClickedIcon} `
           }
           style={gardenActive ? {backgroundColor: 'darkgrey'} : {}} 
           onClick={() => {
@@ -99,6 +105,8 @@ export default function Menu() {
           <p style={{fontSize: "24px"}}>garden</p>
         </div>
 
+
+        {/* Plant Icon */}
         <div
           className={
             !isBurgerClicked
@@ -122,6 +130,7 @@ export default function Menu() {
           <p style={{fontSize: "24px"}}>plants</p>
         </div>
 
+        {/* task icon */}
         <div
           className={
             !isBurgerClicked
@@ -144,7 +153,6 @@ export default function Menu() {
           <p style={{fontSize: "24px"}}>tasks</p>
         </div>
 
-        <LogOutButton/>
       </div>
     </div>
   );

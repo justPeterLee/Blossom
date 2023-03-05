@@ -8,7 +8,7 @@ import { HiOutlineUserCircle } from "react-icons/hi";
 export default function Layout(props) {
   return (
     <Fragment>
-      <header className={styles.container} style={props.auth ? {} : {display:"none"}}>
+      <header className={`${styles.container}`} style={props.auth ? {} : {display:"none"}}>
 
         <div className={styles.topContainer}>
           <div className={styles.iconContainer}>
@@ -28,7 +28,7 @@ export default function Layout(props) {
           <PlusButton />
         </div>
       </header>
-      <main>{props.children}</main>
+      <main className={styles.main}>{props.children}</main>
     </Fragment>
   );
 }

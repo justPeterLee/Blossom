@@ -10,8 +10,8 @@ export default function Home(){
     const plant = useSelector(store=>store.plant);
 
     useEffect(()=>{
-        dispatch({type:"FETCH_GARDEN"});
-        dispatch({type:"FETCH_PLANT"})
+        //dispatch({type:"FETCH_GARDEN"});
+        //dispatch({type:"FETCH_PLANT"})
     },[])
 
     return(

@@ -85,6 +85,7 @@
 
 
 
+
 .iconTextContainer.ClickedIcon:nth-child(1){  
     transform: translate(200px);
     transition: transform .2s;
