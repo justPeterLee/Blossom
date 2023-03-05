@@ -31,6 +31,27 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   }
 });
 
+// GET Garden Filter
+router.get("/:id", rejectUnauthenticated, (req, res) => {
+  if (req.isAuthenticated) {
+    const user = req.user;
+    const gardenId = req.params.id;
+    const queryText = `SELECT * FROM "plant" 
+    WHERE "plant"."user_id" = $1 AND "plant"."garden_id" = $2;
+    `;
+
+    pool
+      .query(queryText, [user.id, gardenId])
+      .then((result) => {
+        res.send(result.rows);
+      })
+      .catch((err) => {
+        console.log("Error with getting garden filter data: ", err);
+        res.sendStatus(500)
+      });
+  }
+});
+
 /**
  * POST route template
  */
