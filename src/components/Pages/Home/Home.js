@@ -6,7 +6,7 @@ import FeaturePlants from "./FeaturePlants/FeaturePlants";
 export default function Home(){
     const dispatch = useDispatch();
     
-    const garden = useSelector(store=>store.garden);
+    const garden = useSelector(store=>store.garden.gardenReducer);
     const plant = useSelector(store=>store.plant);
 
     useEffect(()=>{

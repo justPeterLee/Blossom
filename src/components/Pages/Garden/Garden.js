@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import GardenItem from "./GardenItem/GardenItem";
 
 export default function Garden() {
-  const garden = useSelector((store) => store.garden);
+  const garden = useSelector((store) => store.garden.gardenReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
