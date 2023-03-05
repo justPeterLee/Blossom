@@ -73,8 +73,8 @@ router.get("/selected/:id", rejectUnauthenticated, (req, res) => {
   }
 });
 
-// GET plant info
-router.get("/info/:id", rejectUnauthenticated, (req, res) => {
+// GET plant info - DETAILS page
+router.get("/details/:id", rejectUnauthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     const user = req.user
     const plantId = req.params.id;
