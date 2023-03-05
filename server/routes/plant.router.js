@@ -76,13 +76,14 @@ router.get("/selected/:id", rejectUnauthenticated, (req, res) => {
 // GET plant info
 router.get("/info/:id", rejectUnauthenticated, (req, res) => {
   if (req.isAuthenticated()) {
+    const user = req.user
     const plantId = req.params.id;
-    const queryText = `SELECT "scientific_name", "sunlight_level", "water_level", "sci_origin", "sci_maintenance", "sci_cycle", "sci_type", "sci_soil", "sci_growth_rate", "scientific_color" FROM "plant_info" 
-        JOIN "plant" ON "plant"."plant_info_id" ="plant_info"."id"
-        WHERE "plant"."id" = $1;`;
+    const queryText = `SELECT * FROM "plant" 
+    JOIN "plant_info" ON "plant_info"."id" = "plant"."plant_info_id"
+    WHERE "plant"."user_id" = $1 AND "plant"."id" = $2;`;
 
     pool
-      .query(queryText, [plantId])
+      .query(queryText, [plantId, user.id])
       .then((results) => {
         res.send(results.rows);
       })
