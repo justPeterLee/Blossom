@@ -21,6 +21,7 @@ export default function Garden() {
         return(
             <GardenItem 
             key={gardenInfo.id}
+            id={gardenInfo.id}
             name={gardenInfo.garden_name}
             type={gardenInfo.garden_type}
             num={gardenInfo.count}

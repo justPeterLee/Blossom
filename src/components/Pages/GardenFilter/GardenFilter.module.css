@@ -1,0 +1,7 @@
+/* same: PlantItem */
+.main{
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+
+    padding: .9rem;
+}

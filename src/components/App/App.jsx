@@ -27,6 +27,7 @@ import Home from '../Pages/Home/Home';
 import './App.css';
 import Garden from '../Pages/Garden/Garden';
 import Plants from '../Pages/Plants/Plants';
+import GardenFilter from '../Pages/GardenFilter/GardenFilter';
 function App() {
   const dispatch = useDispatch();
 
@@ -101,8 +102,13 @@ function App() {
           </ProtectedRoute>
 
           {/* plants page */}
-          <ProtectedRoute expact path="/plants">
+          <ProtectedRoute exact path="/plants">
             <Plants/>
+          </ProtectedRoute>
+
+          {/* Plant by Garden */}
+          <ProtectedRoute exact path="/garden/:id">
+            <GardenFilter/>
           </ProtectedRoute>
 
 
