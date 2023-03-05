@@ -1,3 +1,5 @@
+import { combineReducers } from "redux";
+
 function plantReducer(state = [], action){
     switch(action.type){
         case "SET_PLANT":
@@ -7,4 +9,17 @@ function plantReducer(state = [], action){
     }
 }
 
-export default plantReducer;
+function detailsReducer(state={}, action){
+    switch(action.type){
+        case "SET_PLANT_DETAILS":
+            return state = action.payload;
+        default:
+            return state;
+    }
+}
+
+export default combineReducers({
+    plantReducer,
+    detailsReducer
+
+});

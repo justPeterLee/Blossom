@@ -83,7 +83,7 @@ router.get("/details/:id", rejectUnauthenticated, (req, res) => {
     WHERE "plant"."user_id" = $1 AND "plant"."id" = $2;`;
 
     pool
-      .query(queryText, [plantId, user.id])
+      .query(queryText, [user.id, plantId])
       .then((results) => {
         res.send(results.rows);
       })

@@ -24,7 +24,6 @@ function* fetchDetails(action) {
   try {
     const plantId = action.payload;
     const details = yield axios.get(`/api/plant/details/${plantId}`);
-
     yield put({ type: "SET_PLANT_DETAILS", payload: details.data });
   } catch (err) {
     console.log("Error with fetching Deatils: ", err);

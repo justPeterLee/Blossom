@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 export default function Plants(){
     const dispatch = useDispatch();
-    const plants = useSelector(store=>store.plant);
+    const plants = useSelector(store=>store.plant.plantReducer);
 
     useEffect(()=>{
         dispatch({type:"FETCH_PLANT"})
