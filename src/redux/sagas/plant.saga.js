@@ -5,6 +5,7 @@ import axios from "axios";
 function* plantSaga() {
   yield takeEvery("FETCH_PLANT", fetchPlant);
   yield takeEvery("FETCH_DETAILS", fetchDetails);
+  yield takeEvery("UPDATE_PLANT", updatePlant);
 }
 
 // fetch plant function (GET)
@@ -27,6 +28,16 @@ function* fetchDetails(action) {
     yield put({ type: "SET_PLANT_DETAILS", payload: details.data });
   } catch (err) {
     console.log("Error with fetching Deatils: ", err);
+  }
+}
+
+function* updatePlant(action) {
+  try {
+    const plantId = action.payload;
+    yield axios.put(`/api/plant/update/${plantId}`);
+    yield fetchPlant;
+  } catch (err) {
+    console.log("Error with updating Plant: ", err);
   }
 }
 export default plantSaga;
