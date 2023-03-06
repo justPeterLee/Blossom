@@ -8,13 +8,12 @@ const {
  * GET route template
  */
 
-
 // Show Plants (GET)
 router.get("/", rejectUnauthenticated, (req, res) => {
   // GET route code here
   if (req.isAuthenticated()) {
     const user = req.user;
-    const queryText = `SELECT "plant"."id", "plant"."plant_name", "plant_info"."scientific_name" FROM "plant_info" 
+    const queryText = `SELECT "plant"."plant_table_id", "plant"."plant_name", "plant_info"."scientific_name" FROM "plant_info" 
     JOIN "plant" ON "plant"."plant_info_id" = "plant_info"."plant_info_table_id" 
     JOIN "user" ON "user"."id" = "plant"."user_id"
     WHERE "user"."id" = $1 AND "plant"."user_id" = $2;`;
@@ -57,7 +56,7 @@ router.get("/filter/garden/:id", rejectUnauthenticated, (req, res) => {
 router.get("/selected/:id", rejectUnauthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     const plantId = req.params.id;
-    const queryText = `SELECT * FROM "plant" WHERE "id" = $1;`;
+    const queryText = `SELECT * FROM "plant" WHERE "plant_table_id" = $1;`;
 
     pool
       .query(queryText, [plantId])
@@ -76,11 +75,11 @@ router.get("/selected/:id", rejectUnauthenticated, (req, res) => {
 // GET plant info - DETAILS page
 router.get("/details/:id", rejectUnauthenticated, (req, res) => {
   if (req.isAuthenticated()) {
-    const user = req.user
+    const user = req.user;
     const plantId = req.params.id;
     const queryText = `SELECT * FROM "plant" 
     JOIN "plant_info" ON "plant_info"."plant_info_table_id" = "plant"."plant_info_id"
-    WHERE "plant"."user_id" = $1 AND "plant"."id" = $2;`;
+    WHERE "plant"."user_id" = $1 AND "plant"."plant_table_id" = $2;`;
 
     pool
       .query(queryText, [user.id, plantId])
@@ -103,4 +102,24 @@ router.post("/", (req, res) => {
   // POST route code here
 });
 
+// update plant route (PUT)
+router.put("/update", (req, res) => {
+  if (req.isAuthenticated()) {
+    const { id, name, height, date } = req.body;
+    const queryText = `UPDATE "plant" SET "plant_name"=$1, "plant_height"=$2, "plant_created_at"=$3 WHERE "plant_table_id"=$3`;
+
+    pool
+      .query(queryText, [id, name, height, date])
+      .then((results) => {
+        res.sendStatus(200);
+      })
+      .catch((err) => {
+        console.log("Error with UPDATING plant: ", err);
+        res.sendStatus(500);
+      });
+  } else {
+    console.log("Unauthenticated");
+    res.sendStatus(403);
+  }
+});
 module.exports = router;

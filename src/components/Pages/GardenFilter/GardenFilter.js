@@ -23,8 +23,8 @@ export default function GardenFilter() {
       <div className={styles.main}>
         {filterPlants.map((plant)=>{return(
                 <PlantsItem 
-                key={plant.id}
-                id={plant.id}
+                key={plant.plant_table_id}
+                id={plant.plant_table_id}
                 name={plant.plant_name}
                 species={plant.scientific_name}/>
             )})}

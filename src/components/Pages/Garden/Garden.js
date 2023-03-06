@@ -20,8 +20,8 @@ export default function Garden() {
       {garden.map((gardenInfo)=>{
         return(
             <GardenItem 
-            key={gardenInfo.id}
-            id={gardenInfo.id}
+            key={gardenInfo.garden_table_id}
+            id={gardenInfo.garden_table_id}
             name={gardenInfo.garden_name}
             type={gardenInfo.garden_type}
             num={gardenInfo.count}

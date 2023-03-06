@@ -15,8 +15,8 @@ export default function Plants(){
            <div className={styles.main}>
             {plants.map((plant)=>{return(
                 <PlantsItem 
-                key={plant.id}
-                id={plant.id}
+                key={plant.plant_table_id}
+                id={plant.plant_table_id}
                 name={plant.plant_name}
                 species={plant.scientific_name}/>
             )})}

@@ -11,10 +11,10 @@ const {
 router.get("/", rejectUnauthenticated, (req, res) => {
   // GET route code here
   const user = req.user;
-  const queryText = `SELECT "garden"."id", "garden"."garden_name", "garden"."garden_created_at", "garden"."garden_type", "garden"."garden_theme", COUNT(*) FROM "plant" 
-  JOIN "garden" ON "garden"."id" = "plant"."garden_id"
+  const queryText = `SELECT "garden"."garden_table_id", "garden"."garden_name", "garden"."garden_created_at", "garden"."garden_type", "garden"."garden_theme", COUNT(*) FROM "plant" 
+  JOIN "garden" ON "garden"."garden_table_id" = "plant"."garden_id"
   WHERE "plant"."user_id" = $1 and "garden"."user_id" = $1
-  GROUP BY "garden"."id";
+  GROUP BY "garden"."garden_table_id";
   `;
   if (req.isAuthenticated()) {
     pool
@@ -36,7 +36,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
   if (req.isAuthenticated) {
     const user = req.user;
     const gardenId = req.params.id;
-    const queryText = `SELECT "plant"."id", "plant"."plant_name", "plant_info"."scientific_name" FROM "plant_info" 
+    const queryText = `SELECT "plant"."plant_table_id", "plant"."plant_name", "plant_info"."scientific_name" FROM "plant_info" 
     JOIN "plant" ON "plant"."plant_info_id" = "plant_info"."plant_info_table_id" 
     WHERE "plant"."user_id" = $1 AND "plant"."garden_id" = $2;`;
 

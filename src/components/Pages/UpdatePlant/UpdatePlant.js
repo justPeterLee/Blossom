@@ -15,7 +15,7 @@ export default function UpdatePlant() {
   // parameter plant id
   const plantId = params.id;
 
-  if (!details || details.id != plantId) {
+  if (!details || details.plant_table_id != plantId) {
     useEffect(() => {
       dispatch({ type: "FETCH_DETAILS", payload: plantId });
     }, []);

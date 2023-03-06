@@ -34,7 +34,7 @@ export default function Details() {
       </div>
 
       <div className={styles.sub_container}>
-      <button onClick={()=>{history.push(`/plant/update/${details.id}`)}}>update</button>
+      <button onClick={()=>{history.push(`/plant/update/${details.plant_table_id}`)}}>update</button>
 
         {/* task */}
         <div className={styles.task_container_stretch}></div>

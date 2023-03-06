@@ -33,8 +33,7 @@ function* fetchDetails(action) {
 
 function* updatePlant(action) {
   try {
-    const plantId = action.payload;
-    yield axios.put(`/api/plant/update/${plantId}`);
+    yield axios.put(`/api/plant/update`, action.payload);
     yield fetchPlant;
   } catch (err) {
     console.log("Error with updating Plant: ", err);
