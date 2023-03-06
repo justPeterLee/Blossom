@@ -37,7 +37,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
     const user = req.user;
     const gardenId = req.params.id;
     const queryText = `SELECT "plant"."id", "plant"."plant_name", "plant_info"."scientific_name" FROM "plant_info" 
-    JOIN "plant" ON "plant"."plant_info_id" = "plant_info"."id" 
+    JOIN "plant" ON "plant"."plant_info_id" = "plant_info"."plant_info_table_id" 
     WHERE "plant"."user_id" = $1 AND "plant"."garden_id" = $2;`;
 
     pool

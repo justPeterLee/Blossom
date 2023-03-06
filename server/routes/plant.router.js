@@ -15,7 +15,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     const user = req.user;
     const queryText = `SELECT "plant"."id", "plant"."plant_name", "plant_info"."scientific_name" FROM "plant_info" 
-    JOIN "plant" ON "plant"."plant_info_id" = "plant_info"."id" 
+    JOIN "plant" ON "plant"."plant_info_id" = "plant_info"."plant_info_table_id" 
     JOIN "user" ON "user"."id" = "plant"."user_id"
     WHERE "user"."id" = $1 AND "plant"."user_id" = $2;`;
     pool
@@ -79,7 +79,7 @@ router.get("/details/:id", rejectUnauthenticated, (req, res) => {
     const user = req.user
     const plantId = req.params.id;
     const queryText = `SELECT * FROM "plant" 
-    JOIN "plant_info" ON "plant_info"."id" = "plant"."plant_info_id"
+    JOIN "plant_info" ON "plant_info"."plant_info_table_id" = "plant"."plant_info_id"
     WHERE "plant"."user_id" = $1 AND "plant"."id" = $2;`;
 
     pool

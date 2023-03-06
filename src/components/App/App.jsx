@@ -28,6 +28,7 @@ import Garden from "../Pages/Garden/Garden";
 import Plants from "../Pages/Plants/Plants";
 import GardenFilter from "../Pages/GardenFilter/GardenFilter";
 import Details from "../Pages/Details/Details";
+import UpdatePlant from "../Pages/UpdatePlant/UpdatePlant";
 function App() {
   const dispatch = useDispatch();
 
@@ -104,6 +105,11 @@ function App() {
             <Details/>
           </ProtectedRoute>
 
+
+          {/* upadte plant */}
+          <ProtectedRoute exact path="/plant/update/:id">
+            <UpdatePlant/>
+          </ProtectedRoute>
 
 
 
