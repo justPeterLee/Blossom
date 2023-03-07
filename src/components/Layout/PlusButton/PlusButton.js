@@ -32,7 +32,7 @@ export default function PlusButton() {
           // onClick={()=>{setGardenActive(!gardenActive)}}
           onClick={() => {
             setButtonClicked(false);
-            history.push("/garden/add-garden");
+            history.push("/garden/create");
           }}
         >
           <p style={{ width: "8rem", fontSize: "24px" }}>add garden</p>
@@ -50,6 +50,7 @@ export default function PlusButton() {
           }
           onClick={() => {
             setButtonClicked(false);
+            history.push("/plant/create");
           }}
         >
           <p style={{ width: "6.6rem", fontSize: "24px" }}>add plant</p>

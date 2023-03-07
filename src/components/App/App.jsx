@@ -29,6 +29,8 @@ import Plants from "../Pages/Plants/Plants";
 import GardenFilter from "../Pages/GardenFilter/GardenFilter";
 import Details from "../Pages/Details/Details";
 import UpdatePlant from "../Pages/UpdatePlant/UpdatePlant";
+import AddPlant from "../Pages/AddPlant/AddPlant";
+import AddGarden from "../Pages/AddGarden/AddGarden";
 function App() {
   const dispatch = useDispatch();
 
@@ -87,7 +89,7 @@ function App() {
           </ProtectedRoute>
 
           {/* Plant by Garden */}
-          <ProtectedRoute exact path="/garden/:id">
+          <ProtectedRoute exact path="/garden/filter/:id">
             <GardenFilter />
           </ProtectedRoute>
 
@@ -112,8 +114,15 @@ function App() {
           </ProtectedRoute>
 
 
+          {/* add plant */}
+          <ProtectedRoute exact path="/plant/create">
+            <AddPlant/>
+          </ProtectedRoute>
 
-
+          {/* add garden */}
+          <ProtectedRoute exact path="/garden/create">
+            <AddGarden/>
+          </ProtectedRoute>
 
           <Route exact path="/login">
             {user.id ? (
