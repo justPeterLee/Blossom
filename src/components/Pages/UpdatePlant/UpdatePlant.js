@@ -96,7 +96,7 @@ export default function UpdatePlant() {
           </select>
         </div>
       </div>
-      <button onClick={() => [history.push()]}>delete</button>
+      <button onClick={() => {dispatch({type:"DELETE_PLANT", payload:{plantId: plantId, infoId:details.plant_info_id}}); history.push('/plants')}}>delete</button>
     </div>
   );
 }

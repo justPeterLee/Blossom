@@ -122,4 +122,31 @@ router.put("/update", (req, res) => {
     res.sendStatus(403);
   }
 });
+
+// delete plant route (DELETE)
+router.delete("/delete/:plantId/:infoId", (req, res) => {
+  if (req.isAuthenticated()) {
+    const plantId = req.params.plantId;
+    const infoId = req.params.infoId;
+    const queryTextFirst = `DELETE FROM "plant_info" WHERE "plant_info"."plant_info_table_id" = $1;`;
+    const queryTextSecond = `DELETE FROM "plant" WHERE "plant"."plant_table_id" = $1;`;
+
+    pool.query(queryTextSecond,[plantId])
+    .then((results)=>{
+      pool.query(queryTextFirst, [infoId])
+      .then((results)=>{
+        res.sendStatus(200);
+      }).catch((err)=>{
+        console.log("Error with DELETING plant: ", err)
+        res.sendStatus(500);
+      })
+    }).catch((err)=>{
+      console.log("Error with DELETING plant info: ", err)
+      res.sendStatus(500);
+    })
+  } else {
+    console.log("Unauthenticatied");
+    res.sendStatus(403);
+  }
+});
 module.exports = router;

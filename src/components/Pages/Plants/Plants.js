@@ -10,6 +10,11 @@ export default function Plants(){
     useEffect(()=>{
         dispatch({type:"FETCH_PLANT"})
     },[])
+
+    if(plants.length != plants.length){
+        dispatch({type:"FETCH_PLANT"})
+        return <p>loading...</p>
+    }
     return(
         <div className='page_container'>
            <div className={styles.main}>

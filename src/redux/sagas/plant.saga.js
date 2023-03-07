@@ -6,6 +6,7 @@ function* plantSaga() {
   yield takeEvery("FETCH_PLANT", fetchPlant);
   yield takeEvery("FETCH_DETAILS", fetchDetails);
   yield takeEvery("UPDATE_PLANT", updatePlant);
+  yield takeEvery("DELETE_PLANT", deletePlant);
 }
 
 // fetch plant function (GET)
@@ -42,8 +43,8 @@ function* updatePlant(action) {
 
 function* deletePlant(action){
   try{
-    const plantId = action.payload.plant;
-    const plantInfoId = action.payload.info;
+    const plantId = action.payload.plantId;
+    const plantInfoId = action.payload.infoId;
     yield axios.delete(`api/plant/delete/${plantId}/${plantInfoId}`);
     yield fetchPlant;
   }catch(err){
