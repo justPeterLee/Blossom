@@ -1,0 +1,6 @@
+.select_container{
+    display: grid;
+    grid-template-columns: repeat(3, 6rem);
+    margin-bottom:2rem ;
+
+}

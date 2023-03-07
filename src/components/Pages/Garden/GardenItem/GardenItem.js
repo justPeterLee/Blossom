@@ -6,7 +6,7 @@ import { BsArrowRight } from "react-icons/bs";
 export default function GardenItem({ id,name, type, num, create }) {
   const history = useHistory();
   const gotoGarden = () => {
-    history.push(`/garden/${id}`)
+    history.push(`/garden/filter/${id}`)
   }
   return (
     <div

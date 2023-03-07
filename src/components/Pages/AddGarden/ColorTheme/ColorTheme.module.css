@@ -1,0 +1,31 @@
+.container{
+    display: flex;
+    height: 3rem;
+    gap: 1rem;
+}
+
+.colorBlock{
+    height: 3.5rem;
+    width: 3.5rem;
+
+    border-radius: 100%;
+}
+
+.colorOne{
+    background-color: rgb(220,140,140);
+}
+
+.colorTwo{
+    background-color: rgb(140,220,140);
+}
+
+.colorThree{
+    background-color: rgb(140,140,220);
+}
+
+.colorFour{
+    background-color: rgb(220,220,140);
+}
+.clicked{
+    border: solid 3px black;
+}
