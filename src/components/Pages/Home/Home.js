@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import GardenItem from "../Garden/GardenItem/GardenItem";
 import PlantsItem from "../Plants/PlantItem/PlantItem";
 import FeaturePlants from "./FeaturePlants/FeaturePlants";
+import LogOutButton from "../../Layout/LogOutButton/LogOutButton";
 export default function Home(){
     const dispatch = useDispatch();
     
@@ -16,6 +17,7 @@ export default function Home(){
 
     return(
         <div className="page_container">
+            <LogOutButton/>
             <GardenItem/>
             <FeaturePlants/>
         </div>

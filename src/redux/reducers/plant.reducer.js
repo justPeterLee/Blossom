@@ -18,8 +18,16 @@ function detailsReducer(state={}, action){
     }
 }
 
+function noGardenPlantReducer(state=[], action){
+    switch(action.type){
+        case "SET_NO_GARDEN_PLANT":
+            return state = action.payload;
+        default:
+            return state;
+    }
+}
 export default combineReducers({
     plantReducer,
-    detailsReducer
-
+    detailsReducer,
+    noGardenPlantReducer
 });

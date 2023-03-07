@@ -9,7 +9,7 @@ function* plantSaga() {
   yield takeEvery("DELETE_PLANT", deletePlant);
 
   // get plants with no garden
-  yield takeEvery("SET_NO_GARDEN_PLANT", fetchNoGardenPlant);
+  yield takeEvery("FETCH_PLANT_NO_GARDEN", fetchNoGardenPlant);
 }
 
 // fetch plant function (GET)
@@ -48,7 +48,7 @@ function* deletePlant(action){
   try{
     const plantId = action.payload.plantId;
     const plantInfoId = action.payload.infoId;
-    yield axios.delete(`api/plant/delete/${plantId}/${plantInfoId}`);
+    yield axios.delete(`/api/plant/delete/${plantId}/${plantInfoId}`);
     yield fetchPlant;
   }catch(err){
     console.log('Error with DELETING plant: ', err);
@@ -58,7 +58,7 @@ function* deletePlant(action){
 // plants with no garden
 function* fetchNoGardenPlant(){
   try{
-    const plants = yield axios.put(`/api/plant/no-garden`);
+    const plants = yield axios.get(`/api/plant/no-garden`);
     yield put({type:"SET_NO_GARDEN_PLANT", payload: plants.data})
   }catch(err){
     console.log("Error with GETTING plant with no garden: ", err)

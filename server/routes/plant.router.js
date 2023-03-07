@@ -4,9 +4,9 @@ const router = express.Router();
 const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware");
-/**
- * GET route template
- */
+
+
+/* --------- GET --------- */
 
 // Show Plants (GET)
 router.get("/", rejectUnauthenticated, (req, res) => {
@@ -95,12 +95,29 @@ router.get("/details/:id", rejectUnauthenticated, (req, res) => {
     res.sendStatus(403);
   }
 });
-/**
- * POST route template
- */
-router.post("/", (req, res) => {
-  // POST route code here
-});
+
+
+// get plants with no garden
+router.get('/no-garden', (req, res)=>{
+  if(req.isAuthenticated()){
+    const queryText = `SELECT * FROM "plant" 
+    WHERE "plant"."garden_id" IS NULL;`
+
+    pool.query(queryText)
+    .then((results)=>{
+      res.send(results.rows);
+    })
+    .catch((err)=>{
+      console.log("error with GETTING plants with no garden: ", err);
+    })
+  }else{
+    console.log("Unauthenticated");
+    res.sendStatus(403);
+  }
+})
+
+/* --------- UPDATE --------- */
+
 
 // update plant route (PUT)
 router.put("/update", (req, res) => {
@@ -122,6 +139,12 @@ router.put("/update", (req, res) => {
     res.sendStatus(403);
   }
 });
+
+
+
+
+/* --------- DELETE --------- */
+
 
 // delete plant route (DELETE)
 router.delete("/delete/:plantId/:infoId", (req, res) => {
@@ -149,4 +172,7 @@ router.delete("/delete/:plantId/:infoId", (req, res) => {
     res.sendStatus(403);
   }
 });
+
+
+
 module.exports = router;

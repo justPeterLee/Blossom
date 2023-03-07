@@ -85,7 +85,7 @@ export default function UpdatePlant() {
 
         <div>
           <label htmlFor="garden-update">change garden</label>
-          <select name="garden-update" id="garden-update" value={newGarden} onChange={(event)=>{setNewGarden(event.target.value)}}>
+          <select name="garden-update" id="garden-update" value={newGarden ?  newGarden : "none"} onChange={(event)=>{setNewGarden(event.target.value)}}>
             <option value="null">none</option>
             {garden.map((gardenValue) => {
                 return(

@@ -1,7 +1,9 @@
 import styles from "./ColorTheme.module.css";
 
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 export default function ColorTheme() {
+  const dispatch = useDispatch();
   const [isClickedOne, setIsClickedOne] = useState(false);
   const [isClickedTwo, setIsClickedTwo] = useState(false);
   const [isClickedThree, setIsClickedThree] = useState(false);
@@ -15,28 +17,33 @@ export default function ColorTheme() {
         setIsClickedTwo(false);
         setIsClickedThree(false);
         setIsClickedFour(false);
+        dispatch({type:"CHANGE_GARDEN_THEME", payload:color})
         return;
       case "two":
         setIsClickedOne(false);
         setIsClickedTwo(true);
         setIsClickedThree(false);
         setIsClickedFour(false);
+        dispatch({type:"CHANGE_GARDEN_THEME", payload:color})
         return;
       case "three":
         setIsClickedOne(false);
         setIsClickedTwo(false);
         setIsClickedThree(true);
         setIsClickedFour(false);
+        dispatch({type:"CHANGE_GARDEN_THEME", payload:color})
         return;
       case "four":
         setIsClickedOne(false);
         setIsClickedTwo(false);
         setIsClickedThree(false);
         setIsClickedFour(true);
+        dispatch({type:"CHANGE_GARDEN_THEME", payload:color})
         return;
       default:
         return null;
     }
+
 
   };
   return (
