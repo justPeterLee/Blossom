@@ -39,4 +39,15 @@ function* updatePlant(action) {
     console.log("Error with updating Plant: ", err);
   }
 }
+
+function* deletePlant(action){
+  try{
+    const plantId = action.payload.plant;
+    const plantInfoId = action.payload.info;
+    yield axios.delete(`api/plant/delete/${plantId}/${plantInfoId}`);
+    yield fetchPlant;
+  }catch(err){
+    console.log('Error with DELETING plant: ', err);
+  }
+}
 export default plantSaga;

@@ -12,12 +12,14 @@ export default function UpdatePlant() {
   const dispatch = useDispatch();
 
   const details = useSelector((store) => store.plant.detailsReducer[0]);
+  const garden = useSelector((store)=>store.garden.gardenReducer)
   // parameter plant id
   const plantId = params.id;
 
-  if (!details || details.plant_table_id != plantId) {
+  if (!details || details.plant_table_id != plantId || !garden) {
     useEffect(() => {
       dispatch({ type: "FETCH_DETAILS", payload: plantId });
+      dispatch({ type: "FETCH_GARDEN" });
     }, []);
 
     return <p>loading...</p>;
@@ -25,6 +27,17 @@ export default function UpdatePlant() {
 
   const [name, setName] = useState(details.plant_name);
   const [height, setHeight] = useState(details.plant_height);
+  const [newGarden, setNewGarden] = useState(details.garden_id)
+  const updatePlantHandler = () => {
+    if (name && height && plantId) {
+      dispatch({
+        type: "UPDATE_PLANT",
+        payload: { id: plantId, name: name, height: height, garden: newGarden},
+      });
+    }
+    history.push(`/plant/detail/${plantId}`);
+  };
+
   return (
     <div className="page_container">
       {/* cancel button */}
@@ -38,9 +51,7 @@ export default function UpdatePlant() {
 
       {/* update button */}
       <button
-        onClick={() => {
-          history.push(`/plant/detail/${plantId}`);
-        }}
+        onClick={updatePlantHandler}
       >
         update
       </button>
@@ -74,11 +85,14 @@ export default function UpdatePlant() {
 
         <div>
           <label htmlFor="garden-update">change garden</label>
-          <select name="garden-update" id="garden-update">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
+          <select name="garden-update" id="garden-update" value={newGarden} onChange={(event)=>{setNewGarden(event.target.value)}}>
+            <option value="null">none</option>
+            {garden.map((gardenValue) => {
+                return(
+                    <option key={Math.random()} value={gardenValue.garden_table_id}>{gardenValue.garden_name}</option>
+                )
+            })}
+
           </select>
         </div>
       </div>

@@ -105,11 +105,11 @@ router.post("/", (req, res) => {
 // update plant route (PUT)
 router.put("/update", (req, res) => {
   if (req.isAuthenticated()) {
-    const { id, name, height, date } = req.body;
-    const queryText = `UPDATE "plant" SET "plant_name"=$1, "plant_height"=$2, "plant_created_at"=$3 WHERE "plant_table_id"=$3`;
+    const { id, name, height, garden } = req.body;
+    const queryText = `UPDATE "plant" SET "plant_name"=$1, "plant_height"=$2, "plant_created_at"=CURRENT_TIMESTAMP, "garden_id"=$4  WHERE "plant_table_id"=$3`;
 
     pool
-      .query(queryText, [id, name, height, date])
+      .query(queryText, [name, height, id, garden])
       .then((results) => {
         res.sendStatus(200);
       })
