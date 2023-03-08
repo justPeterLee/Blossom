@@ -61,66 +61,29 @@ router.post("/create", (req, res) => {
     const { name, type, theme, selected } = req.body;
     const userId = req.user;
     const queryText = `INSERT INTO "garden" ("garden_name","garden_type","garden_theme","user_id")
-    VALUES ($1, $2, $3, $4);`;
+    VALUES ($1, $2, $3, $4) RETURNING *;`;
     const queryTextUpdate = `UPDATE "plant" SET "garden_id" = $1 WHERE "plant"."plant_table_id" = $2 AND "plant"."user_id" = $3`;
 
     if (selected.length > 0) {
-      const queryTextGet = `SELECT "garden"."garden_table_id" FROM "garden"`;
-
-      let oldGardenID = [];
-      let newGardenID = [];
-      let createGardenID = [];
-
       pool
-        .query(queryTextGet)
+        .query(queryText, [name, type, theme, userId.id])
         .then((result) => {
-          result.rows.map((id) => {
-            oldGardenID.push(id.garden_table_id);
+
+          const gardenId = result.rows
+          selected.map((plantId) => {
+            pool
+              .query(queryTextUpdate, [gardenId[0].garden_table_id, plantId, userId.id])
+              .then((results) => {})
+              .catch((err) => {
+                console.log("Error with updating select plants: ", err);
+                res.sendStatus(500);
+              });
           });
 
-          pool
-            .query(queryText, [name, type, theme, userId.id])
-            .then((result) => {
-              pool
-                .query(queryTextGet)
-                .then((result) => {
-                  result.rows.map((id) => {
-                    newGardenID.push(id.garden_table_id);
-                  });
-                  createGardenID = newGardenID.filter(
-                    (val) => !oldGardenID.includes(val)
-                  );
-
-                  selected.map((plantId) => {
-                    pool
-                      .query(queryTextUpdate, [
-                        createGardenID[0],
-                        plantId,
-                        userId.id,
-                      ])
-                      .then((results) => {
-                        
-                      })
-                      .catch((err) => {
-                        console.log("Error with updating select plants: ", err);
-                        res.sendStatus(500);
-                      });
-                  });
-
-                  res.sendStatus(200)
-                })
-                .catch((err) => {
-                  console.log("Error with getting new garden id: ", err);
-                  res.sendStatus(500);
-                });
-            })
-            .catch((err) => {
-              console.log("Error with POST garden: ", err);
-              res.sendStatus(500);
-            });
+          res.sendStatus(200);
         })
         .catch((err) => {
-          console.log("Error with getting old garden id: ", err);
+          console.log("Error with POST garden: ", err);
           res.sendStatus(500);
         });
     } else {
@@ -141,3 +104,7 @@ router.post("/create", (req, res) => {
 });
 
 module.exports = router;
+
+// createGardenID = newGardenID.filter(
+//   (val) => !oldGardenID.includes(val)
+// );

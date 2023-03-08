@@ -178,7 +178,7 @@ router.post("/info/create", (req, res) => {
   if (req.isAuthenticated()) {
     const plantInfo = req.body.plantInfo;
     const queryText = `INSERT INTO "plant_info" ("scientific_name", "sunlight_level", "water_level","sci_origin","sci_maintenance", "sci_cycle","sci_type","sci_soil","sci_growth_rate","scientific_color")
-VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`;
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`;
     pool
       .query(queryText, [
         plantInfo.scientific_name,
@@ -193,7 +193,7 @@ VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`;
         plantInfo.scientific_color,
       ])
       .then((result) => {
-        res.sendStatus(200);
+        res.send(result.rows)
       })
       .catch((err) => {
         console.log("Error with creating API DATA: ", err);
@@ -204,4 +204,29 @@ VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`;
     res.sendStatus(403);
   }
 });
+
+
+// create plant (POST)
+router.post("/create", (req,res)=>{
+  if(req.isAuthenticated()){
+    const userId = req.user
+    const {name, height, date, plantId} = req.body;
+    const queryText = `INSERT INTO "plant" ("plant_name","plant_height","plant_created_at","plant_info_id","user_id")
+    VALUES($1,$2,$3,$4,$5);`;
+
+    pool.query(queryText, [name, height, date, plantId, userId.id])
+    .then((result)=>{
+      res.sendStatus(200);
+    })
+    .catch((err)=>{
+      console.log("Error with creating plant: ", err)
+      res.sendStatus(500)
+    })
+
+
+  }else{
+    console.log("Unauthenticated");
+    res.sendStatus(403);
+  }
+})
 module.exports = router;

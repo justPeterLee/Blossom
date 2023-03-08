@@ -86,8 +86,9 @@ function* fetchPlantDataAPI(action) {
 // create plant
 function* createPlant(action) {
   try {
-    const newPlantData = action;
-    yield axios.post(`/api/plant/create`, newPlantData);
+    const newPlantDataReq = action;
+    yield axios.post(`/api/plant/create`, newPlantDataReq);
+    //yield fetchPlant;
   } catch (err) {
     console.log("Error with creating new plant: ", err);
   }
@@ -97,8 +98,15 @@ function* createPlant(action) {
 function* createPlantInfo(action) {
   try {
     const newPlantData = action.payload;
-    yield axios.post(`/api/plant/info/create`, newPlantData);
-    yield createPlant(newPlantData);
+    const plantInfo = yield axios.post(`/api/plant/info/create`, newPlantData);
+    const plantId = plantInfo.data
+    let newPlantDataInfo = {
+      name: newPlantData.name,
+      height: newPlantData.height,
+      date: newPlantData.date,
+      plantId: plantId[0].plant_info_table_id
+    }
+    yield createPlant(newPlantDataInfo);
   } catch (err) {
     console.log("Error with creating plant info: ", err);
   }
