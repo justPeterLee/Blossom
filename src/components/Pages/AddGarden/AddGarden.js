@@ -2,7 +2,7 @@ import styles from "./AddGarden.module.css";
 import ColorTheme from "./ColorTheme/ColorTheme";
 import Select from "./Select/Select";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 export default function AddGarden() {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
@@ -11,6 +11,9 @@ export default function AddGarden() {
   
   const themeRedux = useSelector(store=>store.functional.selectGardenTheme);
   const selectedRedux = useSelector(store=>store.functional.selectPlantToGarden);
+
+  const dispatch = useDispatch();
+
   const createGardenHandler = () =>{
     if(!themeRedux){
       setTheme(null);
@@ -27,11 +30,13 @@ export default function AddGarden() {
     const newGardenData = {
       name: name,
       type: type,
-      theme: theme,
-      selected: selected
+      theme: themeRedux,
+      selected: selectedRedux
     }
 
     console.log(newGardenData)
+
+    dispatch({type:"CREATE_GARDEN", payload:newGardenData})
   }
   return (
     <div className={`${styles.container}`}>

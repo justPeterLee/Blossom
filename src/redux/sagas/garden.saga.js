@@ -34,7 +34,7 @@ function* fetchGardenFilter(action) {
 
 function* createGarden(action){
   try{
-    yield axios.post(`api/garden/create`, action.payload);
+    yield axios.post(`/api/garden/create`, action.payload);
     yield fetchGarden;
   }catch(err){
     console.log("Error with creating garden (saga): ", err)

@@ -73,6 +73,8 @@ input[type="file"] {
     justify-content: center;
 
     width:20rem;
+
+    margin-bottom: 2rem;
 }
 .info_description{
     display: flex;

@@ -18,7 +18,7 @@ function selectPlantToGarden(state = [], action) {
   }
 }
 
-function selectGardenTheme(state={theme:"rgb(230,230,230"}, action){
+function selectGardenTheme(state="rgb(230,230,230)", action){
     switch(action.type){
         case "CHANGE_GARDEN_THEME":
             return state = action.payload;
@@ -26,7 +26,18 @@ function selectGardenTheme(state={theme:"rgb(230,230,230"}, action){
             return state;
     }
 }
+
+function plantDataAPI(state={},action){
+    switch(action.type){
+        case "SET_PLANT_DATA_API":
+            return state = action.payload;
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
     selectPlantToGarden,
-    selectGardenTheme
+    selectGardenTheme,
+    plantDataAPI
 });

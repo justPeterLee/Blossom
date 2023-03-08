@@ -15,6 +15,11 @@ export default function Garden() {
   if(!garden){
     return <p>loading...</p>
   }
+
+  if(garden.length !== garden.length){
+    dispatch({ type: "FETCH_GARDEN" });
+    return <p>loading...</p>
+  }
   return (
     <div className="page_container">
       {garden.map((gardenInfo)=>{

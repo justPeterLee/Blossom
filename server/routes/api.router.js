@@ -58,21 +58,46 @@ router.post(
                       // data instance
                       const resPlantData = newResponse.data;
 
+                      // array data
+                      let origin;
+                      let soil;
+                      let color;
+
+                      const checkArray = (arr) => {
+                        if(Array.isArray(arr)){
+                          if(arr.length === 0){
+                            return null;
+                          }
+                          else if(arr.length === 1){
+                            return arr[0];
+                          }
+                          else if(arr.length > 1){
+                            return arr.join(', ');
+                          }
+                          else{
+                            return arr;
+                          }
+                        }else{
+                          return arr;
+                        }
+                        
+                      }
                       // data needed
                       const plantInfo = {
                         scientific_name: resPlantData.scientific_name[0],
                         sunlight: resPlantData.sunlight[0],
                         water_level: resPlantData.watering,
-                        origin: resPlantData.origin,
+                        origin: checkArray(resPlantData.origin),
                         maintenance: resPlantData.maintenance,
                         cycle: resPlantData.cycle,
                         type: resPlantData.indoor,
-                        soil: resPlantData.soil,
+                        soil: checkArray(resPlantData.soil),
                         growth_rate: resPlantData.growth_rate,
-                        scientific_color: resPlantData.leaf_color,
+                        scientific_color: checkArray(resPlantData.leaf_color),
                       };
-                      console.log(plantInfo);
-                      res.sendStatus(200);
+                      console.log('created')
+                      res.send(plantInfo);
+                      
                     })
                     .catch((err) => {
                       console.log("Error with getting deatailed plant, ", err);
@@ -111,3 +136,6 @@ router.post("/", (req, res) => {
 });
 
 module.exports = router;
+
+
+
