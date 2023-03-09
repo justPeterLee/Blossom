@@ -1,8 +1,9 @@
-import styles from './GardenEdit.module.css'
-export default function GardenEdit(){
-    return(
-        <div className={styles.container}>
+import styles from "./GardenEdit.module.css";
 
-        </div>
-    )
+import { useState } from "react";
+export default function GardenEdit() {
+    const [isOver, setIsOver] = useState(false)
+  return (
+    <p>hello</p>
+  );
 }

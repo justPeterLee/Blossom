@@ -1,7 +1,13 @@
-.container{
-    height: 5rem;
-    width: 5rem;
+.garden_edit_container{
+    height: 3rem;
+    width: 8rem;
 
     background-color: rgb(120,120,120);
-    border-radius: 20px;
+    border-radius: 10px;
+
+    position: absolute;
+    right: 1rem;
+    top:3rem;
+    /* top: -1.5 (top show on top) */
+    z-index: 2;
 }

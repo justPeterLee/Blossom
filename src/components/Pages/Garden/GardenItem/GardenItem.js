@@ -5,13 +5,24 @@ import styles from "./GardenItem.module.css";
 import { BsArrowRight } from "react-icons/bs";
 import { RxDotsVertical } from "react-icons/rx";
 
+import GardenEdit from "../GardenEdit/GardenEdit";
+
 export default function GardenItem({ id, name, type, num, create }) {
   const history = useHistory();
   const [overMenu, setOverMenu] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [isOver, setIsOver] = useState(false)
+
   const gotoGarden = () => {
     if (!overMenu) {
-      history.push(`/garden/filter/${id}`);
+      if(!showEdit){
+        history.push(`/garden/filter/${id}`);
+      }
     }
+  };
+
+  const showEditMenu = () => {
+    setShowEdit(!showEdit);
   };
   return (
     <div className={`${styles.container} clickable`} onClick={gotoGarden}>
@@ -22,15 +33,31 @@ export default function GardenItem({ id, name, type, num, create }) {
           className={styles.dotMenu}
           onMouseOver={() => {
             setOverMenu(true);
-            console.log(overMenu)
+            console.log(overMenu);
           }}
           onMouseOut={() => {
             setOverMenu(false);
-            console.log(overMenu)
+            console.log(overMenu);
           }}
-
-          onClick={()=>{console.log("hello world")}}
+          onClick={showEditMenu}
         />
+        {showEdit ? (
+          <div
+            className={styles.garden_edit_container}
+            onMouseOver={() => {
+              setIsOver(true);
+              console.log(overMenu);
+            }}
+            onMouseOut={() => {
+              setIsOver(false);
+              console.log(overMenu);
+            }}
+          >
+            <GardenEdit/>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
 
       <div className={styles.description}>

@@ -36,6 +36,17 @@ function plantDataAPI(state={},action){
     }
 }
 
+
+function modalActive(state=false, action){
+  switch(action.type){
+    case "SET_MODAL_ACTIVE":
+      return state = true;
+    case "SET_MODAL_DEACTIVE":
+      return state = false;
+    default:
+      return state;
+  }
+}
 export default combineReducers({
     selectPlantToGarden,
     selectGardenTheme,
