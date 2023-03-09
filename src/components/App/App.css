@@ -47,7 +47,7 @@ Alert
 /* ------- container -------- */
 
 .page_container{
-  margin-top: 4rem;
+
   gap:.5rem;
 }
 .login_container, .login_container_all, .page_container{

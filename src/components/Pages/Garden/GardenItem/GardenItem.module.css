@@ -4,11 +4,13 @@
     box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
     background-color: rgb(252,252,252);
     height: 9.5rem;
+    position: relative;
+
 }
+
 
 .title, .description, .extraDescription{
     display: flex;
-
 }
 .description{
     flex-direction: column;
@@ -16,7 +18,7 @@
 
 }
 
-.extraDescription{
+.extraDescription, .title{
     align-items: center;
     justify-content: space-between;
 }
@@ -52,4 +54,12 @@
 
 .date p{
     color: rgb(170,170,170);
+}
+
+.dotMenu{
+
+    padding-top:1.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-bottom: .2rem;
 }
