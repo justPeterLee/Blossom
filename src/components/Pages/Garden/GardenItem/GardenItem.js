@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./GardenItem.module.css";
 import { BsArrowRight } from "react-icons/bs";
@@ -8,22 +9,47 @@ import { RxDotsVertical } from "react-icons/rx";
 import GardenEdit from "../GardenEdit/GardenEdit";
 
 export default function GardenItem({ id, name, type, num, create }) {
+  let revaluate = 0;
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const [overMenu, setOverMenu] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  const [isOver, setIsOver] = useState(false)
 
-  const gotoGarden = () => {
-    if (!overMenu) {
-      if(!showEdit){
-        history.push(`/garden/filter/${id}`);
+  const modalState = useSelector((store) => store.functional.modalActive);
+
+  async function gotoGarden() {
+    const dontAllow = await isModalActive();
+    if (!dontAllow) {
+      if (!overMenu) {
+        if (!showEdit) {
+          history.push(`/garden/filter/${id}`);
+        }
       }
+    }
+  }
+
+  async function showEditMenu() {
+    await dispatch({ type: "SET_MODAL_ACTIVE" });
+    if (!modalState) {
+      setShowEdit(!showEdit);
+    }
+  }
+
+  const isModalActive = () => {
+    if (showEdit) {
+      return true;
+    } else if (!showEdit) {
+      return false;
     }
   };
 
-  const showEditMenu = () => {
-    setShowEdit(!showEdit);
-  };
+  useEffect(() => {
+    if (!modalState) {
+      setShowEdit(false);
+    }
+  }, [modalState]);
+
   return (
     <div className={`${styles.container} clickable`} onClick={gotoGarden}>
       <div className={styles.title}>
@@ -41,23 +67,15 @@ export default function GardenItem({ id, name, type, num, create }) {
           }}
           onClick={showEditMenu}
         />
-        {showEdit ? (
-          <div
-            className={styles.garden_edit_container}
-            onMouseOver={() => {
-              setIsOver(true);
-              console.log(overMenu);
-            }}
-            onMouseOut={() => {
-              setIsOver(false);
-              console.log(overMenu);
-            }}
-          >
-            <GardenEdit/>
-          </div>
-        ) : (
-          <></>
-        )}
+        <div
+          className={
+            showEdit
+              ? `${styles.garden_edit_container} ${styles.show}`
+              : `${styles.garden_edit_container} ${styles.hide}`
+          }
+        >
+          <GardenEdit />
+        </div>
       </div>
 
       <div className={styles.description}>

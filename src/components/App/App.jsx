@@ -31,6 +31,7 @@ import Details from "../Pages/Details/Details";
 import UpdatePlant from "../Pages/UpdatePlant/UpdatePlant";
 import AddPlant from "../Pages/AddPlant/AddPlant";
 import AddGarden from "../Pages/AddGarden/AddGarden";
+import BackdropOverlay from "../../Portal/Backdrop/Backdrop";
 function App() {
   const dispatch = useDispatch();
 
@@ -42,6 +43,7 @@ function App() {
 
   return (
     <Router>
+      <BackdropOverlay/>
       <Layout auth={user.id}>
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}

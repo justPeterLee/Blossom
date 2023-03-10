@@ -10,6 +10,7 @@ export default function Garden() {
 
   useEffect(() => {
     dispatch({ type: "FETCH_GARDEN" });
+    dispatch({type: "SET_MODAL_DEACTIVE"})
   }, []);
 
   if(!garden){

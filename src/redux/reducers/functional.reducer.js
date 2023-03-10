@@ -9,46 +9,62 @@ function selectPlantToGarden(state = [], action) {
         if (action.payload.id === state[i].id) {
           state.splice(i, 1);
           return state;
-        }else{
-            return state
+        } else {
+          return state;
         }
-      };
+      }
     default:
-        return state;
+      return state;
   }
 }
 
-function selectGardenTheme(state="rgb(230,230,230)", action){
-    switch(action.type){
-        case "CHANGE_GARDEN_THEME":
-            return state = action.payload;
-        default:
-            return state;
-    }
+function selectGardenTheme(state = "rgb(230,230,230)", action) {
+  switch (action.type) {
+    case "CHANGE_GARDEN_THEME":
+      return (state = action.payload);
+    default:
+      return state;
+  }
 }
 
-function plantDataAPI(state={},action){
-    switch(action.type){
-        case "SET_PLANT_DATA_API":
-            return state = action.payload;
-        default:
-            return state;
-    }
+function plantDataAPI(state = {}, action) {
+  switch (action.type) {
+    case "SET_PLANT_DATA_API":
+      return (state = action.payload);
+    default:
+      return state;
+  }
 }
 
-
-function modalActive(state=false, action){
-  switch(action.type){
+function modalActive(state = false, action) {
+  switch (action.type) {
     case "SET_MODAL_ACTIVE":
-      return state = true;
+      return (state = true);
     case "SET_MODAL_DEACTIVE":
-      return state = false;
+      return (state = false);
+    case "RESET_ALL_MODAL":
+      return (state = false);
+    default:
+      return state;
+  }
+}
+
+function backdrop(state = false, action) {
+  switch (action.type) {
+    case "BACKDROP_CLICKED":
+      return (state = true);
+    case "RESET_BACKDROP":
+      return (state = false);
+    case "RESET_ALL_MODAL":
+      return (state = false);
     default:
       return state;
   }
 }
 export default combineReducers({
-    selectPlantToGarden,
-    selectGardenTheme,
-    plantDataAPI
+  selectPlantToGarden,
+  selectGardenTheme,
+  plantDataAPI,
+  modalActive,
+  backdrop,
 });
