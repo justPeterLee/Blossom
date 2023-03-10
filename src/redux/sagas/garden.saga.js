@@ -6,6 +6,8 @@ function* gardenSaga() {
   yield takeEvery("FETCH_GARDEN", fetchGarden);
   yield takeEvery("FETCH_GARDEN_FILTER", fetchGardenFilter);
   yield takeEvery("CREATE_GARDEN", createGarden);
+
+  yield takeEvery("DELETE_MODAL_GARDEN", deleteGarden);
 }
 
 // fetch Garden
@@ -38,6 +40,17 @@ function* createGarden(action){
     yield fetchGarden;
   }catch(err){
     console.log("Error with creating garden (saga): ", err)
+  }
+}
+
+function* deleteGarden(action){
+  try{
+    const gardenId = action.payload;
+    yield axios.delete(`/api/garden/delete/${gardenId}`)
+    yield fetchGarden;
+
+  }catch(err){
+    console.log("Error with deleting garden")
   }
 }
 export default gardenSaga;

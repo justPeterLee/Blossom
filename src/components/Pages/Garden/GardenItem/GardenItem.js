@@ -9,7 +9,6 @@ import { RxDotsVertical } from "react-icons/rx";
 import GardenEdit from "../GardenEdit/GardenEdit";
 
 export default function GardenItem({ id, name, type, num, create }) {
-  let revaluate = 0;
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -74,7 +73,7 @@ export default function GardenItem({ id, name, type, num, create }) {
               : `${styles.garden_edit_container} ${styles.hide}`
           }
         >
-          <GardenEdit />
+          <GardenEdit id={id}/>
         </div>
       </div>
 
