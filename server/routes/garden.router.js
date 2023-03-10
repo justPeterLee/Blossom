@@ -14,7 +14,8 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   const queryText = `SELECT "garden"."garden_table_id", "garden"."garden_name", "garden"."garden_created_at", "garden"."garden_type", "garden"."garden_theme", COUNT("plant"."plant_table_id") FROM "garden" 
   LEFT JOIN "plant" ON "garden"."garden_table_id" = "plant"."garden_id"
   WHERE "garden"."user_id" = $1
-  GROUP BY "garden"."garden_table_id";
+  GROUP BY "garden"."garden_table_id"
+  ORDER BY "garden"."garden_table_id" ASC;
   `;
   if (req.isAuthenticated()) {
     pool
@@ -39,7 +40,8 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
     const gardenId = req.params.id;
     const queryText = `SELECT "plant"."plant_table_id", "plant"."plant_name", "plant_info"."scientific_name" FROM "plant_info" 
     JOIN "plant" ON "plant"."plant_info_id" = "plant_info"."plant_info_table_id" 
-    WHERE "plant"."user_id" = $1 AND "plant"."garden_id" = $2;`;
+    WHERE "plant"."user_id" = $1 AND "plant"."garden_id" = $2
+    ORDER BY "plant"."plant_table_id" ASC;`;
 
     pool
       .query(queryText, [user.id, gardenId])
@@ -68,11 +70,14 @@ router.post("/create", (req, res) => {
       pool
         .query(queryText, [name, type, theme, userId.id])
         .then((result) => {
-
-          const gardenId = result.rows
+          const gardenId = result.rows;
           selected.map((plantId) => {
             pool
-              .query(queryTextUpdate, [gardenId[0].garden_table_id, plantId, userId.id])
+              .query(queryTextUpdate, [
+                gardenId[0].garden_table_id,
+                plantId,
+                userId.id,
+              ])
               .then((results) => {})
               .catch((err) => {
                 console.log("Error with updating select plants: ", err);
@@ -103,6 +108,31 @@ router.post("/create", (req, res) => {
   }
 });
 
+// DELETE
+router.delete("/delete/:id", (req, res) => {
+  if (req.isAuthenticated) {
+    const user = req.user;
+    const gardenId = req.params;
+    const queryTextUpdate = `UPDATE "plant" SET "garden_id" = null WHERE "garden_id" = $1 AND "user_id" = $2;`;
+    const queryTextDelete = `DELETE FROM "garden" WHERE "garden_table_id" = $1 AND "user_id" = $2`
+    pool
+      .query(queryTextUpdate, [gardenId.id, user.id])
+      .then((result) => {
+        pool.query(queryTextDelete, [gardenId.id, user.id])
+        .then((results)=>{
+          res.sendStatus(200);
+        })
+        .catch((err)=>{console.log("Error with Deleting garden: ", err); res.sendStatus(500)})
+      })
+      .catch((err) => {
+        console.log("Error with updating plants for garden delete: ", err);
+        res.sendStatus(500);
+      });
+  } else {
+    console.log("Unauthenticated");
+    res.sendStatus(403);
+  }
+});
 module.exports = router;
 
 // createGardenID = newGardenID.filter(

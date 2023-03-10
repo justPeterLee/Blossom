@@ -37,7 +37,7 @@ function* fetchGardenFilter(action) {
 function* createGarden(action){
   try{
     yield axios.post(`/api/garden/create`, action.payload);
-    yield fetchGarden;
+    yield put({ type: "FETCH_GARDEN"});
   }catch(err){
     console.log("Error with creating garden (saga): ", err)
   }
@@ -47,8 +47,7 @@ function* deleteGarden(action){
   try{
     const gardenId = action.payload;
     yield axios.delete(`/api/garden/delete/${gardenId}`)
-    yield fetchGarden;
-
+    yield put({ type: "FETCH_GARDEN"});
   }catch(err){
     console.log("Error with deleting garden")
   }

@@ -14,7 +14,8 @@ export default function GardenItem({ id, name, type, num, create }) {
 
   const [overMenu, setOverMenu] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-
+  const [mousePos, setMousePos] = useState({});
+  const [showStyleModal, setShowStyleModal] = useState(false)
   const modalState = useSelector((store) => store.functional.modalActive);
 
   async function gotoGarden() {
@@ -31,8 +32,12 @@ export default function GardenItem({ id, name, type, num, create }) {
   async function showEditMenu() {
     await dispatch({ type: "SET_MODAL_ACTIVE" });
     if (!modalState) {
+      await modalStyle();
       setShowEdit(!showEdit);
     }
+    console.log(mousePos.y)
+
+    
   }
 
   const isModalActive = () => {
@@ -43,10 +48,30 @@ export default function GardenItem({ id, name, type, num, create }) {
     }
   };
 
+  const modalStyle = () => {
+    if(mousePos.y > 648){
+      setShowStyleModal(true)
+    }else{
+      setShowStyleModal(false)
+    }
+  }
   useEffect(() => {
     if (!modalState) {
       setShowEdit(false);
     }
+
+    //console.log(window.innerHeight);
+
+    const handleMouseMove = (event) => {
+      setMousePos({ x: event.clientX, y: event.clientY });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("click", handleMouseMove);
+    };
+
   }, [modalState]);
 
   return (
@@ -72,8 +97,10 @@ export default function GardenItem({ id, name, type, num, create }) {
               ? `${styles.garden_edit_container} ${styles.show}`
               : `${styles.garden_edit_container} ${styles.hide}`
           }
+
+          style={showStyleModal ? {top:"-1.5rem", transformOrigin: "bottom right"} : {top:"3rem"}}
         >
-          <GardenEdit id={id}/>
+          <GardenEdit id={id} />
         </div>
       </div>
 

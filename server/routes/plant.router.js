@@ -15,7 +15,8 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT "plant"."plant_table_id", "plant"."plant_name", "plant_info"."scientific_name" FROM "plant_info" 
     JOIN "plant" ON "plant"."plant_info_id" = "plant_info"."plant_info_table_id" 
     JOIN "user" ON "user"."id" = "plant"."user_id"
-    WHERE "user"."id" = $1 AND "plant"."user_id" = $2;`;
+    WHERE "user"."id" = $1 AND "plant"."user_id" = $2
+    ORDER BY "plant"."plant_table_id" ASC;`;
     pool
       .query(queryText, [user.id, user.id])
       .then((results) => {
@@ -35,10 +36,10 @@ router.get("/filter/garden/:id", rejectUnauthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     const user = req.user;
     const gardenId = req.params.id;
-    const queryText = `SELECT * FROM "plant" WHERE "garden_id" = $1;`;
+    const queryText = `SELECT * FROM "plant" WHERE "garden_id" = $1 AND "user_id" = $2 ORDER BY "plant_table_id" ASC;`;
 
     pool
-      .query(queryText, [gardenId])
+      .query(queryText, [gardenId, user.id])
       .then((results) => {
         res.send(results.rows);
       })
@@ -54,11 +55,12 @@ router.get("/filter/garden/:id", rejectUnauthenticated, (req, res) => {
 // GET selected plant
 router.get("/selected/:id", rejectUnauthenticated, (req, res) => {
   if (req.isAuthenticated()) {
+    const user = req.user;
     const plantId = req.params.id;
-    const queryText = `SELECT * FROM "plant" WHERE "plant_table_id" = $1;`;
+    const queryText = `SELECT * FROM "plant" WHERE "plant_table_id" = $1 AND "user_id" = $2;`;
 
     pool
-      .query(queryText, [plantId])
+      .query(queryText, [plantId, user.id])
       .then((results) => {
         res.send(results.rows);
       })
@@ -98,11 +100,14 @@ router.get("/details/:id", rejectUnauthenticated, (req, res) => {
 // get plants with no garden
 router.get("/no-garden", (req, res) => {
   if (req.isAuthenticated()) {
+    const user  = req.user;
     const queryText = `SELECT * FROM "plant" 
-    WHERE "plant"."garden_id" IS NULL;`;
+    WHERE "plant"."garden_id" IS NULL
+    AND "plant"."user_id" = $1
+    ORDER BY "plant"."plant_table_id" ASC;`;
 
     pool
-      .query(queryText)
+      .query(queryText, [user.id])
       .then((results) => {
         res.send(results.rows);
       })

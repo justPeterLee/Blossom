@@ -3,7 +3,10 @@ import ColorTheme from "./ColorTheme/ColorTheme";
 import Select from "./Select/Select";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 export default function AddGarden() {
+  const history = useHistory();
+
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [theme, setTheme] = useState("");
@@ -37,6 +40,7 @@ export default function AddGarden() {
     console.log(newGardenData)
 
     dispatch({type:"CREATE_GARDEN", payload:newGardenData})
+    history.push('/garden')
   }
   return (
     <div className={`${styles.container}`}>
