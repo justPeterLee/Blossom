@@ -3,10 +3,11 @@ import { useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, dispatch, useDispatch } from "react-redux";
 import { RiRulerLine, RiArrowDropDownLine } from "react-icons/ri";
-import UpdateGarden from "./UpdateGarden/UpdateGarden";
-import { async } from "q";
+import UpdateGardenItem from "./UpdateGarden/UpdateGardenItem";
 export default function UpdatePlant() {
-  const [reRun, setReRun] = useState(0);
+  const [showGarden, setShowGarden] = useState(false);
+  const [render, setRender] = useState(false)
+  const [renderWait, setRenderWait] = useState(false)
   // history dependency (navigate to different pages)
   const history = useHistory();
   // parameters dependency
@@ -17,9 +18,11 @@ export default function UpdatePlant() {
 
   const details = useSelector((store) => store.plant.detailsReducer[0]);
   const garden = useSelector((store) => store.garden.gardenReducer);
+  const modalState = useSelector((store) => store.functional.modalColor);
 
   const [name, setName] = useState(details.plant_name);
   const [height, setHeight] = useState(details.plant_height);
+  const [newGardenName, setNewGardenName] = useState(details.garden_name);
   const [newGarden, setNewGarden] = useState(details.garden_id);
 
   // parameter plant id
@@ -28,8 +31,6 @@ export default function UpdatePlant() {
   if (!details || details.plant_table_id != plantId || !garden) {
     return <p>loading...</p>;
   }
-
-
 
   const updatePlantHandler = () => {
     if (name && height && plantId) {
@@ -43,12 +44,42 @@ export default function UpdatePlant() {
     history.push(`/plant/detail/${plantId}`);
   };
 
+  async function updateGardenModal() {
+    await dispatch({ type: "MODAL_COLOR_CLICKED" });
+    if (!modalState) {
+      setShowGarden(!showGarden);
+      setRender(true)
+      setRenderWait(true)
+    }
+  }
+
+
+  // ----------------- Prop Chain Function -----------------
+  function onNewGardenId(newId){
+    setNewGarden(newId.id)
+    setNewGardenName(newId.name)
+    console.log(newId.id, newId.name)
+  }
+
+
+
+
+
+
+
+
+
+
   useEffect(() => {
     dispatch({ type: "FETCH_DETAILS", payload: plantId });
     dispatch({ type: "FETCH_GARDEN" });
     dispatch({ type: "HIDE_MENU" });
-
-  }, []);
+    if (!modalState) {
+      setShowGarden(false);
+      
+      setTimeout(()=>{ if(renderWait){setRender(false); setRenderWait(false)}},300)
+    }
+  }, [modalState]);
 
   return (
     <div className={styles.container}>
@@ -117,17 +148,12 @@ export default function UpdatePlant() {
           </button>
         </div>
 
-        <div className={styles.garden_input_container}>
+        <div className={styles.garden_input_container} style={!render ? {overflow:"hidden"} : {}}>
           <label htmlFor="garden-update" className={styles.garden_input_title}>
             change garden
           </label>
-          <button
-            className={styles.garden_button}
-            onClick={() => {
-              console.log("hello");
-            }}
-          >
-            {newGarden ? <p>{details.garden_name}</p> : <p>none</p>}
+          <button className={styles.garden_button} onClick={updateGardenModal}>
+            {newGarden ? <p>{newGardenName}</p> : <p>none</p>}
             <RiArrowDropDownLine size={20} />
           </button>
           {/* <select
@@ -148,7 +174,29 @@ export default function UpdatePlant() {
               );
             })}
           </select> */}
-          <UpdateGarden gardens={garden} />
+
+          {
+            <div
+              className={
+                showGarden
+                  ? `${styles.container_garden} ${styles.show_garden}`
+                  : `${styles.container_garden}`
+              }
+              
+            >
+              {garden.map((garden) => {
+                return (
+                  <UpdateGardenItem
+                    gardenName={garden.garden_name}
+                    id={garden.garden_table_id}
+                    key={garden.garden_table_id}
+
+                    newGardenId={onNewGardenId}
+                  />
+                );
+              })}
+            </div>
+          }
         </div>
       </div>
       <button

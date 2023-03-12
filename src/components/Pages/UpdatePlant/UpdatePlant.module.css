@@ -1,129 +1,150 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* -------------- buttons ----------------- */
-.top_bottons{
-    display: flex;
-    width: 100vw;
-    margin-top: 1.5rem;
-    justify-content: space-between;
+.top_bottons {
+  display: flex;
+  width: 100vw;
+  margin-top: 1.5rem;
+  justify-content: space-between;
 }
 
-.top_bottons button{
-    border:none;
-    background-color: transparent;
-    font-size: 17px;
-    font-family: openSansLight;
-
-    
+.top_bottons button {
+  border: none;
+  background-color: transparent;
+  font-size: 17px;
+  font-family: openSansLight;
 }
-.update_button{
-    margin-right: 1.5rem;
+.update_button {
+  margin-right: 1.5rem;
 }
-.cancel_button{
-    margin-left: 1.5rem;
+.cancel_button {
+  margin-left: 1.5rem;
 }
 
 /* -------------- page title -------------- */
-.page_title{
-    width:100vw;
-    margin-left:4rem;
-    margin-top: 1rem;
-    font-size: 20px;
-    font-family: openSansLight;
-
+.page_title {
+  margin-left: -15rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 20px;
+  font-family: openSansLight;
 }
-
 
 /* -------------- input -------------- */
-.input_all_container{
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.input_all_container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 /* name */
-.name_input_container, .height_input_container, .garden_input_container{
-    display: flex;
-    flex-direction: column;
-    
+.name_input_container,
+.height_input_container,
+.garden_input_container {
+  display: flex;
+  flex-direction: column;
 }
 
-.name_input_title{
-    font-size: 15px;
-    margin-bottom: .2rem;
-    color: rgb(50,50,50);
-    font-family: openSansLight;
+.name_input_title {
+  font-size: 15px;
+  margin-bottom: 0.2rem;
+  color: rgb(50, 50, 50);
+  font-family: openSansLight;
 }
-.name_input{
-    border:none;
-    border-bottom: solid 1px rgb(200,200,200);
+.name_input {
+  border: none;
+  border-bottom: solid 1px rgb(200, 200, 200);
 
-    width: 20rem;
+  width: 20rem;
 
-    font-size: 25px;
-    font-family: openSansLight;
+  font-size: 25px;
+  font-family: openSansLight;
 }
 
-.name_input:focus{
-    outline: none;
-    border-bottom: solid 1px blue;
+.name_input:focus {
+  outline: none;
+  border-bottom: solid 1px blue;
 }
 
 /* height */
-.height_input_container{
-    justify-content: center;
-    align-items: center;
-
+.height_input_container {
+  justify-content: center;
+  align-items: center;
 }
-.height_button{
-    height: 2rem;
-    width: 5rem;
+.height_button {
+  height: 2rem;
+  width: 5rem;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap:10px
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
-.height_button{
-    border: none;
-    box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
-    background-color: transparent;
-    border-radius: 5px ;
-
+.height_button {
+  border: none;
+  box-shadow: 0.01em 0 0.03em rgb(200, 200, 200),
+    -0.01em 0 0.3em rgb(200, 200, 200);
+  background-color: transparent;
+  border-radius: 5px;
 }
 
-.height_input_title{
-    font-family: openSansLight;
-    margin-bottom: .3rem;
+.height_input_title {
+  font-family: openSansLight;
+  margin-bottom: 0.3rem;
 }
 
 /* change garden */
-.garden_input_title{
-    font-family: openSansLight;
-    margin-bottom: .4rem;
-}
-.garden_input{
-    border: none;
-    border-bottom: solid 1px rgb(200,200,200);
+.garden_input_container {
+    position: relative;
 
 }
-.garden_input:focus{
-    outline: none;
-    border-bottom: solid 1px blue;
+.garden_input_title {
+  font-family: openSansLight;
+  margin-bottom: 0.4rem;
 }
-.garden_button{
-    background-color: transparent;
-    border:none;
-    border-bottom: solid 1px rgb(200,200,200);
-    display: flex;
-    justify-content: space-between;
+.garden_input {
+  border: none;
+  border-bottom: solid 1px rgb(200, 200, 200);
 }
-.garden_button p{
-    margin: 0;
-    font-family: openSansLight;
-    font-size: 17px;
+.garden_input:focus {
+  outline: none;
+  border-bottom: solid 1px blue;
+}
+.garden_button {
+  background-color: transparent;
+  border: none;
+  border-bottom: solid 1px rgb(200, 200, 200);
+  display: flex;
+  justify-content: space-between;
+}
+.garden_button p {
+  margin: 0;
+  font-family: openSansLight;
+  font-size: 17px;
+}
+
+.container_garden {
+  border: solid 1px rgb(200, 200, 200);
+  background-color: white;
+  border-radius: 20px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  position: absolute;
+  z-index: 3;
+
+  bottom: -53rem;
+  right: -10%;
+  left: -10%;
+  height: 20rem;
+
+  transition: transform ease 0.3s;
+}
+
+.show_garden {
+  transform: translateY(-90%);
 }

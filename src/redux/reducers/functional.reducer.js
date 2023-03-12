@@ -62,6 +62,18 @@ function backdrop(state = false, action) {
   }
 }
 
+function modalColor(state = false, action) {
+  switch (action.type) {
+    case "MODAL_COLOR_CLICKED":
+      return (state = true);
+    case "RESET_MODAL_COLOR":
+      return (state = false);
+    case "RESET_ALL_MODAL":
+      return (state = false);
+    default:
+      return state;
+  }
+}
 function menuState(state=true, action){
   switch(action.type){
     case "HIDE_MENU":
@@ -80,5 +92,6 @@ export default combineReducers({
   plantDataAPI,
   modalActive,
   backdrop,
-  menuState
+  menuState,
+  modalColor
 });
