@@ -108,6 +108,25 @@ router.post("/create", (req, res) => {
   }
 });
 
+router.get("/gardenId/:id", (req, res)=>{
+  if(req.isAuthenticated){
+    const user = req.user;
+    const gardenId = req.params.id 
+    const queryText = `SELECT "garden"."garden_name" FROM "garden" WHERE "garden"."garden_table_id" = $1 AND "garden"."user_id" = $2;`
+
+    pool.query(queryText, [gardenId, user.id])
+    .then((result)=>{
+      res.send(result.rows)
+    })
+    .catch((err)=>{
+      console.log("Error with getting garden by id: ", err)
+      res.sendStatus(500)
+    })
+  }else{
+    console.log("Unauthenticated");
+    res.sendStatus(403);
+  }
+})
 // DELETE
 router.delete("/delete/:id", (req, res) => {
   if (req.isAuthenticated) {

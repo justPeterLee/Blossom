@@ -5,10 +5,14 @@ import Menu from "./Menu/Menu";
 import PlusButton from "./PlusButton/PlusButton";
 
 import { HiOutlineUserCircle } from "react-icons/hi";
+
+import { useSelector, useDispatch } from "react-redux";
 export default function Layout(props) {
+  const dispatch = useDispatch();
+  const hideMenu = useSelector(store=>store.functional.menuState)
   return (
     <Fragment>
-      <header className={`${styles.container}`} style={props.auth ? {} : {display:"none"}}>
+      <header className={hideMenu ? `${styles.container}` : `${styles.container} ${styles.hideMenu}`} style={props.auth ? {} : {display:"none"}}>
 
         <div className={styles.topContainer}>
           <div className={styles.iconContainer}>

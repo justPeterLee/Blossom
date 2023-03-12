@@ -1,0 +1,22 @@
+.item{
+    border: none;
+    height: 2.5rem;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+}
+.item p{
+    margin-left: 1.5rem;
+    font-size: 17px;
+    font-family: openSansLight;
+}
+
+.icon{
+    margin-right: 1.5rem;
+}

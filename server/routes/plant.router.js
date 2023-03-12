@@ -80,6 +80,7 @@ router.get("/details/:id", rejectUnauthenticated, (req, res) => {
     const plantId = req.params.id;
     const queryText = `SELECT * FROM "plant" 
     JOIN "plant_info" ON "plant_info"."plant_info_table_id" = "plant"."plant_info_id"
+    JOIN "garden" ON "garden"."garden_table_id" = "plant"."garden_id"
     WHERE "plant"."user_id" = $1 AND "plant"."plant_table_id" = $2;`;
 
     pool

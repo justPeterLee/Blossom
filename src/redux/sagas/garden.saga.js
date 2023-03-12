@@ -8,6 +8,8 @@ function* gardenSaga() {
   yield takeEvery("CREATE_GARDEN", createGarden);
 
   yield takeEvery("DELETE_MODAL_GARDEN", deleteGarden);
+
+  yield takeEvery("FETCH_GARDEN_ID", fetchGardenId);
 }
 
 // fetch Garden
@@ -50,6 +52,16 @@ function* deleteGarden(action){
     yield put({ type: "FETCH_GARDEN"});
   }catch(err){
     console.log("Error with deleting garden")
+  }
+}
+
+function* fetchGardenId(action){
+  try{
+    const gardenId = action.payload;
+    const garden = yield axios.get(`/api/garden/gardenId/${gardenId}`)
+    yield put({type:"SET_GARDEN_BY_ID", payload:garden.data});
+  }catch(err){
+    console.log("Error with getting garden by id: ", err)
   }
 }
 export default gardenSaga;

@@ -16,7 +16,18 @@ function gardenFilterReducer(state=[], action){
       return state;
   }
 }
+
+function gardenById(state=[], action){
+  switch(action.type){
+    case "SET_GARDEN_BY_ID":
+      return state = action.payload;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   gardenReducer,
-  gardenFilterReducer
+  gardenFilterReducer,
+  gardenById
 })

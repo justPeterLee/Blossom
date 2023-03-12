@@ -17,18 +17,57 @@
 .image{
     box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
     border-radius: 15px;
-    height: 270px;
-    width: 200px;
+    height: 450px;
+    width: 350px;
+    position: relative;
 }
 
+/* feature info */
 .feature_info{
     box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
     border-radius: 15px;
-    height: 170px;
-    width: 120px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 95px;
+    width: 300px;
+
+    position: absolute;
+    bottom: 0;
+    left:25px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
     
 }
 
+.feature_info_container{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.top_info_container{
+    margin-top: .8rem;
+    margin-left: 2.8rem;
+
+}
+.mid_info_container{
+    margin-left: 2.8rem;
+}
+.bot_info_container{
+    margin-left: 2.8rem;
+}
+.feature_info_container p{
+    margin:0;
+    padding:0;
+}
+.feature_title{
+    font-size: 15px;
+    color: rgb(100,100,100)
+}
+.feature_info_data{
+    font-size: 15px;
+    color: rgb(50,50,50)
+}
 
 /* sun and water container */
 .sun_water_container{
@@ -43,9 +82,61 @@
 
     border-radius: 15px;
     box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
+    position: relative;
+    overflow: hidden;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 
+.water_back_svg{
+    aspect-ratio: 1000/1000;
+    position: absolute;
+    height: 20rem;
+    width: 20rem;
+    top:0;
+    left:0%;
+    right: 0%;
+    bottom: 0;
+    
+    background-repeat: no-repeat ;
+    background-position:center ;
+    background-size: cover;
+    background-image: url(../../../../public/media/wave-haikei\ \(4\).svg);
 
+    
+    transition: transform ease 1s;
+    z-index: 0;
+}
+
+/* .move_wave{
+    transform: translateY(-45%);
+} */
+
+.level_text{
+    z-index: 2;
+   color:white;
+   margin: 0;
+}
+.level_text_under{
+    color:black;
+    z-index: 1;
+    position: absolute;
+    z-index: 0;
+}
+.water_chart{
+    position: absolute;
+
+    z-index: 1;
+
+}
+
+.level_sub_text{
+    font-size: 13px;
+}
 /* extra info */
 .extra_info{
     display: flex;
@@ -56,10 +147,17 @@
 
     height: 15rem;
     width: 23rem;
+    
 }
 
+.extra_info p{
+    margin: 0;
+    margin-left: 2rem;
+}
 
-
+.extra_info_title p{
+    margin-top: 1rem;
+}
 /* stretch goal */
 .task_container_stretch, .color_container_stretch{
     box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
@@ -74,6 +172,7 @@
     width: 23rem;
     height: 20rem;
 }
+
 
 
 

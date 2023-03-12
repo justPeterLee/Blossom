@@ -36,3 +36,7 @@
 .textContainer p{
   padding-bottom: 10px;
 }
+
+.hideMenu{
+  display: none;
+}

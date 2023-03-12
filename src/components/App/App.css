@@ -21,6 +21,15 @@ font family
   src: url('../../../public/media/Open_Sans/static/OpenSans/OpenSans-Light.ttf');
 }
 
+@font-face {
+  font-family: openSansSemiBold;
+  src: url('../../../public/media/Open_Sans/static/OpenSans/OpenSans-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: openSansBold;
+  src: url('../../../public/media/Open_Sans/static/OpenSans/OpenSans-Bold.ttf');
+}
 
 
 

@@ -1,0 +1,129 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* -------------- buttons ----------------- */
+.top_bottons{
+    display: flex;
+    width: 100vw;
+    margin-top: 1.5rem;
+    justify-content: space-between;
+}
+
+.top_bottons button{
+    border:none;
+    background-color: transparent;
+    font-size: 17px;
+    font-family: openSansLight;
+
+    
+}
+.update_button{
+    margin-right: 1.5rem;
+}
+.cancel_button{
+    margin-left: 1.5rem;
+}
+
+/* -------------- page title -------------- */
+.page_title{
+    width:100vw;
+    margin-left:4rem;
+    margin-top: 1rem;
+    font-size: 20px;
+    font-family: openSansLight;
+
+}
+
+
+/* -------------- input -------------- */
+.input_all_container{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+/* name */
+.name_input_container, .height_input_container, .garden_input_container{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.name_input_title{
+    font-size: 15px;
+    margin-bottom: .2rem;
+    color: rgb(50,50,50);
+    font-family: openSansLight;
+}
+.name_input{
+    border:none;
+    border-bottom: solid 1px rgb(200,200,200);
+
+    width: 20rem;
+
+    font-size: 25px;
+    font-family: openSansLight;
+}
+
+.name_input:focus{
+    outline: none;
+    border-bottom: solid 1px blue;
+}
+
+/* height */
+.height_input_container{
+    justify-content: center;
+    align-items: center;
+
+}
+.height_button{
+    height: 2rem;
+    width: 5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px
+}
+.height_button{
+    border: none;
+    box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
+    background-color: transparent;
+    border-radius: 5px ;
+
+}
+
+.height_input_title{
+    font-family: openSansLight;
+    margin-bottom: .3rem;
+}
+
+/* change garden */
+.garden_input_title{
+    font-family: openSansLight;
+    margin-bottom: .4rem;
+}
+.garden_input{
+    border: none;
+    border-bottom: solid 1px rgb(200,200,200);
+
+}
+.garden_input:focus{
+    outline: none;
+    border-bottom: solid 1px blue;
+}
+.garden_button{
+    background-color: transparent;
+    border:none;
+    border-bottom: solid 1px rgb(200,200,200);
+    display: flex;
+    justify-content: space-between;
+}
+.garden_button p{
+    margin: 0;
+    font-family: openSansLight;
+    font-size: 17px;
+}

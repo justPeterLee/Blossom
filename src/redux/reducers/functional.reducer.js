@@ -61,10 +61,24 @@ function backdrop(state = false, action) {
       return state;
   }
 }
+
+function menuState(state=true, action){
+  switch(action.type){
+    case "HIDE_MENU":
+      return state=false;
+    case "SHOW_MENU":
+      return state=true;
+    case "RESET_MENU":
+      return state = true;
+    default:
+      return state;
+  }
+}
 export default combineReducers({
   selectPlantToGarden,
   selectGardenTheme,
   plantDataAPI,
   modalActive,
   backdrop,
+  menuState
 });

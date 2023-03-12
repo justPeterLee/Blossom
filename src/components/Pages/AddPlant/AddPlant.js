@@ -1,6 +1,6 @@
 import styles from "./AddPlant.module.css";
 import PlantInfo from "./PlantInfo/PlantInfo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 export default function AddPlant() {
   let currentDate = new Date().toJSON().slice(0, 10);
@@ -19,7 +19,12 @@ export default function AddPlant() {
     };
 
     dispatch({type:"CREATE_PLANT", payload: newPlantData})
+    dispatch({type: "SHOW_MENU"});
   };
+
+  useEffect(()=>{
+    dispatch({type: "HIDE_MENU"});
+  })
   return (
     <div className={styles.plant_container}>
       <button onClick={createPlantHandler}>create</button>
@@ -61,10 +66,9 @@ export default function AddPlant() {
           <input
             className={styles.name_input}
             type="date"
-            value={dateState}
+            value={'2024-02-11'}
             onChange={(event) => {
               setDateState(event.target.value);
-              console.log(event.target.value);
             }}
           />
         </div>
