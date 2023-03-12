@@ -16,7 +16,7 @@ export default function UpdateGardenItem(props) {
       name: props.gardenName
     })
 
-    setTimeout(()=>{dispatch({ type: "RESET_ALL_MODAL" });},100)
+    setTimeout(()=>{dispatch({ type: "RESET_ALL_MODAL" });setIsChecked(false)},100)
   };
 
   useEffect(()=>{

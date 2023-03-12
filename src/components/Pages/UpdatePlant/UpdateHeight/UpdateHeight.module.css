@@ -1,0 +1,60 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width:23rem;
+    border-radius: 20px;
+    gap:1rem;
+    padding-bottom: 2rem;
+    padding-top: 1rem;
+}
+
+.image_container img{
+    
+    height:23rem;
+}
+
+
+.input_container{
+    border-radius: 20px;
+
+    position: relative;
+
+}
+
+.height_slider{
+    top:45%;
+    left:-7rem;
+    width:14rem;
+}
+
+
+.height_button{
+    background-color: transparent;
+    border:none;
+    border-bottom: solid 2px rgb(200,200,200);
+    width: 9rem;
+}
+.height_button p{
+    font-family: openSansLight;
+    font-size: 40px;
+    margin: 0;
+    color: rgb(150,150,150)
+}
+
+
+.text_input{
+    margin-top: .5rem;
+    height: 2.8rem;
+    width: 8.4rem;
+}
+
+.save_button{
+    background-color: transparent;
+    border: solid 1px black;
+    font-family: openSansLight;
+    font-size: 25px;
+    width: 5rem;
+    border-radius: 5px;
+}

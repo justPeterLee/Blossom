@@ -30,7 +30,7 @@ function detailsReducer(state = {}, action) {
 
       let height = detailData.plant_height;
       let feet = Math.floor(height / 12);
-      let inches = height - feet * 12;
+      let inches = height - (feet * 12);
 
       if (inches < 10) {
         inches = `0${inches}`;
@@ -38,7 +38,7 @@ function detailsReducer(state = {}, action) {
         inches = `${inches}`;
       }
 
-      detailData.plant_height = { ft: feet, in: inches };
+      detailData.plant_height = { ft: feet, in: inches, height: height };
       let yearNow = new Date().toJSON().slice(0, 4);
       let monthNow = new Date().toJSON().slice(5, 7);
       let dayNow = new Date().toJSON().slice(8, 10);

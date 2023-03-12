@@ -8,20 +8,7 @@ import { TiBrush } from "react-icons/ti";
 import { RiRulerLine } from "react-icons/ri";
 import { BiCake } from "react-icons/bi";
 
-import { PieChart, Pie, Cell } from "recharts";
 
-const data01 = [
-  {
-    name: "Group A",
-    value: 90,
-  },
-  {
-    name: "Group B",
-    value: 10,
-  },
-];
-
-const COLORS = ["#0088FE", "#00C49F"];
 export default function Details() {
   const history = useHistory();
   const params = useParams();
@@ -132,7 +119,7 @@ export default function Details() {
 
           {/* sun level */}
           <div className={styles.sun_level}>
-            <p className={styles.level_text}>sunlight level</p>
+            <p className={`${styles.level_text} ${styles.sun_text}`}>sunlight level</p>
             <p className={`${styles.level_text} ${styles.level_sub_text}`}>
               {details.sunlight_level}
             </p>

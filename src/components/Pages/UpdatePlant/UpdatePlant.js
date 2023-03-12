@@ -4,10 +4,13 @@ import { useEffect, useState } from "react";
 import { useSelector, dispatch, useDispatch } from "react-redux";
 import { RiRulerLine, RiArrowDropDownLine } from "react-icons/ri";
 import UpdateGardenItem from "./UpdateGarden/UpdateGardenItem";
+import UpdateHeight from "./UpdateHeight/UpdateHeight";
 export default function UpdatePlant() {
   const [showGarden, setShowGarden] = useState(false);
-  const [render, setRender] = useState(false)
-  const [renderWait, setRenderWait] = useState(false)
+  const [render, setRender] = useState(false);
+  const [renderWait, setRenderWait] = useState(false);
+
+  const [showHeight, setShowHeight] = useState(false)
   // history dependency (navigate to different pages)
   const history = useHistory();
   // parameters dependency
@@ -21,10 +24,11 @@ export default function UpdatePlant() {
   const modalState = useSelector((store) => store.functional.modalColor);
 
   const [name, setName] = useState(details.plant_name);
-  const [height, setHeight] = useState(details.plant_height);
+  const [height, setHeight] = useState(details.plant_height.height);
   const [newGardenName, setNewGardenName] = useState(details.garden_name);
   const [newGarden, setNewGarden] = useState(details.garden_id);
-
+  const [ft, setFt] = useState(details.plant_height.ft)
+  const [inch, setInch] = useState(details.plant_height.in)
   // parameter plant id
   const plantId = params.id;
 
@@ -32,14 +36,14 @@ export default function UpdatePlant() {
     return <p>loading...</p>;
   }
 
-  const updatePlantHandler = () => {
+  const updatePlantHandler = async () => {
     if (name && height && plantId) {
-      console.log(name, height, plantId);
-      dispatch({
+      await dispatch({
         type: "UPDATE_PLANT",
         payload: { id: plantId, name: name, height: height, garden: newGarden },
       });
     }
+    dispatch({ type: "SHOW_MENU" });
     console.log(name, height, plantId);
     history.push(`/plant/detail/${plantId}`);
   };
@@ -48,36 +52,49 @@ export default function UpdatePlant() {
     await dispatch({ type: "MODAL_COLOR_CLICKED" });
     if (!modalState) {
       setShowGarden(!showGarden);
-      setRender(true)
-      setRenderWait(true)
+      setRender(true);
+      setRenderWait(true);
     }
   }
 
-
-  // ----------------- Prop Chain Function -----------------
-  function onNewGardenId(newId){
-    setNewGarden(newId.id)
-    setNewGardenName(newId.name)
-    console.log(newId.id, newId.name)
+  async function toggleHeightModal(){
+    await dispatch({ type: "MODAL_COLOR_CLICKED" });
+    if (!modalState) {
+      setShowHeight(true);
+      setRender(true);
+      setRenderWait(true);
+    }
   }
 
+  // ----------------- Prop Chain Function -----------------
+  function onNewGardenId(newId) {
+    setNewGarden(newId.id);
+    setNewGardenName(newId.name);
+    console.log(newId.id, newId.name);
+  }
 
-
-
-
-
-
-
-
-
+  function pullHeight(height){
+    let ft = parseInt(height.ft * 12)
+    let inches = parseInt(height.inch)
+    let heightTotal = ft + inches;
+    
+    setHeight(heightTotal);
+    setFt(height.ft)
+    setInch(height.inch)
+  }
   useEffect(() => {
     dispatch({ type: "FETCH_DETAILS", payload: plantId });
     dispatch({ type: "FETCH_GARDEN" });
     dispatch({ type: "HIDE_MENU" });
     if (!modalState) {
       setShowGarden(false);
-      
-      setTimeout(()=>{ if(renderWait){setRender(false); setRenderWait(false)}},300)
+      setShowHeight(false);
+      setTimeout(() => {
+        if (renderWait) {
+          setRender(false);
+          setRenderWait(false);
+        }
+      }, 300);
     }
   }, [modalState]);
 
@@ -137,18 +154,31 @@ export default function UpdatePlant() {
           /> */}
           <button
             className={styles.height_button}
-            onClick={() => {
-              console.log("hello there");
-            }}
+            onClick={toggleHeightModal}
           >
             <RiRulerLine size={18} />
             <p className={styles.feature_info_data}>
-              {details.plant_height.ft}' {details.plant_height.in}"
+              {ft}' {inch}"
             </p>
           </button>
+
+          {
+        <div
+          className={
+            showHeight
+              ? `${styles.container_height_modal} ${styles.show_height_modal}`
+              : `${styles.container_height_modal}`
+          }
+        >
+          <UpdateHeight onHeight={pullHeight}/>
+        </div>
+      }
         </div>
 
-        <div className={styles.garden_input_container} style={!render ? {overflow:"hidden"} : {}}>
+        <div
+          className={styles.garden_input_container}
+          style={!render ? { overflow: "hidden" } : {}}
+        >
           <label htmlFor="garden-update" className={styles.garden_input_title}>
             change garden
           </label>
@@ -182,7 +212,6 @@ export default function UpdatePlant() {
                   ? `${styles.container_garden} ${styles.show_garden}`
                   : `${styles.container_garden}`
               }
-              
             >
               {garden.map((garden) => {
                 return (
@@ -190,7 +219,6 @@ export default function UpdatePlant() {
                     gardenName={garden.garden_name}
                     id={garden.garden_table_id}
                     key={garden.garden_table_id}
-
                     newGardenId={onNewGardenId}
                   />
                 );
@@ -199,6 +227,7 @@ export default function UpdatePlant() {
           }
         </div>
       </div>
+
       <button
         onClick={() => {
           dispatch({

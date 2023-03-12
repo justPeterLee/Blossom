@@ -75,6 +75,8 @@
 .height_input_container {
   justify-content: center;
   align-items: center;
+  position: relative;
+  
 }
 .height_button {
   height: 2rem;
@@ -100,8 +102,7 @@
 
 /* change garden */
 .garden_input_container {
-    position: relative;
-
+  position: relative;
 }
 .garden_input_title {
   font-family: openSansLight;
@@ -147,4 +148,19 @@
 
 .show_garden {
   transform: translateY(-90%);
+}
+
+.container_height_modal {
+  position: absolute;
+  bottom: -75rem;
+  left: -9;
+
+  transition: transform ease 0.3s;
+  background-color: white;
+  z-index: 2;
+  border-radius: 20px;
+}
+
+.show_height_modal {
+  transform: translateY(-120%);
 }
