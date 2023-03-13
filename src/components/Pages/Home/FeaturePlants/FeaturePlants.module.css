@@ -1,5 +1,61 @@
-.main{
-    display: grid;
-    grid-template-columns: repeat(2, 50%);
-    margin:1rem;
+.main {
+  display: flex;
+  width: 100vw;
+  overflow: scroll;
+  margin-left: 1.5rem;
+}
+.main::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+/* add plant */
+.create_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 3.5rem;
+
+    padding:.5rem;
+    
+}
+.create_image{
+    height: 12rem;
+    width: 11rem;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.create_image button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 3rem;
+    width: 3rem;
+    border-radius: 100%;
+
+    border:none;
+}
+.description{
+    width: 11rem;
+    text-align: start;
+
+}
+.name, .spes{
+    margin: 0;
+
+}
+.name{
+    font-size: 17px;
+    padding-top: 7px;
+    padding-bottom: 1px;
+}
+.spes{
+    color:rgb(150,150,150);
+    font-size: 13px;
 }
