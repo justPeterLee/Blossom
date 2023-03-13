@@ -74,8 +74,9 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    
 }
-
+/* water level */
 .water_level, .sun_level{
     height: 170px;
     width: 10.9rem;
@@ -120,6 +121,9 @@
     z-index: 2;
    color:white;
    margin: 0;
+}
+.sun_text{
+    color: white;
 }
 .level_text_under{
     color:black;
@@ -176,4 +180,34 @@
 
 
 
+.update_button_container{
+    display: flex;
+    justify-content: center;
+}
+.update_button{
+    width: 8rem;
+    height: 3rem;
+    border: none;
+    border-radius: 10px;
+    margin: 0;
+    margin-top: -2rem;
+}
 
+
+
+.sun_level{
+    position: relative;
+}
+.sun_background{
+    position: absolute;
+    background-color: rgb(244,128,55);
+    height:10.5rem;
+    width: 10.5rem;
+    border-radius: 100%;
+
+    bottom: -10rem;
+    transition: transform ease-in-out 1s;
+}
+/* .sun_rise{
+    transform: translateY(-70%);
+} */

@@ -8,7 +8,6 @@ import { TiBrush } from "react-icons/ti";
 import { RiRulerLine } from "react-icons/ri";
 import { BiCake } from "react-icons/bi";
 
-
 export default function Details() {
   const history = useHistory();
   const params = useParams();
@@ -17,11 +16,13 @@ export default function Details() {
 
   const details = useSelector((store) => store.plant.detailsReducer[0]);
   const [waterStyle, setWaterStyle] = useState(false);
+  const [sunStyle, setSunStyle] = useState(false);
   useEffect(() => {
     dispatch({ type: "FETCH_DETAILS", payload: plantId });
     setTimeout(() => {
       setWaterStyle(true);
-    }, 500);
+      setSunStyle(true);
+    }, 50);
   }, []);
 
   if (!details) {
@@ -82,20 +83,19 @@ export default function Details() {
       </div>
 
       <div className={styles.sub_container}>
-        <button
-          onClick={() => {
-            history.push(`/plant/update/${details.plant_table_id}`);
-          }}
-        >
-          update
-        </button>
+        <div className={styles.update_button_container}>
+          <button
+            onClick={() => {
+              history.push(`/plant/update/${details.plant_table_id}`);
+            }}
+            className={styles.update_button}
+          >
+            update
+          </button>
+        </div>
 
         {/* task */}
         <div className={styles.task_container_stretch}></div>
-
-
-
-
 
         {/* sun and water levels */}
         <div className={styles.sun_water_container}>
@@ -115,26 +115,22 @@ export default function Details() {
             {/* <p className={styles.level_text_under}>{details.water_level}</p> */}
           </div>
 
-
-
           {/* sun level */}
           <div className={styles.sun_level}>
-            <p className={`${styles.level_text} ${styles.sun_text}`}>sunlight level</p>
-            <p className={`${styles.level_text} ${styles.level_sub_text}`}>
+            <div className={`${styles.sun_background} ${styles.sun_rise}`} style={sunStyle ? {transform: `translateY(${-70}%)`} : {}}></div>
+            <p className={`${styles.level_text} ${styles.sun_text}`}>
+              sunlight level
+            </p>
+            <p
+              className={`${styles.level_text} ${styles.level_sub_text} ${styles.sun_text}`}
+            >
               {details.sunlight_level}
             </p>
           </div>
         </div>
 
-
-
-
         {/* color contrast */}
         <div className={styles.color_container_stretch}></div>
-
-
-
-
 
         {/* extra info  */}
         <div className={styles.extra_info}>
@@ -142,7 +138,6 @@ export default function Details() {
           <div className={styles.extra_info_title}>
             <p>information</p>
           </div>
-
 
           {/* contain information */}
           <div className={styles.extra_info_description}>
@@ -156,7 +151,9 @@ export default function Details() {
             {details.maintenance && (
               <div className={styles.extra_info_description_sub}>
                 <p className={styles.extra_info_sub_title}>maintenance: </p>
-                <p className={styles.extra_info_text}>{details.sci_maintenance}</p>
+                <p className={styles.extra_info_text}>
+                  {details.sci_maintenance}
+                </p>
               </div>
             )}
             {details.sci_cycle && (
@@ -185,16 +182,13 @@ export default function Details() {
             {details.sci_growth_rate && (
               <div className={styles.extra_info_description_sub}>
                 <p className={styles.extra_info_sub_title}>growth rate: </p>
-                <p className={styles.extra_info_text}>{details.sci_growth_rate}</p>
+                <p className={styles.extra_info_text}>
+                  {details.sci_growth_rate}
+                </p>
               </div>
             )}
           </div>
         </div>
-
-
-
-
-
 
         {/* graph */}
         <div className={styles.graph_container_stretch}></div>
