@@ -31,6 +31,8 @@ function plantDataAPI(state = {}, action) {
   switch (action.type) {
     case "SET_PLANT_DATA_API":
       return (state = action.payload);
+    case "RESET_PLANT_DATA_API":
+      return state = {};
     default:
       return state;
   }

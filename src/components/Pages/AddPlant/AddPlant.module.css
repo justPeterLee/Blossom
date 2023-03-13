@@ -24,10 +24,31 @@
 
     width: 20rem;
 
+    font-family: openSansLight;
     font-size: 25px;
 }
 
 .name_input:focus{
     outline: none;
-    border-bottom: solid 1px blue;
+
+}
+
+.label_text{
+    font-family: openSansLight;
+    font-size: 20px;
+}
+
+.createButton{
+    height: 3rem;
+    width: 6rem;
+    border: none;
+    font-family: openSansLight;
+    font-size: 15px;
+}
+
+.button_div{
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
