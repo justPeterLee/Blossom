@@ -10,91 +10,119 @@ export default function ColorTheme() {
   const [isClickedFour, setIsClickedFour] = useState(false);
 
   const selectedColor = (e) => {
-    const color = e.target.dataset.id;
+    const color = e.target.parentElement.dataset.id;
+    console.log(color);
     switch (color) {
-      case "one":
+      case "rgb(220,140,140)":
         setIsClickedOne(true);
         setIsClickedTwo(false);
         setIsClickedThree(false);
         setIsClickedFour(false);
-        dispatch({type:"CHANGE_GARDEN_THEME", payload:color})
+        dispatch({ type: "CHANGE_GARDEN_THEME", payload: color });
         return;
-      case "two":
+      case "rgb(140,220,140)":
         setIsClickedOne(false);
         setIsClickedTwo(true);
         setIsClickedThree(false);
         setIsClickedFour(false);
-        dispatch({type:"CHANGE_GARDEN_THEME", payload:color})
+        dispatch({ type: "CHANGE_GARDEN_THEME", payload: color });
         return;
-      case "three":
+      case "rgb(140,140,220)":
         setIsClickedOne(false);
         setIsClickedTwo(false);
         setIsClickedThree(true);
         setIsClickedFour(false);
-        dispatch({type:"CHANGE_GARDEN_THEME", payload:color})
+        dispatch({ type: "CHANGE_GARDEN_THEME", payload: color });
         return;
-      case "four":
+      case "rgb(220,220,140)":
         setIsClickedOne(false);
         setIsClickedTwo(false);
         setIsClickedThree(false);
         setIsClickedFour(true);
-        dispatch({type:"CHANGE_GARDEN_THEME", payload:color})
+        dispatch({ type: "CHANGE_GARDEN_THEME", payload: color });
         return;
       default:
         return null;
     }
-
-
   };
   return (
     <div className={styles.container}>
       <div
-        data-id="one"
+        data-id="rgb(220,140,140)"
         className={
           !isClickedOne
-            ? `${styles.colorBlock} ${styles.colorOne}`
-            : `${styles.colorBlock} ${styles.colorOne} ${styles.clicked}`
+          ? ``
+          : `${styles.clicked}`
         }
-        onClick={(event) => {
-          selectedColor(event);
-        }}
-      ></div>
+      >
+        <div
+          className={`${styles.colorBlock} ${styles.colorOne}`}
+          onClick={(event) => {
+            selectedColor(event);
+          }}
+        ></div>
+      </div>
+
+
+
 
       <div
-      data-id="two"
+        data-id="rgb(140,220,140)"
         className={
           !isClickedTwo
-            ? `${styles.colorBlock} ${styles.colorTwo}`
-            : `${styles.colorBlock} ${styles.colorTwo} ${styles.clicked}`
+          ? ``
+          : `${styles.clicked}`
         }
-        onClick={(event) => {
+      >
+        <div
+          className={`${styles.colorBlock} ${styles.colorTwo}`}
+          onClick={(event) => {
             selectedColor(event);
           }}
-      ></div>
+        ></div>
+      </div>
+
+
+
 
       <div
-      data-id="three"
+        data-id="rgb(140,140,220)"
         className={
           !isClickedThree
-            ? `${styles.colorBlock} ${styles.colorThree}`
-            : `${styles.colorBlock} ${styles.colorThree} ${styles.clicked}`
+          ? ``
+          : `${styles.clicked}`
         }
-        onClick={(event) => {
+      >
+        <div
+          className={`${styles.colorBlock} ${styles.colorThree}`}
+          onClick={(event) => {
             selectedColor(event);
           }}
-      ></div>
+        ></div>
+      </div>
+
+
+
 
       <div
-      data-id="four"
+        data-id="rgb(220,220,140)"
         className={
           !isClickedFour
-            ? `${styles.colorBlock} ${styles.colorFour}`
-            : `${styles.colorBlock} ${styles.colorFour} ${styles.clicked}`
+            ? ``
+            : `${styles.clicked}`
         }
-        onClick={(event) => {
+      >
+
+        <div
+          className={`${styles.colorBlock} ${styles.colorFour}`}
+          onClick={(event) => {
             selectedColor(event);
           }}
-      ></div>
+        ></div>
+      </div>
+
+
+
     </div>
   );
 }

@@ -24,7 +24,7 @@ export default function Layout(props) {
           </div>
           
           <div className={styles.iconContainer}>
-            <HiOutlineUserCircle size={35} className={styles.user} />
+            
           </div>
         </div>
 

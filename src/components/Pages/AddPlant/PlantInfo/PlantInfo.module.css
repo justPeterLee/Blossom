@@ -50,7 +50,10 @@
 
     gap: 3rem;
     
+    
 }
+
+
 input[type="file"] {
     display: none;
 }

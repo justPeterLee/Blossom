@@ -19,7 +19,7 @@ export default function SelectItem(props){
     }
     return(
         <div className={styles.item_container} onClick={toggleActive}>
-            <div className={styles.image} style={isActive ? {border:"solid 2px black"} : {}}></div>
+            <div className={styles.image} style={isActive ? {border:"solid 2px rgb(200,200,200)"} : {}}></div>
             <div className={styles.name}><p>{props.name}</p></div>
         </div>
     )

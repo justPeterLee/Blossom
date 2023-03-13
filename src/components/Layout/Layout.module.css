@@ -5,8 +5,10 @@
   align-items: center;
 
   width: 100vw;
-
-  
+  height: 3.5rem;;
+  background-color: rgb(255,255,255);
+  top:0;
+  padding-top: .5rem;
 }
 .bottomContainer {
   position: fixed;

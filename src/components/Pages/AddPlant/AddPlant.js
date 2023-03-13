@@ -23,11 +23,12 @@ export default function AddPlant() {
   };
 
   useEffect(()=>{
-    dispatch({type: "HIDE_MENU"});
+    //dispatch({type: "HIDE_MENU"});
   })
   return (
     <div className={styles.plant_container}>
       <button onClick={createPlantHandler}>create</button>
+      
       <PlantInfo />
 
       <div className={styles.input_container}>
