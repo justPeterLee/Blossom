@@ -22,7 +22,9 @@ export default function Garden() {
     return <p>loading...</p>
   }
   return (
+
     <div className="page_container">
+      {garden.length === 0 && <div><p>no garden</p></div>}
       {garden.map((gardenInfo)=>{
         return(
             <GardenItem 

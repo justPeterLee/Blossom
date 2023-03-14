@@ -13,21 +13,29 @@ export default function GardenFilter() {
 
   useEffect(() => {
     dispatch({ type: "FETCH_GARDEN_FILTER", payload: gardenId });
-  },[]);
+  }, []);
 
-  if(!filterPlants){
-    return <p>loading...</p>
+  if (!filterPlants) {
+    return <p>loading...</p>;
   }
   return (
     <div className={`${styles.transitionContainer} move_in page_container`}>
+      {filterPlants.length === 0 && (
+        <div>
+          <p>no plants</p>
+        </div>
+      )}
       <div className={styles.main}>
-        {filterPlants.map((plant)=>{return(
-                <PlantsItem 
-                key={plant.plant_table_id}
-                id={plant.plant_table_id}
-                name={plant.plant_name}
-                species={plant.scientific_name}/>
-            )})}
+        {filterPlants.map((plant) => {
+          return (
+            <PlantsItem
+              key={plant.plant_table_id}
+              id={plant.plant_table_id}
+              name={plant.plant_name}
+              species={plant.scientific_name}
+            />
+          );
+        })}
       </div>
     </div>
   );
