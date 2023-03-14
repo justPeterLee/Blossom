@@ -38,7 +38,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
   if (req.isAuthenticated) {
     const user = req.user;
     const gardenId = req.params.id;
-    const queryText = `SELECT "plant"."plant_table_id", "plant"."plant_name", "plant_info"."scientific_name" FROM "plant_info" 
+    const queryText = `SELECT "plant"."plant_table_id", "plant"."plant_name", "plant"."plant_image", "plant_info"."scientific_name" FROM "plant_info" 
     JOIN "plant" ON "plant"."plant_info_id" = "plant_info"."plant_info_table_id" 
     WHERE "plant"."user_id" = $1 AND "plant"."garden_id" = $2
     ORDER BY "plant"."plant_table_id" ASC;`;

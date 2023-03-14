@@ -21,8 +21,8 @@ export default function GardenFilter() {
   return (
     <div className={`${styles.transitionContainer} move_in page_container`}>
       {filterPlants.length === 0 && (
-        <div>
-          <p>no plants</p>
+        <div className={styles.no_plant_container}>
+          <p className={styles.no_plant_text}>(no plants)</p>
         </div>
       )}
       <div className={styles.main}>
@@ -32,6 +32,7 @@ export default function GardenFilter() {
               key={plant.plant_table_id}
               id={plant.plant_table_id}
               name={plant.plant_name}
+              image={plant.plant_image}
               species={plant.scientific_name}
             />
           );

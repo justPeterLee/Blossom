@@ -9,3 +9,9 @@
 .transitionContainer{
     right:400px;
 }
+
+.no_plant_text{
+    font-family: openSansSemiBold;
+    font-size: 30px;
+    color: rgb(190,190,190)
+}

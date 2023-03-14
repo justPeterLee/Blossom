@@ -15,7 +15,8 @@
   display:flex;
   justify-content: flex-end;
   bottom: 0;
-  width: 100vw;
+  right:0;
+
 }
 
 .container{
