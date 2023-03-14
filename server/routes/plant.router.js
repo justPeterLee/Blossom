@@ -12,7 +12,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   // GET route code here
   if (req.isAuthenticated()) {
     const user = req.user;
-    const queryText = `SELECT "plant"."plant_table_id", "plant"."plant_name", "plant_info"."scientific_name" FROM "plant_info" 
+    const queryText = `SELECT "plant"."plant_table_id", "plant"."plant_name", "plant"."plant_image", "plant_info"."scientific_name" FROM "plant_info" 
     JOIN "plant" ON "plant"."plant_info_id" = "plant_info"."plant_info_table_id" 
     JOIN "user" ON "user"."id" = "plant"."user_id"
     WHERE "user"."id" = $1 AND "plant"."user_id" = $2

@@ -19,7 +19,8 @@ export default function Plants(){
                 key={plant.plant_table_id}
                 id={plant.plant_table_id}
                 name={plant.plant_name}
-                species={plant.scientific_name}/>
+                species={plant.scientific_name}
+                image = {plant.plant_image}/>
             )})}
             </div>
         </div>
