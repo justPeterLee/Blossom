@@ -88,8 +88,18 @@ function noGardenPlantReducer(state = [], action) {
       return state;
   }
 }
+
+function explorePlantReducer(state=[], action){
+  switch (action.type) {
+    case "SET_EXPLORE_PLANT":
+      return (state = action.payload);
+    default:
+      return state;
+  }
+}
 export default combineReducers({
   plantReducer,
   detailsReducer,
   noGardenPlantReducer,
+  explorePlantReducer
 });

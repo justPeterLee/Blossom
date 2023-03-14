@@ -234,6 +234,7 @@ export default function UpdatePlant() {
             type: "DELETE_PLANT",
             payload: { plantId: plantId, infoId: details.plant_info_id },
           });
+          dispatch({ type: "SHOW_MENU" });
           history.push("/plants");
         }}
       >

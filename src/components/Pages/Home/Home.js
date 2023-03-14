@@ -7,8 +7,10 @@ import LogOutButton from "../../Layout/LogOutButton/LogOutButton";
 
 import styles from "./Home.module.css";
 import FeatureGarden from "./FeatureGarden/FeatureGarden";
+import ExplorePlant from "./ExplorePlants/ExplorePlants";
 export default function Home() {
   const dispatch = useDispatch();
+  let day =parseInt(new Date().toJSON().slice(8, 10)) *11;
 
   const garden = useSelector((store) => store.garden.gardenReducer);
   const plant = useSelector((store) => store.plant);
@@ -16,20 +18,25 @@ export default function Home() {
   useEffect(() => {
     dispatch({ type: "FETCH_GARDEN" });
     dispatch({ type: "FETCH_PLANT" });
+    dispatch({type:"FETCH_EXPLORE_PLANT", payload:100})
   }, []);
 
   return (
     <div className={styles.container}>
       <LogOutButton />
       <GardenItem />
-
+      <div className={styles.explore_plant}>
+        <p className={styles.modal_title} style={{marginLeft:"3.3rem"}}>explore more: </p>
+        <ExplorePlant/>
+      </div>
+      
       <div className={styles.feature_plants_container}>
         <p className={styles.modal_title}>view plants: </p>
         <FeaturePlants />
       </div>
 
       <div className={styles.feature_garden_container}>
-        <p className={styles.modal_title} style={{marginLeft:"3.2rem"}}>view garden: </p>
+        <p className={styles.modal_title} style={{marginLeft:"3.3rem"}}>view garden: </p>
         <FeatureGarden />
       </div>
     </div>

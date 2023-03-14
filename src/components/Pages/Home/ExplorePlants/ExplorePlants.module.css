@@ -1,0 +1,12 @@
+.main {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    overflow: scroll;
+    margin-left: 2.3rem;
+
+    padding: 1rem;
+
+    gap: 1rem;
+    
+  }

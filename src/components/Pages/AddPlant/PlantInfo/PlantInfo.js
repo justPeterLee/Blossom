@@ -4,6 +4,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+
 export default function PlantInfo() {
   const dispatch = useDispatch();
   const [sciName, setSciName] = useState();
@@ -28,6 +29,7 @@ export default function PlantInfo() {
   }
 
   useEffect(()=>{
+    setSciName('')
     setIsLoading(false)
   },[apiData])
   return (
@@ -39,7 +41,7 @@ export default function PlantInfo() {
       }
       <div className={styles.input_image}>
         <label htmlFor="plant-file">
-          <div className={styles.input_upload_custom}>
+          { !apiData.image ? <div className={styles.input_upload_custom}>
             <AiFillPicture size={35} style={{ color: "rgb(170,170,170)" }} />
             <label
               style={{
@@ -50,7 +52,7 @@ export default function PlantInfo() {
             >
               upload image
             </label>
-          </div>
+          </div> : <img className={styles.image_input} src={apiData.image}></img>}
         </label>
         <input
           id="plant-file"
@@ -73,9 +75,6 @@ export default function PlantInfo() {
           type="text"
           placeholder="(generated)"
           value={sciName}
-          onChange={(event) => {
-            setSciName(event.target.value);
-          }}
         />
       </div>
 

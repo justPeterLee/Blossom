@@ -147,3 +147,7 @@ input[type="file"] {
         transform: rotate(360deg);
     }
 }
+
+.image_input{
+    height:200px;
+}

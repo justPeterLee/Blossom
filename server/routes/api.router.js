@@ -4,7 +4,9 @@ const router = express.Router();
 const fileUpload = require("express-fileupload");
 const path = require("path");
 const fs = require("fs");
-
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 const axios = require("axios");
 /**
  * GET route template
@@ -16,6 +18,8 @@ router.post(
 
       // base64 image
       let base;
+
+      let fileName = `${__dirname}`
 
       // file recieved
       const files = req.files;
@@ -62,6 +66,8 @@ router.post(
                       let origin;
                       let soil;
                       let color;
+                      
+
 
                       const checkArray = (arr) => {
                         if(Array.isArray(arr)){
@@ -94,6 +100,7 @@ router.post(
                         soil: checkArray(resPlantData.soil),
                         growth_rate: resPlantData.growth_rate,
                         scientific_color: checkArray(resPlantData.leaf_color),
+                        image: `/images/${files[fileKey].name}`
                       };
                       console.log('created')
                       res.send(plantInfo);
@@ -128,6 +135,25 @@ router.post(
   }
 );
 
+
+
+// Explore Plant
+router.get('/explore/plant/:id', rejectUnauthenticated, (req,res)=>{
+  if(req.isAuthenticated){
+    const pageId = req.params.id;
+    axios.get(`https://perenual.com/api/species-list?key=${process.env.PERENUAL_KEY}&page=${pageId}`)
+    .then((response)=>{
+      const data = response.data;
+      let sendData = [];
+      for(let i=0; i<8; i++){
+        sendData.push(data.data[i])
+      }
+      res.send(sendData)
+    })
+  }else{
+    res.sendStatus(401)
+  }
+})
 /**
  * POST route template
  */

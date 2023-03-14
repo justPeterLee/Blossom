@@ -1,0 +1,29 @@
+.container{
+    height: 21.5rem;;
+}
+.image{
+    box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
+    height: 17rem;
+    width: 12rem;
+    border-radius: 10px;
+    background-position: center;
+}
+
+.description{
+    width: 11rem;
+    text-align: start;
+
+}
+.name, .spes{
+    margin: 0;
+
+}
+.name{
+    font-size: 17px;
+    padding-top: 7px;
+    padding-bottom: 1px;
+}
+.spes{
+    color:rgb(150,150,150);
+    font-size: 13px;
+}

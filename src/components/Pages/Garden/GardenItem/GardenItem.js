@@ -59,7 +59,6 @@ export default function GardenItem({ id, name, type, num, create }) {
     if (!modalState) {
       setShowEdit(false);
     }
-
     //console.log(window.innerHeight);
 
     const handleMouseMove = (event) => {
@@ -74,6 +73,12 @@ export default function GardenItem({ id, name, type, num, create }) {
 
   }, [modalState]);
 
+  useEffect(()=>{
+    setMousePos({})
+    setShowEdit(false)
+    setOverMenu(false)
+    setShowStyleModal(false)
+  },[])
   return (
     <div className={`${styles.container} clickable`} onClick={gotoGarden}>
       <div className={styles.title}>

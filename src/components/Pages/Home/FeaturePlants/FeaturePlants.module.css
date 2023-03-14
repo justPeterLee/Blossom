@@ -1,12 +1,16 @@
 .main {
-  display: flex;
-  width: 100vw;
-  overflow: scroll;
-  margin-left: 1.5rem;
-}
-.main::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
-}
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    overflow: scroll;
+    margin-left: 2.3rem;
+
+    padding: 1rem;
+
+    gap: 1rem;
+    
+  }
+
 /* add plant */
 
 .create_button_container{

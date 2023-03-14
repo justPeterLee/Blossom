@@ -8,17 +8,35 @@ import { TbPlant } from "react-icons/tb";
 import { SlNotebook } from "react-icons/sl";
 import { BsPlusLg } from "react-icons/bs";
 
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 export default function PlusButton() {
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const modalState = useSelector((store) => store.functional.modalColor);
 
   const [buttonClicked, setButtonClicked] = useState(false);
   const [gardenActive, setGardenActive] = useState(false);
   const [plantsActive, setPlantsActive] = useState(false);
   const [taskActive, setTaskActive] = useState(false);
-  const plusClicked = () => {
-    setButtonClicked(!buttonClicked);
-    console.log(buttonClicked);
+
+  const plusClicked = async () => {
+    await dispatch({ type: "MODAL_COLOR_CLICKED" });
+    if (!modalState) {
+      setButtonClicked(!buttonClicked);
+    } else if (modalState) {
+      setButtonClicked(false);
+      dispatch({ type: "RESET_ALL_MODAL" });
+    }
   };
+
+  useEffect(() => {
+    if (!modalState) {
+      setButtonClicked(false);
+      dispatch({ type: "RESET_ALL_MODAL" });
+    }
+  }, [modalState]);
   return (
     <div className={styles.container}>
       <div className={styles.iconButtonContainer}>
@@ -32,6 +50,7 @@ export default function PlusButton() {
           // onClick={()=>{setGardenActive(!gardenActive)}}
           onClick={() => {
             setButtonClicked(false);
+            dispatch({ type: "RESET_ALL_MODAL" });
             history.push("/garden/create");
           }}
         >
@@ -50,6 +69,7 @@ export default function PlusButton() {
           }
           onClick={() => {
             setButtonClicked(false);
+            dispatch({ type: "RESET_ALL_MODAL" });
             history.push("/plant/create");
           }}
         >
@@ -68,6 +88,7 @@ export default function PlusButton() {
           }
           onClick={() => {
             setButtonClicked(false);
+            dispatch({ type: "RESET_ALL_MODAL" });
           }}
         >
           <p style={{ width: "6rem", fontSize: "24px" }}>add task</p>

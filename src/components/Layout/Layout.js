@@ -19,9 +19,9 @@ export default function Layout(props) {
           <Menu />
           </div>
 
-          <div className={styles.textContainer}>
+          {/* <div className={styles.textContainer}>
             <p style={{margin:"0"}}>Page Title</p>
-          </div>
+          </div> */}
           
           <div className={styles.iconContainer}>
             

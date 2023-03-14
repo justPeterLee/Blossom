@@ -7,8 +7,14 @@ import { SlNotebook } from "react-icons/sl";
 
 import { useHistory } from "react-router-dom";
 import LogOutButton from "../LogOutButton/LogOutButton";
+
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 export default function Menu() {
+  const dispatch = useDispatch();
   const history = useHistory();
+
+  const modalState = useSelector((store) => store.functional.modalColor);
 
   // to change burger classes
   const [isBurgerClicked, setBurgerClicked] = useState(false);
@@ -21,15 +27,28 @@ export default function Menu() {
   const [isHover, setIsHover] = useState(false)
 
   // toggle burger menu change
-  const updateMenu = () => {
-    setBurgerClicked(!isBurgerClicked);
+  const updateMenu = async () => {
+    await dispatch({ type: "MODAL_COLOR_CLICKED" });
+    if (!modalState) {
+      setBurgerClicked(!isBurgerClicked);
+    }
+    else if(modalState){
+      setBurgerClicked(false)
+      dispatch({ type: "RESET_ALL_MODAL" })
+    }
+
   };
 
 
-
+  useEffect(()=>{
+    if(!modalState){
+      setBurgerClicked(false);
+      dispatch({ type: "RESET_ALL_MODAL" })
+    }
+  }, [modalState])
 
   return (
-    <div className={styles.menuContainer} onMouseEnter={()=>{setIsHover(true); console.log(isHover)}} onMouseLeave={()=>{setIsHover(false); console.log(isHover)}}>
+    <div className={styles.menuContainer} style={!isBurgerClicked ? {zIndex:'6'}: {}}>
 
       {/* three bars (burger menu) */}
       <div className={styles.linesContainer} onClick={updateMenu}>
@@ -73,6 +92,7 @@ export default function Menu() {
             setTaskActive(false);
             history.push('/');
             setBurgerClicked(false)
+            dispatch({ type: "RESET_ALL_MODAL" })
           }}
         >
           <div className={`${styles.icons}`}>
@@ -97,6 +117,7 @@ export default function Menu() {
             setTaskActive(false);
             history.push('/garden');
             setBurgerClicked(false)
+            dispatch({ type: "RESET_ALL_MODAL" })
           }}
         >
           <div className={`${styles.icons}`}>
@@ -121,6 +142,7 @@ export default function Menu() {
             setTaskActive(false);
             history.push('/plants');
             setBurgerClicked(false);
+            dispatch({ type: "RESET_ALL_MODAL" })
             
           }}
         >
@@ -145,6 +167,7 @@ export default function Menu() {
             setTaskActive(true);
             history.push('/tasks');
             setBurgerClicked(false)
+            dispatch({ type: "RESET_ALL_MODAL" })
           }}
         >
           <div className={`${styles.icons}`}>

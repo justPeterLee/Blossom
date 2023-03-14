@@ -17,6 +17,8 @@ function* plantSaga() {
   // (POST) create plant
   yield takeEvery("CREATE_PLANT", createPlantInfo);
 
+  // GET explore plants
+  yield takeEvery("FETCH_EXPLORE_PLANT", fetchExplorePlant);
 }
 
 // fetch plant function (GET)
@@ -111,6 +113,17 @@ function* createPlantInfo(action) {
     yield createPlant(newPlantDataInfo);
   } catch (err) {
     console.log("Error with creating plant info: ", err);
+  }
+}
+
+
+function* fetchExplorePlant(action){
+  try{
+    const page = action.payload;
+    const explorePlant = yield axios.get(`/api/data/explore/plant/${page}`);
+    yield put({type: "SET_EXPLORE_PLANT", payload: explorePlant.data});
+  }catch(err){
+    console.log('Error with getting explore plants: ', err)
   }
 }
 export default plantSaga;

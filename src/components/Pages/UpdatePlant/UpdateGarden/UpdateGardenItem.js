@@ -10,7 +10,7 @@ export default function UpdateGardenItem(props) {
   const gardenSelectItem = () => {
     console.log("hello");
     
-    setIsChecked(!isChecked)
+    setIsChecked(!isChecked) 
     props.newGardenId({
       id: props.id,
       name: props.gardenName

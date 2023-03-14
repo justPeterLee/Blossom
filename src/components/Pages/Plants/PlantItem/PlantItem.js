@@ -8,7 +8,7 @@ export default function PlantsItem({id, name, species, image}){
     }
     return(
         <div className={styles.container}>
-            <div className={styles.image} onClick={gotoPlantDetail}></div>
+            <img className={styles.image} onClick={gotoPlantDetail} src="/images/testPlant4.jpeg"></img>
             <div className={styles.description}>
                 <p className={styles.name}>{name}</p>
                 <p className={styles.spes}>{species}</p>
