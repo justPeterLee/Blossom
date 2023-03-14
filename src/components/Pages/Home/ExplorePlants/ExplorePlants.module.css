@@ -14,3 +14,9 @@
   .main::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
+
+.filler{
+  width:10rem;
+  height: 1rem;
+  color:transparent
+}

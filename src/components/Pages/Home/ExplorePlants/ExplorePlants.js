@@ -16,6 +16,8 @@ export default function ExplorePlant() {
           />
         );
       })}
+
+      <div className={styles.filler}><p>fill</p></div>
     </div>
   );
 }
