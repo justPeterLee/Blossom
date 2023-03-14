@@ -108,6 +108,7 @@ function* createPlantInfo(action) {
       name: newPlantData.name,
       height: newPlantData.height,
       date: newPlantData.date,
+      image: newPlantData.image,
       plantId: plantId[0].plant_info_table_id
     }
     yield createPlant(newPlantDataInfo);

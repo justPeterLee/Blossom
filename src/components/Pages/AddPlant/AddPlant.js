@@ -17,6 +17,7 @@ export default function AddPlant() {
       name: name,
       height: height,
       date: dateState,
+      image: apiData.image,
       plantInfo: apiData,
     };
 
