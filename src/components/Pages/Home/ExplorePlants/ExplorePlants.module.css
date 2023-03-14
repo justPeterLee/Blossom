@@ -10,3 +10,7 @@
     gap: 1rem;
     
   }
+
+  .main::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}

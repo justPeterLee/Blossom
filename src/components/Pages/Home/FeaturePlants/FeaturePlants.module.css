@@ -10,7 +10,9 @@
     gap: 1rem;
     
   }
-
+.main::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
 /* add plant */
 
 .create_button_container{
