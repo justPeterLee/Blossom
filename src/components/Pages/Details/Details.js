@@ -33,9 +33,9 @@ export default function Details() {
       {/* top container (image, feature info) */}
       <div className={styles.image_gen_container}>
         {/* image */}
-        <div className={styles.image}>
+        <div className={styles.image} style={{backgroundImage:`url(${details.plant_image})`}}>
           {/* feature info */}
-          <div className={styles.feature_info}>
+          <div className={styles.feature_info} style={{backgroundColor:"white"}}>
             {/* sub feature info container */}
             <div
               className={`${styles.feature_info_container} ${styles.top_info_container}`}
