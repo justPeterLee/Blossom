@@ -18,6 +18,7 @@ export default function FeatureGarden() {
             name={gardenInfo.garden_name}
             type={gardenInfo.garden_type}
             num={gardenInfo.count}
+            color={gardenInfo.garden_theme}
             create={gardenInfo.garden_created_at}
           />
         );

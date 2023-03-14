@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 
 
-export default function FeatureGardenItem({ id, name, type, num, create }) {
+export default function FeatureGardenItem({ id, name, type, num, create, color }) {
   const history = useHistory();
 
   function gotoGarden() {
@@ -11,7 +11,7 @@ export default function FeatureGardenItem({ id, name, type, num, create }) {
   }
 
   return (
-    <div className={`${styles.container} clickable`} onClick={gotoGarden}>
+    <div className={`${styles.container} clickable`} onClick={gotoGarden} style={{backgroundColor: `${color}`}}>
       <div className={styles.title}>
         <p>{name}</p>
       </div>

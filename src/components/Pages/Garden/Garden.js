@@ -34,6 +34,7 @@ export default function Garden() {
             type={gardenInfo.garden_type}
             num={gardenInfo.count}
             create={gardenInfo.garden_created_at}
+            color={gardenInfo.garden_theme}
             />
         )
       })}

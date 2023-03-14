@@ -216,12 +216,12 @@ VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`;
 router.post("/create", (req,res)=>{
   if(req.isAuthenticated()){
     const userId = req.user
-    const {name, height, date, image, plantId} = req.body;
+    const {name, height, date, image, color, plantId} = req.body;
     console.log(name, height, date, image, plantId)
-    const queryText = `INSERT INTO "plant" ("plant_name","plant_height","plant_created_at","plant_info_id","user_id","plant_image")
-    VALUES($1,$2,$3,$4,$5, $6);`;
+    const queryText = `INSERT INTO "plant" ("plant_name","plant_height","plant_color","plant_created_at","plant_info_id","user_id","plant_image")
+    VALUES($1,$2,$3,$4,$5, $6,$7);`;
 
-    pool.query(queryText, [name, height, date, plantId, userId.id, image])
+    pool.query(queryText, [name, height, color,date, plantId, userId.id, image])
     .then((result)=>{
       res.sendStatus(200);
     })

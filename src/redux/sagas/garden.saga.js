@@ -73,7 +73,7 @@ function* fetchExploreGarden(action){
     const data = action.payload;
     const featureType = data.query;
     const page = data.page
-    const gardenFilter = yield axios.post(`/api/data/explore/garden`, {featureType: featureType, page: page})
+    const gardenFilter = yield axios.get(`/api/data/explore/garden/${page}`)
     yield put({type:"SET_EXPLORE_GARDEN", payload: gardenFilter.data})
   }catch(err){
     console.log("error with getting explore garden feature: ", err);

@@ -33,7 +33,7 @@
 
 }
 
-.label_text{
+.label_text, .label_text_color{
     font-family: openSansLight;
     font-size: 20px;
 }
@@ -52,4 +52,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.name_input_color_container{
+    width: 20rem;
+    display: flex;
+    justify-content: center;
+}
+.name_title_color{
+    width:20rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: .5rem;
 }

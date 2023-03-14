@@ -8,7 +8,7 @@ import { RxDotsVertical } from "react-icons/rx";
 
 import GardenEdit from "../GardenEdit/GardenEdit";
 
-export default function GardenItem({ id, name, type, num, create }) {
+export default function GardenItem({ id, name, type, num, create, color }) {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -80,7 +80,7 @@ export default function GardenItem({ id, name, type, num, create }) {
     setShowStyleModal(false)
   },[])
   return (
-    <div className={`${styles.container} clickable`} onClick={gotoGarden}>
+    <div className={`${styles.container} clickable`} onClick={gotoGarden} style={{backgroundColor: `${color}`}}>
       <div className={styles.title}>
         <p>{name}</p>
         <RxDotsVertical

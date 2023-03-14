@@ -13,7 +13,7 @@ export default function ColorTheme() {
     const color = e.target.parentElement.dataset.id;
     console.log(color);
     switch (color) {
-      case "rgb(220,140,140)":
+      case "rgb(220,220,140)":
         setIsClickedOne(true);
         setIsClickedTwo(false);
         setIsClickedThree(false);
@@ -34,7 +34,7 @@ export default function ColorTheme() {
         setIsClickedFour(false);
         dispatch({ type: "CHANGE_GARDEN_THEME", payload: color });
         return;
-      case "rgb(220,220,140)":
+      case "rgb(245,245,245)":
         setIsClickedOne(false);
         setIsClickedTwo(false);
         setIsClickedThree(false);
@@ -48,7 +48,7 @@ export default function ColorTheme() {
   return (
     <div className={styles.container}>
       <div
-        data-id="rgb(220,140,140)"
+        data-id="rgb(220,220,140)"
         className={
           !isClickedOne
           ? ``
@@ -105,7 +105,7 @@ export default function ColorTheme() {
 
 
       <div
-        data-id="rgb(220,220,140)"
+        data-id="rgb(245,245,245)"
         className={
           !isClickedFour
             ? ``

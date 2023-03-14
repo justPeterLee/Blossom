@@ -157,10 +157,10 @@ router.get('/explore/plant/:id', rejectUnauthenticated, (req,res)=>{
 
 
 // Explore Garden 
-router.post('/explore/garden/', rejectUnauthenticated, (req,res)=>{
+router.get('/explore/garden/:id', rejectUnauthenticated, (req,res)=>{
   if(req.isAuthenticated){
-    const data = req.body
-    axios.get(`https://perenual.com/api/species-list?key=${process.env.PERENUAL_KEY}&indoor=1&page=${data.page}`)
+    const data = req.params.id
+    axios.get(`https://perenual.com/api/species-list?key=${process.env.PERENUAL_KEY}&indoor=1&page=${data}`)
     .then((response)=>{
       const data = response.data;
       let sendData = [];
