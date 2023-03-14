@@ -12,3 +12,11 @@
     font-size: 21px;
     margin-bottom:.5rem;
 }
+
+.main {
+    display: flex;
+    width: 100vw;
+    overflow: scroll;
+    margin-left: 1.5rem;
+    
+  }

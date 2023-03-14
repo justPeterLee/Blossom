@@ -5,7 +5,8 @@ import PlantsItem from "../Plants/PlantItem/PlantItem";
 import FeaturePlants from "./FeaturePlants/FeaturePlants";
 import LogOutButton from "../../Layout/LogOutButton/LogOutButton";
 
-import styles from './Home.module.css'
+import styles from "./Home.module.css";
+import FeatureGarden from "./FeatureGarden/FeatureGarden";
 export default function Home() {
   const dispatch = useDispatch();
 
@@ -19,13 +20,17 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      
       <LogOutButton />
       <GardenItem />
 
       <div className={styles.feature_plants_container}>
         <p className={styles.modal_title}>view plants: </p>
         <FeaturePlants />
+      </div>
+
+      <div className={styles.feature_garden_container}>
+        <p className={styles.modal_title} style={{marginLeft:"3.2rem"}}>view garden: </p>
+        <FeatureGarden />
       </div>
     </div>
   );
