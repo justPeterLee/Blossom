@@ -25,9 +25,17 @@ function gardenById(state=[], action){
       return state;
   }
 }
-
+function exploreGardenReducer(state=[], action){
+  switch (action.type) {
+    case "SET_EXPLORE_GARDEN":
+      return (state = action.payload);
+    default:
+      return state;
+  }
+}
 export default combineReducers({
   gardenReducer,
   gardenFilterReducer,
-  gardenById
+  gardenById,
+  exploreGardenReducer
 })

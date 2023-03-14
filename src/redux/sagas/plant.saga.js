@@ -46,8 +46,7 @@ function* fetchDetails(action) {
 
 function* updatePlant(action) {
   try {
-
-    const plantData = action.payload
+    const plantData = action.payload;
     yield axios.put(`/api/plant/update`, action.payload);
     //yield put({ type: "UPDATE_PLANT", payload: plantData.id});
   } catch (err) {
@@ -60,7 +59,7 @@ function* deletePlant(action) {
     const plantId = action.payload.plantId;
     const plantInfoId = action.payload.infoId;
     yield axios.delete(`/api/plant/delete/${plantId}/${plantInfoId}`);
-    yield fetchPlant;
+    yield put({ type: "FETCH_PLANT" });
   } catch (err) {
     console.log("Error with DELETING plant: ", err);
   }
@@ -92,7 +91,7 @@ function* createPlant(action) {
   try {
     const newPlantDataReq = action;
     yield axios.post(`/api/plant/create`, newPlantDataReq);
-    //yield fetchPlant;
+    yield put({ type: "FETCH_PLANT" });
   } catch (err) {
     console.log("Error with creating new plant: ", err);
   }
@@ -103,28 +102,27 @@ function* createPlantInfo(action) {
   try {
     const newPlantData = action.payload;
     const plantInfo = yield axios.post(`/api/plant/info/create`, newPlantData);
-    const plantId = plantInfo.data
+    const plantId = plantInfo.data;
     let newPlantDataInfo = {
       name: newPlantData.name,
       height: newPlantData.height,
       date: newPlantData.date,
       image: newPlantData.image,
-      plantId: plantId[0].plant_info_table_id
-    }
+      plantId: plantId[0].plant_info_table_id,
+    };
     yield createPlant(newPlantDataInfo);
   } catch (err) {
     console.log("Error with creating plant info: ", err);
   }
 }
 
-
-function* fetchExplorePlant(action){
-  try{
+function* fetchExplorePlant(action) {
+  try {
     const page = action.payload;
     const explorePlant = yield axios.get(`/api/data/explore/plant/${page}`);
-    yield put({type: "SET_EXPLORE_PLANT", payload: explorePlant.data});
-  }catch(err){
-    console.log('Error with getting explore plants: ', err)
+    yield put({ type: "SET_EXPLORE_PLANT", payload: explorePlant.data });
+  } catch (err) {
+    console.log("Error with getting explore plants: ", err);
   }
 }
 export default plantSaga;

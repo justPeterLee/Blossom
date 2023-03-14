@@ -8,6 +8,7 @@ import LogOutButton from "../../Layout/LogOutButton/LogOutButton";
 import styles from "./Home.module.css";
 import FeatureGarden from "./FeatureGarden/FeatureGarden";
 import ExplorePlant from "./ExplorePlants/ExplorePlants";
+import ExploreGarden from "./ExploreGarden/ExploreGarden";
 export default function Home() {
   const dispatch = useDispatch();
   let day =parseInt(new Date().toJSON().slice(8, 10)) *11;
@@ -19,12 +20,15 @@ export default function Home() {
     dispatch({ type: "FETCH_GARDEN" });
     dispatch({ type: "FETCH_PLANT" });
     dispatch({type:"FETCH_EXPLORE_PLANT", payload:100})
+    dispatch({type:"FETCH_EXPLORE_GARDEN", payload:{query: "indoors", page: 3}})
   }, []);
 
   return (
     <div className={styles.container}>
-      <LogOutButton />
-      <GardenItem />
+     <div className={styles.explore_garden_container}>
+      <ExploreGarden/>
+     </div>
+
       <div className={styles.explore_plant}>
         <p className={styles.modal_title} style={{marginLeft:"3.3rem"}}>explore more: </p>
         <ExplorePlant/>

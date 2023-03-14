@@ -3,11 +3,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  background-color: white;
   width: 100vw;
   height: 3.5rem;;
   top:0;
   padding-top: .5rem;
+
+  transition: background-color ease .2s;
 
 }
 .bottomContainer {

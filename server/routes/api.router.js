@@ -154,6 +154,28 @@ router.get('/explore/plant/:id', rejectUnauthenticated, (req,res)=>{
     res.sendStatus(401)
   }
 })
+
+
+// Explore Garden 
+router.post('/explore/garden/', rejectUnauthenticated, (req,res)=>{
+  if(req.isAuthenticated){
+    const data = req.body
+    axios.get(`https://perenual.com/api/species-list?key=${process.env.PERENUAL_KEY}&indoor=1&page=${data.page}`)
+    .then((response)=>{
+      const data = response.data;
+      let sendData = [];
+      for(let i=0; i<8; i++){
+        sendData.push(data.data[i])
+      }
+      res.send(sendData)
+      
+    })
+
+    console.log(data);
+  }else{
+    res.sendStatus(401)
+  }
+})
 /**
  * POST route template
  */

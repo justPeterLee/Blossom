@@ -10,6 +10,9 @@ function* gardenSaga() {
   yield takeEvery("DELETE_MODAL_GARDEN", deleteGarden);
 
   yield takeEvery("FETCH_GARDEN_ID", fetchGardenId);
+
+  // explore garden
+  yield takeEvery("FETCH_EXPLORE_GARDEN", fetchExploreGarden)
 }
 
 // fetch Garden
@@ -62,6 +65,18 @@ function* fetchGardenId(action){
     yield put({type:"SET_GARDEN_BY_ID", payload:garden.data});
   }catch(err){
     console.log("Error with getting garden by id: ", err)
+  }
+}
+
+function* fetchExploreGarden(action){
+  try{
+    const data = action.payload;
+    const featureType = data.query;
+    const page = data.page
+    const gardenFilter = yield axios.post(`/api/data/explore/garden`, {featureType: featureType, page: page})
+    yield put({type:"SET_EXPLORE_GARDEN", payload: gardenFilter.data})
+  }catch(err){
+    console.log("error with getting explore garden feature: ", err);
   }
 }
 export default gardenSaga;

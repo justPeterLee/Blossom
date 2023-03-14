@@ -56,6 +56,7 @@
 .iconTextContainer{
     margin-top: 1.25rem;
     margin-left: .75rem;
+    padding-left: 1rem;;
     display: flex;
     align-items:center;
     gap: 1.1rem;
@@ -64,6 +65,9 @@
     position: absolute;
     left: -200px;
 
+}
+.iconContainer p{
+    color: black;
 }
 
 
@@ -76,6 +80,10 @@
 }
 .iconTextContainer:nth-child(4){
     top: 15rem;
+
+}
+.iconTextContainer:nth-child(5){
+    top: 20rem;
 
 }
 
@@ -105,6 +113,10 @@
     transform: translate(200px);
     transition:  transform .5s;
 }
+.iconTextContainer.ClickedIcon:nth-child(5){  
+    transform: translate(200px);
+    transition:  transform .6s;
+}
 
 
 .iconTextContainer.unClickedIcon{
@@ -121,3 +133,7 @@
     font-family: openSansLight;
   }
 
+
+  .home,.garden,.plant,.user{
+    color:black
+  }

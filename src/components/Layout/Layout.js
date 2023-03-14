@@ -10,11 +10,12 @@ import { useSelector, useDispatch } from "react-redux";
 export default function Layout(props) {
   const dispatch = useDispatch();
   const hideMenu = useSelector(store=>store.functional.menuState)
+  const modalState = useSelector((store) => store.functional.modalColor);
   return (
     <Fragment>
       <header className={hideMenu ? `${styles.container}` : `${styles.container} ${styles.hideMenu}`} style={props.auth ? {} : {display:"none"}}>
 
-        <div className={styles.topContainer}>
+        <div className={styles.topContainer} style={modalState ?{backgroundColor:"transparent"} : {}}>
           <div className={styles.iconContainer}>
           <Menu />
           </div>

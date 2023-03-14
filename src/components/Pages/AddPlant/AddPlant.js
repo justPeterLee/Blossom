@@ -19,12 +19,11 @@ export default function AddPlant() {
       date: dateState,
       image: apiData.image,
       plantInfo: apiData,
-    };
+    }; 
 
-    await dispatch({ type: "CREATE_PLANT", payload: newPlantData });
+    dispatch({ type: "CREATE_PLANT", payload: newPlantData });
     dispatch({ type: "SHOW_MENU" });
     dispatch({type: "RESET_PLANT_DATA_API"})
-    await dispatch({type:"FETCH_PLANT"})
     history.push('/plants')
 
   };

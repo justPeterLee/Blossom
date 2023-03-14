@@ -32,6 +32,7 @@ import UpdatePlant from "../Pages/UpdatePlant/UpdatePlant";
 import AddPlant from "../Pages/AddPlant/AddPlant";
 import AddGarden from "../Pages/AddGarden/AddGarden";
 import BackdropOverlay from "../../Portal/Backdrop/Backdrop";
+import FeatureGardenPage from "../Pages/Home/FeatureGardenPage/FeatureGardenPage";
 function App() {
   const dispatch = useDispatch();
 
@@ -126,6 +127,16 @@ function App() {
             <AddGarden/>
           </ProtectedRoute>
 
+          {/* user page */}
+          <ProtectedRoute exact path="/user">
+            <UserPage/>
+          </ProtectedRoute>
+
+
+          {/* feature garden page */}
+          <ProtectedRoute exact path="/garden/feature">
+            <FeatureGardenPage/>
+          </ProtectedRoute>
           <Route exact path="/login">
             {user.id ? (
               // If the user is already logged in,

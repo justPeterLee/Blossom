@@ -4,6 +4,7 @@ import { RiHomeLine } from "react-icons/ri";
 import { BiSun } from "react-icons/bi";
 import { TbPlant } from "react-icons/tb";
 import { SlNotebook } from "react-icons/sl";
+import { AiOutlineUser } from "react-icons/ai";
 
 import { useHistory } from "react-router-dom";
 import LogOutButton from "../LogOutButton/LogOutButton";
@@ -23,33 +24,33 @@ export default function Menu() {
   const [gardenActive, setGardenActive] = useState(false);
   const [plantsActive, setPlantsActive] = useState(false);
   const [taskActive, setTaskActive] = useState(false);
+  const [userActive, setUserActive] = useState(false);
 
-  const [isHover, setIsHover] = useState(false)
+  const [isHover, setIsHover] = useState(false);
 
   // toggle burger menu change
   const updateMenu = async () => {
     await dispatch({ type: "MODAL_COLOR_CLICKED" });
     if (!modalState) {
       setBurgerClicked(!isBurgerClicked);
+    } else if (modalState) {
+      setBurgerClicked(false);
+      dispatch({ type: "RESET_ALL_MODAL" });
     }
-    else if(modalState){
-      setBurgerClicked(false)
-      dispatch({ type: "RESET_ALL_MODAL" })
-    }
-
   };
 
-
-  useEffect(()=>{
-    if(!modalState){
+  useEffect(() => {
+    if (!modalState) {
       setBurgerClicked(false);
-      dispatch({ type: "RESET_ALL_MODAL" })
+      dispatch({ type: "RESET_ALL_MODAL" });
     }
-  }, [modalState])
+  }, [modalState]);
 
   return (
-    <div className={styles.menuContainer} style={!isBurgerClicked ? {zIndex:'6'}: {}}>
-
+    <div
+      className={styles.menuContainer}
+      style={!isBurgerClicked ? { zIndex: "6" } : {}}
+    >
       {/* three bars (burger menu) */}
       <div className={styles.linesContainer} onClick={updateMenu}>
         <div
@@ -75,7 +76,6 @@ export default function Menu() {
         ></div>
       </div>
 
-
       {/* home icon */}
       <div className={styles.iconContainer}>
         <div
@@ -84,23 +84,24 @@ export default function Menu() {
               ? `${styles.iconTextContainer} ${styles.unClickedIcon}`
               : `${styles.iconTextContainer} ${styles.ClickedIcon}`
           }
-          style={homeActive ? {backgroundColor: 'darkgrey'} : {}} 
+          style={homeActive ? { backgroundColor: "rgb(200,200,200)" } : {}}
           onClick={() => {
             setHomeActive(true);
             setGardenActive(false);
             setPlantsActive(false);
             setTaskActive(false);
-            history.push('/');
-            setBurgerClicked(false)
-            dispatch({ type: "RESET_ALL_MODAL" })
+            setUserActive(false);
+
+            history.push("/");
+            setBurgerClicked(false);
+            dispatch({ type: "RESET_ALL_MODAL" });
           }}
         >
           <div className={`${styles.icons}`}>
             <RiHomeLine className={styles.home} size={40} />
           </div>
-          <p style={{fontSize: "24px"}}>home</p>
+          <p style={{ fontSize: "24px" }}>home</p>
         </div>
-
 
         {/* garden icon */}
         <div
@@ -109,23 +110,24 @@ export default function Menu() {
               ? `${styles.iconTextContainer} ${styles.unClickedIcon}`
               : `${styles.iconTextContainer} ${styles.ClickedIcon} `
           }
-          style={gardenActive ? {backgroundColor: 'darkgrey'} : {}} 
+          style={gardenActive ? { backgroundColor: "rgb(200,200,200)" } : {}}
           onClick={() => {
             setHomeActive(false);
             setGardenActive(true);
             setPlantsActive(false);
             setTaskActive(false);
-            history.push('/garden');
-            setBurgerClicked(false)
-            dispatch({ type: "RESET_ALL_MODAL" })
+            setUserActive(false);
+
+            history.push("/garden");
+            setBurgerClicked(false);
+            dispatch({ type: "RESET_ALL_MODAL" });
           }}
         >
           <div className={`${styles.icons}`}>
             <BiSun className={styles.garden} size={40} />
           </div>
-          <p style={{fontSize: "24px"}}>garden</p>
+          <p style={{ fontSize: "24px" }}>garden</p>
         </div>
-
 
         {/* Plant Icon */}
         <div
@@ -134,22 +136,23 @@ export default function Menu() {
               ? `${styles.iconTextContainer} ${styles.unClickedIcon}`
               : `${styles.iconTextContainer} ${styles.ClickedIcon}`
           }
-          style={plantsActive ? {backgroundColor: 'darkgrey'} : {}} 
+          style={plantsActive ? { backgroundColor: "rgb(200,200,200)" } : {}}
           onClick={() => {
             setHomeActive(false);
             setGardenActive(false);
             setPlantsActive(true);
             setTaskActive(false);
-            history.push('/plants');
+            setUserActive(false);
+
+            history.push("/plants");
             setBurgerClicked(false);
-            dispatch({ type: "RESET_ALL_MODAL" })
-            
+            dispatch({ type: "RESET_ALL_MODAL" });
           }}
         >
           <div className={`${styles.icons}`}>
             <TbPlant className={styles.garden} size={40} />
           </div>
-          <p style={{fontSize: "24px"}}>plants</p>
+          <p style={{ fontSize: "24px" }}>plants</p>
         </div>
 
         {/* task icon */}
@@ -159,23 +162,48 @@ export default function Menu() {
               ? `${styles.iconTextContainer} ${styles.unClickedIcon}`
               : `${styles.iconTextContainer} ${styles.ClickedIcon}`
           }
-          style={taskActive ? {backgroundColor: 'darkgrey'} : {}} 
+          style={taskActive ? { backgroundColor: "rgb(200,200,200)" } : {}}
           onClick={() => {
             setHomeActive(false);
             setGardenActive(false);
             setPlantsActive(false);
+            setUserActive(false);
+
             setTaskActive(true);
-            history.push('/tasks');
-            setBurgerClicked(false)
-            dispatch({ type: "RESET_ALL_MODAL" })
+            history.push("/tasks");
+            setBurgerClicked(false);
+            dispatch({ type: "RESET_ALL_MODAL" });
           }}
         >
           <div className={`${styles.icons}`}>
             <SlNotebook className={styles.garden} size={40} />
           </div>
-          <p style={{fontSize: "24px"}}>tasks</p>
+          <p style={{ fontSize: "24px" }}>tasks</p>
         </div>
 
+        <div
+          className={
+            !isBurgerClicked
+              ? `${styles.iconTextContainer} ${styles.unClickedIcon}`
+              : `${styles.iconTextContainer} ${styles.ClickedIcon}`
+          }
+          style={userActive ? { backgroundColor: "rgb(200,200,200)" } : {}}
+          onClick={() => {
+            setHomeActive(false);
+            setGardenActive(false);
+            setPlantsActive(false);
+            setTaskActive(false);
+            setUserActive(true);
+            history.push("/user");
+            setBurgerClicked(false);
+            dispatch({ type: "RESET_ALL_MODAL" });
+          }}
+        >
+          <div className={`${styles.icons}`}>
+            <AiOutlineUser className={styles.user} size={40} />
+          </div>
+          <p style={{ fontSize: "24px" }}>user</p>
+        </div>
       </div>
     </div>
   );

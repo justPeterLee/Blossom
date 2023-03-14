@@ -11,6 +11,10 @@ export default function Plants() {
     dispatch({ type: "FETCH_PLANT" });
   }, []);
 
+//   if(plants.length !== plants.length){
+//     dispatch({ type: "FETCH_PLANT" });
+//   }
+
   return (
     <div className="page_container">
       {plants.length === 0 && (
