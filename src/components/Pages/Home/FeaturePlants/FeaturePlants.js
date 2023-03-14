@@ -16,6 +16,7 @@ export default function FeaturePlants() {
             id={plant.plant_table_id}
             name={plant.plant_name}
             species={plant.scientific_name}
+            image={plant.plant_image}
           />
         );
       })}

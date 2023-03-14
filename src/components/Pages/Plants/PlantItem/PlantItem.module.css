@@ -13,6 +13,9 @@
     width: 11rem;
     box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
     border-radius: 5px;
+
+    background-size: cover;
+    background-position: center;
 }
 
 .description{
