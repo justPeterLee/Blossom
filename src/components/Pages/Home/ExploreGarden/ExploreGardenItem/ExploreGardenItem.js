@@ -13,19 +13,14 @@ export default function ExploreGardenItem({ id, name, type, num, create }) {
   return (
     <div className={`${styles.container} clickable`} onClick={gotoGarden}>
       <div className={styles.title}>
-        <p>{name}</p>
+        <p>explore more</p>
       </div>
 
       <div className={styles.description}>
-        <p>type: {type}</p>
-        <p>plants: {num}</p>
+        <p>indoor plant</p>
       </div>
 
       <div className={styles.extraDescription}>
-        <div className={styles.date}>
-          <p>created: {create}</p>
-        </div>
-
         <div className={styles.arrow}></div>
         <BsArrowRight className={styles.arrow} />
       </div>
