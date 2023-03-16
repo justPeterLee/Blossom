@@ -60,7 +60,7 @@ Alert
   flex-direction: column;
   align-items: center;
   gap:.5rem;
-  min-height: 100vh;
+  min-height:100vh;
 }
 .login_container, .login_container_all{
   display: flex;

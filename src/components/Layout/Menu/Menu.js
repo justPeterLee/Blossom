@@ -11,7 +11,7 @@ import LogOutButton from "../LogOutButton/LogOutButton";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-export default function Menu() {
+export default function Menu(props) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -44,7 +44,15 @@ export default function Menu() {
       setBurgerClicked(false);
       dispatch({ type: "RESET_ALL_MODAL" });
     }
-  }, [modalState]);
+
+    if(!props.auth){
+      setHomeActive(true)
+      setGardenActive(false)
+      setPlantsActive(false)
+      setTaskActive(false)
+      setUserActive(false)
+    }
+  }, [modalState, props.auth]);
 
   return (
     <div

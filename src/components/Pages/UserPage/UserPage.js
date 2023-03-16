@@ -10,6 +10,16 @@ function UserPage() {
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" />
+
+
+      <p>tech:</p>
+      <p>node</p>
+      <p>express</p>
+      <p>react</p>
+      <p>postgresql</p>
+      <p>css</p>
+      <p>perenualAPI</p>
+      <p>plant.id API</p>
     </div>
   );
 }

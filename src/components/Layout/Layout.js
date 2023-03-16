@@ -17,7 +17,7 @@ export default function Layout(props) {
 
         <div className={styles.topContainer} style={modalState ?{backgroundColor:"transparent"} : {}}>
           <div className={styles.iconContainer}>
-          <Menu />
+          <Menu auth={props.auth}/>
           </div>
 
           {/* <div className={styles.textContainer}>

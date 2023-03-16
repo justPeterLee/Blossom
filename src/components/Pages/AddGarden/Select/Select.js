@@ -14,7 +14,7 @@ export default function Select(){
         <div className={styles.select_container}>
             {plants.map((plant)=>{
                 return(
-                    <SelectItem key={plant.plant_table_id} name={plant.plant_name} id={plant.plant_table_id}/>
+                    <SelectItem key={plant.plant_table_id} name={plant.plant_name} id={plant.plant_table_id} image={plant.plant_image}/>
                 )
             })}
 
