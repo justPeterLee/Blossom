@@ -64,6 +64,15 @@ function detailsReducer(state = {}, action) {
         }
       }
 
+      // // color 
+
+      // let colorArr = detailData.scientific_color
+      // if(colorArr){
+      //   colorArr = colorArr.split(' ', 3);
+      // }else{
+      //   colorArr = undefined;
+      // }
+
       detailData.plant_created_at = {
         day: day,
         month: month,

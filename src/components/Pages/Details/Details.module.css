@@ -213,3 +213,48 @@
 /* .sun_rise{
     transform: translateY(-70%);
 } */
+
+
+
+
+
+/* color module */
+.color_container_stretch{
+    display: flex;
+    align-items: center;
+}
+
+.line{
+    background-color: rgb(200,200,200);
+    height:6rem;
+    width: 1px;
+}
+
+.colorSci{
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    gap:1rem;
+    font-family: openSansLight;
+    font-size: 25px;
+    position: relative;
+}
+
+.colorPlant{
+    width: 35%;
+    display: flex;
+    justify-content: center;
+}
+
+.colorSci{
+    font-family: openSansLight;
+    font-size: 25px;
+    position: relative;
+}
+
+.common_color{
+    position: absolute;
+    top:-3.5rem;
+    left: 1rem;
+    font-size: 15px;
+}

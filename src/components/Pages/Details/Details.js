@@ -8,6 +8,8 @@ import { TiBrush } from "react-icons/ti";
 import { RiRulerLine } from "react-icons/ri";
 import { BiCake } from "react-icons/bi";
 
+import ColorCircle from "./ColorCircle/ColorCircle";
+
 export default function Details() {
   const history = useHistory();
   const params = useParams();
@@ -17,6 +19,9 @@ export default function Details() {
   const details = useSelector((store) => store.plant.detailsReducer[0]);
   const [waterStyle, setWaterStyle] = useState(false);
   const [sunStyle, setSunStyle] = useState(false);
+  const [sciColor, setSciColor] = useState();
+
+  //details.scientific_color ? details.scientific_color.split(" ",3) : null
   useEffect(() => {
     dispatch({ type: "FETCH_DETAILS", payload: plantId });
     setTimeout(() => {
@@ -25,7 +30,7 @@ export default function Details() {
     }, 50);
   }, []);
 
-  if (!details) {
+  if (!details || sciColor) {
     return <p>loading...</p>;
   }
   return (
@@ -33,9 +38,15 @@ export default function Details() {
       {/* top container (image, feature info) */}
       <div className={styles.image_gen_container}>
         {/* image */}
-        <div className={styles.image} style={{backgroundImage:`url(${details.plant_image})`}}>
+        <div
+          className={styles.image}
+          style={{ backgroundImage: `url(${details.plant_image})` }}
+        >
           {/* feature info */}
-          <div className={styles.feature_info} style={{backgroundColor:"white"}}>
+          <div
+            className={styles.feature_info}
+            style={{ backgroundColor: "white" }}
+          >
             {/* sub feature info container */}
             <div
               className={`${styles.feature_info_container} ${styles.top_info_container}`}
@@ -117,7 +128,10 @@ export default function Details() {
 
           {/* sun level */}
           <div className={styles.sun_level}>
-            <div className={`${styles.sun_background} ${styles.sun_rise}`} style={sunStyle ? {transform: `translateY(${-70}%)`} : {}}></div>
+            <div
+              className={`${styles.sun_background} ${styles.sun_rise}`}
+              style={sunStyle ? { transform: `translateY(${-70}%)` } : {}}
+            ></div>
             <p className={`${styles.level_text} ${styles.sun_text}`}>
               sunlight level
             </p>
@@ -130,7 +144,23 @@ export default function Details() {
         </div>
 
         {/* color contrast */}
-        <div className={styles.color_container_stretch}></div>
+        <div className={styles.color_container_stretch} style={details.scientific_color ? {paddingTop: '1.5rem'}: {}}>
+          {details.scientific_color ? (
+            <div className={styles.colorSci}>
+              <p className={styles.common_color}>common color:</p>
+              {details.scientific_color.split(",", 3).map((color) => {
+                return <ColorCircle color={color} key={Math.random()} />;
+              })}
+            </div>
+          ) : (
+            <div className={styles.colorSci}>{details.plant_color}</div>
+          )}
+          <div className={styles.line}></div>
+
+          <div className={styles.colorPlant}>
+            <ColorCircle color={details.plant_color} />
+          </div>
+        </div>
 
         {/* extra info  */}
         <div className={styles.extra_info}>
