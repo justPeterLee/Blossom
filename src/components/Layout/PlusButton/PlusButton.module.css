@@ -4,6 +4,8 @@
   margin-bottom: 1rem;
 
   font-family: openSansLight;
+
+  position: relative;
 }
 
 /* main button animation */
@@ -23,6 +25,8 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 1.5rem;
+
+  z-index: 1;
 }
 
 /* add button (sub) */
@@ -46,6 +50,8 @@
   justify-content: flex-end;
   align-items: center;
   gap: 1.1rem;
+
+  z-index: 1;
 }
 
 .text {
@@ -97,3 +103,21 @@
   background-color: rgb(150,150,150);
 }
 
+.backdropMenu {
+  background-color: rgb(230, 230, 230);  height: 65rem;
+  width: 17rem;
+  position: absolute;
+  top: -51rem;
+  left:5rem;
+
+  z-index: -1;
+}
+
+.unClickedBack {
+  transform: translate(0);
+  transition: transform 0.4s;
+}
+.ClickedBack{
+    transform: translate(-17rem);
+    transition: transform 0.2s;
+}

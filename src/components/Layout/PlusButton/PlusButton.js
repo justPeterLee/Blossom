@@ -108,6 +108,14 @@ export default function PlusButton() {
           onClick={plusClicked}
         />
       </div>
+
+      <div className={
+            !buttonClicked
+              ? `${styles.backdropMenu} ${styles.unClickedBack}`
+              : `${styles.backdropMenu} ${styles.ClickedBack}`
+          }>
+
+      </div>
     </div>
   );
 }

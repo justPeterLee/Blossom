@@ -213,6 +213,14 @@ export default function Menu(props) {
           <p style={{ fontSize: "24px" }}>user</p>
         </div>
       </div>
+
+      <div className={
+            !isBurgerClicked
+              ? `${styles.backdropMenu} ${styles.unClickedBack}`
+              : `${styles.backdropMenu} ${styles.ClickedBack}`
+          }>
+
+      </div>
     </div>
   );
 }
