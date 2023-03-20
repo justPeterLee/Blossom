@@ -1,0 +1,33 @@
+.container{
+    height: 4rem;
+    width: 23rem;
+    box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 100%;
+}
+
+.icons{
+    color: rgb(60,60,60);
+}
+
+.line{
+    height: 3rem;
+    width:1px;
+    background-color: rgb(200,200,200);
+}
+
+.countries{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}

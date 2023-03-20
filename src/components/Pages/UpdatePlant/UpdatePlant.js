@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, dispatch, useDispatch } from "react-redux";
 import { RiRulerLine, RiArrowDropDownLine } from "react-icons/ri";
+import { ImRadioUnchecked, ImRadioChecked } from "react-icons/im";
 import UpdateGardenItem from "./UpdateGarden/UpdateGardenItem";
 import UpdateHeight from "./UpdateHeight/UpdateHeight";
 export default function UpdatePlant() {
@@ -10,7 +11,7 @@ export default function UpdatePlant() {
   const [render, setRender] = useState(false);
   const [renderWait, setRenderWait] = useState(false);
 
-  const [showHeight, setShowHeight] = useState(false)
+  const [showHeight, setShowHeight] = useState(false);
   // history dependency (navigate to different pages)
   const history = useHistory();
   // parameters dependency
@@ -27,8 +28,27 @@ export default function UpdatePlant() {
   const [height, setHeight] = useState(details.plant_height.height);
   const [newGardenName, setNewGardenName] = useState(details.garden_name);
   const [newGarden, setNewGarden] = useState(details.garden_id);
-  const [ft, setFt] = useState(details.plant_height.ft)
-  const [inch, setInch] = useState(details.plant_height.in)
+  const [ft, setFt] = useState(details.plant_height.ft);
+  const [inch, setInch] = useState(details.plant_height.in);
+
+  // color 
+  const [color,setColor] = useState(details.plant_color)
+
+  const handleColorChange = (e)=>{
+    setColor(e.target.value);
+  }
+  // none garden check
+  const [none, setNone] = useState(false);
+
+  const noneSelected = () => {
+    setNone(!none);
+    setNewGarden(false);
+    setNewGardenName("none");
+    setTimeout(() => {
+      dispatch({ type: "RESET_ALL_MODAL" });
+      setNone(false);
+    }, 100);
+  };
   // parameter plant id
   const plantId = params.id;
 
@@ -40,7 +60,7 @@ export default function UpdatePlant() {
     if (name && height && plantId) {
       await dispatch({
         type: "UPDATE_PLANT",
-        payload: { id: plantId, name: name, height: height, garden: newGarden },
+        payload: { id: plantId, name: name, height: height, garden: newGarden, color:color },
       });
     }
     dispatch({ type: "SHOW_MENU" });
@@ -57,7 +77,7 @@ export default function UpdatePlant() {
     }
   }
 
-  async function toggleHeightModal(){
+  async function toggleHeightModal() {
     await dispatch({ type: "MODAL_COLOR_CLICKED" });
     if (!modalState) {
       setShowHeight(true);
@@ -73,14 +93,14 @@ export default function UpdatePlant() {
     console.log(newId.id, newId.name);
   }
 
-  function pullHeight(height){
-    let ft = parseInt(height.ft * 12)
-    let inches = parseInt(height.inch)
+  function pullHeight(height) {
+    let ft = parseInt(height.ft * 12);
+    let inches = parseInt(height.inch);
     let heightTotal = ft + inches;
-    
+
     setHeight(heightTotal);
-    setFt(height.ft)
-    setInch(height.inch)
+    setFt(height.ft);
+    setInch(height.inch);
   }
   useEffect(() => {
     dispatch({ type: "FETCH_DETAILS", payload: plantId });
@@ -152,10 +172,7 @@ export default function UpdatePlant() {
               setHeight(event.target.value);
             }}
           /> */}
-          <button
-            className={styles.height_button}
-            onClick={toggleHeightModal}
-          >
+          <button className={styles.height_button} onClick={toggleHeightModal}>
             <RiRulerLine size={18} />
             <p className={styles.feature_info_data}>
               {ft}' {inch}"
@@ -163,24 +180,32 @@ export default function UpdatePlant() {
           </button>
 
           {
-        <div
-          className={
-            showHeight
-              ? `${styles.container_height_modal} ${styles.show_height_modal}`
-              : `${styles.container_height_modal}`
+            <div
+              className={
+                showHeight
+                  ? `${styles.container_height_modal} ${styles.show_height_modal}`
+                  : `${styles.container_height_modal}`
+              }
+            >
+              <UpdateHeight onHeight={pullHeight} />
+            </div>
           }
-        >
-          <UpdateHeight onHeight={pullHeight}/>
         </div>
-      }
+
+        <div className={styles.color_input_container}>
+          <label htmlFor="color-update" className={styles.color_label}> color</label>
+          <input className={styles.color_input} type="color" value={color} onChange={handleColorChange}/>
         </div>
+
+
+
 
         <div
           className={styles.garden_input_container}
           style={!render ? { overflow: "hidden" } : {}}
         >
           <label htmlFor="garden-update" className={styles.garden_input_title}>
-            change garden
+            garden
           </label>
           <button className={styles.garden_button} onClick={updateGardenModal}>
             {newGarden ? <p>{newGardenName}</p> : <p>none</p>}
@@ -223,6 +248,15 @@ export default function UpdatePlant() {
                   />
                 );
               })}
+
+              <button className={styles.none_garden} onClick={noneSelected}>
+                <p>none</p>
+                {none ? (
+                  <ImRadioChecked className={styles.icon} />
+                ) : (
+                  <ImRadioUnchecked className={styles.icon} />
+                )}
+              </button>
             </div>
           }
         </div>

@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
+    height: 5rem;
+    width: 8rem;
+    border-radius: 5px;
+}
+
+.container p{
+    font-family: openSansLight;
+    font-size: 15px;
+    margin: 0;
+}

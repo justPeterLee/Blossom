@@ -7,8 +7,66 @@ import { RiPlantLine } from "react-icons/ri";
 import { TiBrush } from "react-icons/ti";
 import { RiRulerLine } from "react-icons/ri";
 import { BiCake } from "react-icons/bi";
+import { HiOutlineLocationMarker } from "react-icons/hi";
 
 import ColorCircle from "./ColorCircle/ColorCircle";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import OriginScroll from "./OriginScroll/OriginScroll";
+import SoilScroll from "./SoilScroll/SoilScroll";
+
+const data = [
+  {
+    name: "Page A",
+    uv: 40,
+    pv: 24,
+    amt: 24,
+  },
+  {
+    name: "Page B",
+    uv: 30,
+    pv: 13,
+    amt: 22,
+  },
+  {
+    name: "Page C",
+    uv: 20,
+    pv: 98,
+    amt: 22,
+  },
+  {
+    name: "Page D",
+    uv: 27,
+    pv: 39,
+    amt: 20,
+  },
+  {
+    name: "Page E",
+    uv: 18,
+    pv: 48,
+    amt: 21,
+  },
+  {
+    name: "Page F",
+    uv: 23,
+    pv: 38,
+    amt: 25,
+  },
+  {
+    name: "Page G",
+    uv: 34,
+    pv: 40,
+    amt: 21,
+  },
+];
 
 export default function Details() {
   const history = useHistory();
@@ -144,7 +202,10 @@ export default function Details() {
         </div>
 
         {/* color contrast */}
-        <div className={styles.color_container_stretch} style={details.scientific_color ? {paddingTop: '1.5rem'}: {}}>
+        <div
+          className={styles.color_container_stretch}
+          style={details.scientific_color ? { paddingTop: "1.5rem" } : {}}
+        >
           {details.scientific_color ? (
             <div className={styles.colorSci}>
               <p className={styles.common_color}>common color:</p>
@@ -165,63 +226,91 @@ export default function Details() {
         {/* extra info  */}
         <div className={styles.extra_info}>
           {/* title */}
-          <div className={styles.extra_info_title}>
-            <p>information</p>
-          </div>
 
-          {/* contain information */}
-          <div className={styles.extra_info_description}>
-            {details.origin && (
-              <div className={styles.extra_info_description_sub}>
-                <p>origin: </p>
-                <p>{details.sci_origin}</p>
-              </div>
-            )}
+          {/* origin */}
+          {details.sci_origin && <OriginScroll />}
 
-            {details.maintenance && (
-              <div className={styles.extra_info_description_sub}>
-                <p className={styles.extra_info_sub_title}>maintenance: </p>
+          {/* maintenance & growth */}
+          <div className={styles.maintenance_growth}>
+            {details.sci_maintenance && (
+              <>
+              <div className={styles.maintenance_container}>
+                <p className={styles.maintenance_title}>maintenance: </p>
                 <p className={styles.extra_info_text}>
                   {details.sci_maintenance}
                 </p>
               </div>
+              <div className={styles.maint_line}></div>
+              </>
             )}
-            {details.sci_cycle && (
-              <div className={styles.extra_info_description_sub}>
-                <p className={styles.extra_info_title}>cycle: </p>
-                <p className={styles.extra_info_text}>{details.sci_cycle}</p>
-              </div>
-            )}
-            {details.sci_type ? (
-              <div className={styles.extra_info_description_sub}>
-                <p className={styles.extra_info_sub_title}>type: </p>
-                <p className={styles.extra_info_text}>indoors</p>
-              </div>
-            ) : (
-              <div className={styles.extra_info_description_sub}>
-                <p className={styles.extra_info_sub_title}>type: </p>
-                <p className={styles.extra_info_text}>outdoors</p>
-              </div>
-            )}
-            {details.sci_soil && (
-              <div className={styles.extra_info_description_sub}>
-                <p className={styles.extra_info_sub_title}>soil: </p>
-                <p className={styles.extra_info_text}>{details.sci_soil}</p>
-              </div>
-            )}
+
             {details.sci_growth_rate && (
-              <div className={styles.extra_info_description_sub}>
-                <p className={styles.extra_info_sub_title}>growth rate: </p>
+              <div className={styles.growth_container}>
+                <p className={styles.growth_title}>growth rate: </p>
                 <p className={styles.extra_info_text}>
                   {details.sci_growth_rate}
                 </p>
               </div>
             )}
           </div>
+
+          {/* cycle & type */}
+          <div className={styles.cycle_type}>
+            {details.sci_cycle && (
+              <div className={styles.cylce_container}>
+                <p className={styles.cycle_title}>cycle: </p>
+                <p className={styles.extra_info_text}>{details.sci_cycle}</p>
+              </div>
+            )}
+
+            {details.sci_type ? (
+              <div className={styles.cylce_container}>
+                <p className={styles.cycle_title}>type: </p>
+                <p className={styles.extra_info_text}>indoors</p>
+              </div>
+            ) : (
+              <div className={styles.cylce_container}>
+                <p className={styles.cycle_title}>type: </p>
+                <p className={styles.extra_info_text}>outdoors</p>
+              </div>
+            )}
+          </div>
+
+          {/* soil */}
+          {details.sci_soil && (
+            <SoilScroll/>
+          )}
         </div>
 
         {/* graph */}
-        <div className={styles.graph_container_stretch}></div>
+        <div className={styles.graph_container_stretch}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart
+              width={500}
+              height={300}
+              data={data}
+              margin={{
+                top: 50,
+                right: 30,
+                left: -10,
+                bottom: 10,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="pv"
+                stroke="#8884d8"
+                activeDot={{ r: 8 }}
+              />
+              <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </div>
   );

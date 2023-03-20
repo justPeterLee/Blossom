@@ -80,7 +80,7 @@ export default function GardenItem({ id, name, type, num, create, color }) {
     setShowStyleModal(false)
   },[])
   return (
-    <div className={`${styles.container} clickable`} onClick={gotoGarden} style={{backgroundColor: `${color}`}}>
+    <button className={`${styles.container} clickable`} onClick={gotoGarden} style={{backgroundColor: `${color}`}}>
       <div className={styles.title}>
         <p>{name}</p>
         <RxDotsVertical
@@ -116,12 +116,12 @@ export default function GardenItem({ id, name, type, num, create, color }) {
 
       <div className={styles.extraDescription}>
         <div className={styles.date}>
-          <p>created: {create}</p>
+          <p>created: {create.slice(0,10)}</p>
         </div>
 
         <div className={styles.arrow}></div>
         <BsArrowRight className={styles.arrow} />
       </div>
-    </div>
+    </button>
   );
 }

@@ -1,5 +1,6 @@
 .main_container{
-    gap:3rem
+    gap:3rem;
+    overflow: hidden;
 }
 .sub_container{
     display: flex;
@@ -148,12 +149,12 @@
     display: flex;
     flex-direction: column;
 
-    box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
+    /* box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200); */
     border-radius: 15px;
 
-    height: 15rem;
     width: 23rem;
     
+    gap: 1rem;
 }
 
 .extra_info p{
@@ -258,3 +259,83 @@
     left: 1rem;
     font-size: 15px;
 }
+
+.graph_container_stretch{
+    padding-left: -10rem;
+    padding-bottom: .5rem;
+    margin-bottom: 2rem;
+}
+
+/* origin container */
+.origin_container{
+    height: 4rem;
+    width: 23rem;
+    box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
+    border-radius: 10px;
+}
+
+/* maintenacne_growth */
+.maintenance_growth{
+    display: flex;
+    align-items: center;
+    height: 7rem;
+    box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
+    border-radius: 10px;
+}
+
+.maintenance_container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 7rem;
+    width: 15rem;
+
+}
+
+.maintenance_container p, .growth_container p, .cylce_container p{
+    margin: 0;
+}
+.maintenance_title, .growth_title, .cycle_title{
+    font-family: openSansLight;
+    font-size: 15px;
+    position: absolute;
+    top:9px;
+    left:1rem;
+}
+
+.maint_line{
+    height: 5rem;
+    width: 1px;
+    background-color: rgb(200,200,200);
+}
+
+.growth_container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:10rem;
+    height: 100%;
+}
+
+/* cycle type */
+.cycle_type{
+    display: flex;
+    gap: 1rem;;
+}
+
+.cylce_container{
+    box-shadow: .01em 0 .03em rgb(200,200,200), -.01em 0 .3em rgb(200,200,200);
+    border-radius: 10px;
+    height: 5rem;
+    width: 11rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+

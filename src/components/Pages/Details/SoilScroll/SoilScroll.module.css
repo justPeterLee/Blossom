@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    overflow: scroll;
+    gap: 1rem;
+    margin-left:-20px ;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+}

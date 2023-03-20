@@ -126,18 +126,34 @@ router.get("/no-garden", (req, res) => {
 // update plant route (PUT)
 router.put("/update", (req, res) => {
   if (req.isAuthenticated()) {
-    const { id, name, height, garden } = req.body;
-    const queryText = `UPDATE "plant" SET "plant_name"=$1, "plant_height"=$2, "plant_created_at"=CURRENT_TIMESTAMP, "garden_id"=$4  WHERE "plant_table_id"=$3`;
+    const { id, name, height, garden, color } = req.body;
 
-    pool
-      .query(queryText, [name, height, id, garden])
-      .then((results) => {
-        res.sendStatus(200);
-      })
-      .catch((err) => {
-        console.log("Error with UPDATING plant: ", err);
-        res.sendStatus(500);
-      });
+    if(garden){
+      const queryText = `UPDATE "plant" SET "plant_name"=$1, "plant_height"=$2, "plant_created_at"=CURRENT_TIMESTAMP, "garden_id"=$4, "plant_color" = $5  WHERE "plant_table_id"=$3`;
+
+      pool
+        .query(queryText, [name, height, id, garden, color])
+        .then((results) => {
+          res.sendStatus(200);
+        })
+        .catch((err) => {
+          console.log("Error with UPDATING plant: ", err);
+          res.sendStatus(500);
+        });
+    }else{
+      const queryText = `UPDATE "plant" SET "plant_name"=$1, "plant_height"=$2, "plant_created_at"=CURRENT_TIMESTAMP, "garden_id"=null, "plant_color" = $4  WHERE "plant_table_id"=$3`;
+
+      pool
+        .query(queryText, [name, height, id, color])
+        .then((results) => {
+          res.sendStatus(200);
+        })
+        .catch((err) => {
+          console.log("Error with UPDATING plant: ", err);
+          res.sendStatus(500);
+        });
+    }
+
   } else {
     console.log("Unauthenticated");
     res.sendStatus(403);
