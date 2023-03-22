@@ -1,9 +1,11 @@
 import styles from "./UpdatePlant.module.css";
 import { useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useSelector, dispatch, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RiRulerLine, RiArrowDropDownLine } from "react-icons/ri";
 import { ImRadioUnchecked, ImRadioChecked } from "react-icons/im";
+import { FaTrash } from "react-icons/fa";
+
 import UpdateGardenItem from "./UpdateGarden/UpdateGardenItem";
 import UpdateHeight from "./UpdateHeight/UpdateHeight";
 export default function UpdatePlant() {
@@ -37,6 +39,7 @@ export default function UpdatePlant() {
   const handleColorChange = (e)=>{
     setColor(e.target.value);
   }
+
   // none garden check
   const [none, setNone] = useState(false);
 
@@ -263,6 +266,7 @@ export default function UpdatePlant() {
       </div>
 
       <button
+      className={styles.delete_button}
         onClick={() => {
           dispatch({
             type: "DELETE_PLANT",
@@ -272,6 +276,7 @@ export default function UpdatePlant() {
           history.push("/plants");
         }}
       >
+        <FaTrash className={styles.detele_icon} color={"rgb(255, 0, 0)"} size={14}/>
         delete
       </button>
     </div>

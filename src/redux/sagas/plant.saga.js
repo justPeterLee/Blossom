@@ -19,7 +19,7 @@ function* plantSaga() {
 
   // GET explore plants
   yield takeEvery("FETCH_EXPLORE_PLANT", fetchExplorePlant);
-}
+} 
 
 // fetch plant function (GET)
 function* fetchPlant() {
@@ -47,8 +47,9 @@ function* fetchDetails(action) {
 function* updatePlant(action) {
   try {
     const plantData = action.payload;
+    console.log(plantData)
     yield axios.put(`/api/plant/update`, action.payload);
-    //yield put({ type: "UPDATE_PLANT", payload: plantData.id});
+    yield put({ type: "FETCH_DETAILS", payload: plantData.id});
   } catch (err) {
     console.log("Error with updating Plant: ", err);
   }

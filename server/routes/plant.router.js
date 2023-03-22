@@ -129,7 +129,7 @@ router.put("/update", (req, res) => {
     const { id, name, height, garden, color } = req.body;
 
     if(garden){
-      const queryText = `UPDATE "plant" SET "plant_name"=$1, "plant_height"=$2, "plant_created_at"=CURRENT_TIMESTAMP, "garden_id"=$4, "plant_color" = $5  WHERE "plant_table_id"=$3`;
+      const queryText = `UPDATE "plant" SET "plant_name"=$1, "plant_height"=$2, "garden_id"=$4, "plant_color" = $5  WHERE "plant_table_id"=$3`;
 
       pool
         .query(queryText, [name, height, id, garden, color])
@@ -141,7 +141,7 @@ router.put("/update", (req, res) => {
           res.sendStatus(500);
         });
     }else{
-      const queryText = `UPDATE "plant" SET "plant_name"=$1, "plant_height"=$2, "plant_created_at"=CURRENT_TIMESTAMP, "garden_id"=null, "plant_color" = $4  WHERE "plant_table_id"=$3`;
+      const queryText = `UPDATE "plant" SET "plant_name"=$1, "plant_height"=$2, "garden_id"=null, "plant_color" = $4  WHERE "plant_table_id"=$3`;
 
       pool
         .query(queryText, [name, height, id, color])

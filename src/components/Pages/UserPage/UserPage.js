@@ -1,25 +1,34 @@
-import React from 'react';
-import LogOutButton from '../../Layout/LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
-
+import React from "react";
+import styles from './UserPage.module.css'
+import LogOutButton from "../../Layout/LogOutButton/LogOutButton";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useState } from "react";
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const [tech, setTech] = useState(false);
+  const showTech = ()=>{
+    setTech(!tech)
+  }
+  const history = useHistory();
+
   return (
-    <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
+    <div className={styles.container}>
+      <div className={styles.user_container}>
+        <h2>hi, {user.username}</h2>
+      </div>
+      <LogOutButton className={styles.logOut_button} />
 
+      <button onClick={()=>{history.push('/home')}} className={styles.home_button}>Home</button>
 
-      <p>tech:</p>
-      <p>node</p>
-      <p>express</p>
-      <p>react</p>
-      <p>postgresql</p>
-      <p>css</p>
-      <p>perenualAPI</p>
-      <p>plant.id API</p>
+      <div className={styles.button_container}>
+      <button onClick={()=>{history.push('/garden')}} className={styles.garden_button}>Garden</button>
+      <button onClick={()=>{history.push('/plants')}} className={styles.plant_button}>Plant</button>
+
+      </div>
+
+      <button onClick={()=>{history.push('/tech')}} className={styles.tech_button}>tech</button>
     </div>
   );
 }

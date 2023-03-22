@@ -3,7 +3,6 @@ import PlantInfo from "./PlantInfo/PlantInfo";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { ChromePicker } from "react-color";
 export default function AddPlant() {
   let history = useHistory();
   let currentDate = new Date().toJSON().slice(0, 10);

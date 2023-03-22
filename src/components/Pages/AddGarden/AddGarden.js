@@ -49,7 +49,7 @@ export default function AddGarden() {
   };
   return (
     <div className={`${styles.container}`}>
-      <button onClick={createGardenHandler}>create</button>
+
       {/* text input  */}
       <div className={styles.text_input_container}>
         <div>
@@ -95,6 +95,8 @@ export default function AddGarden() {
         </div>
         <Select />
       </div>
+
+      <button onClick={createGardenHandler} className={styles.button}>create</button>
     </div>
   );
 }

@@ -132,7 +132,7 @@ export default function ( props ) {
         )}
       </div>
 
-      <div class={styles.input_container}>
+      <div className={styles.input_container}>
         <input
           ref={inputSlider}
           type="range"

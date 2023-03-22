@@ -84,3 +84,12 @@
     font-family: openSansLight;
     
 }
+
+.button{
+    height: 3rem;
+    width: 6rem;
+    border: none;
+    font-family: openSansLight;
+    font-size: 15px;
+    border-radius: 5px;
+}

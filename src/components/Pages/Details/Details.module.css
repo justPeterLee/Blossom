@@ -264,6 +264,7 @@
     padding-left: -10rem;
     padding-bottom: .5rem;
     margin-bottom: 2rem;
+    position: relative;
 }
 
 /* origin container */
@@ -339,3 +340,22 @@
 
 
 
+
+
+.heigth_title{
+    position: absolute;
+    margin: 0;
+    left: 1rem;
+    top:.5rem;
+    font-family: openSansLight;
+}
+
+
+.task_container_stretch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: openSansLight;
+    font-size: 20px;
+}

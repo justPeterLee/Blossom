@@ -7,7 +7,8 @@ export default function Select(){
     const plants = useSelector((store)=>store.plant.noGardenPlantReducer);
 
     useEffect(()=>{
-        dispatch({type:'FETCH_PLANT_NO_GARDEN'})
+        dispatch({type:'FETCH_PLANT_NO_GARDEN'});
+        dispatch({type:"RESET_PLANT_ADD_GARDEN"});
     },[])
 
     return(
@@ -21,3 +22,5 @@ export default function Select(){
         </div>
     )
 }
+
+// 

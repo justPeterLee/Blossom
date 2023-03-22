@@ -198,3 +198,18 @@
 .color_input_container label{
   font-family: openSansLight;
 }
+
+.delete_button{
+  height: 3rem;
+  width: 6rem;
+  border: none;
+  font-family: openSansLight;
+  font-size: large;
+  border-radius: 10px;
+  color:rgb(255, 0, 0);
+  margin-top: 6rem;
+}
+
+.detele_icon{
+  margin-right: .3rem;
+}

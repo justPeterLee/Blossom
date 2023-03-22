@@ -38,4 +38,4 @@ export default combineReducers({
   gardenFilterReducer,
   gardenById,
   exploreGardenReducer
-})
+}) 

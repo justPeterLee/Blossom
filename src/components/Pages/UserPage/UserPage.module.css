@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user_container {
+  height: 10rem;
+  background-color: rgb(240, 240, 240);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: openSansLight;
+  color: rgb(100, 100, 100);
+}
+.user_container p {
+  padding: 0;
+  margin: 0;
+}
+
+.logOut_button {
+  width: 6rem;
+  height: 3rem;
+  border-radius: 5px;
+}
+
+.home_button,
+.garden_button,
+.plant_button {
+  width: 23rem;
+  height: 9rem;
+  border-radius: 10px;
+  font-family: openSansLight;
+  font-size: 15px;
+}
+
+.tech_button {
+  height: 4rem;
+  width: 23rem;
+  border-radius: 5px;
+  font-family: openSansLight;
+  font-size: 15px;
+}
+
+.garden_button,
+.plant_button {
+  width: 11rem;
+}
+.button_container {
+  display: flex;
+  gap: 1rem;
+}

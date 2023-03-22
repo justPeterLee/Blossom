@@ -33,6 +33,7 @@ import AddPlant from "../Pages/AddPlant/AddPlant";
 import AddGarden from "../Pages/AddGarden/AddGarden";
 import BackdropOverlay from "../../Portal/Backdrop/Backdrop";
 import FeatureGardenPage from "../Pages/Home/FeatureGardenPage/FeatureGardenPage";
+import Tech from "../Pages/Tech/Tech";
 function App() {
   const dispatch = useDispatch();
 
@@ -132,7 +133,11 @@ function App() {
             <UserPage/>
           </ProtectedRoute>
 
+          {/* tech page */}
 
+          <Route exact path='/tech'>
+            <Tech/>
+          </Route>
           {/* feature garden page */}
           <ProtectedRoute exact path="/garden/feature">
             <FeatureGardenPage/>

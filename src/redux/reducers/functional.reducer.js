@@ -13,6 +13,8 @@ function selectPlantToGarden(state = [], action) {
           return state;
         }
       }
+    case "RESET_PLANT_ADD_GARDEN":
+      return state = [];
     default:
       return state;
   }

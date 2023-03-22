@@ -25,47 +25,30 @@ import SoilScroll from "./SoilScroll/SoilScroll";
 
 const data = [
   {
-    name: "Page A",
-    uv: 40,
-    pv: 24,
+    name: "w1",
+    uv: 0,
+    pv: 0,
     amt: 24,
   },
   {
-    name: "Page B",
-    uv: 30,
-    pv: 13,
+    name: "w2",
+    uv: 5,
+    pv: 4,
     amt: 22,
   },
   {
-    name: "Page C",
-    uv: 20,
-    pv: 98,
+    name: "w3",
+    uv: 13,
+    pv: 10,
     amt: 22,
   },
   {
-    name: "Page D",
-    uv: 27,
-    pv: 39,
+    name: "w4",
+    uv: 18,
+    pv: 12,
     amt: 20,
   },
-  {
-    name: "Page E",
-    uv: 18,
-    pv: 48,
-    amt: 21,
-  },
-  {
-    name: "Page F",
-    uv: 23,
-    pv: 38,
-    amt: 25,
-  },
-  {
-    name: "Page G",
-    uv: 34,
-    pv: 40,
-    amt: 21,
-  },
+  
 ];
 
 export default function Details() {
@@ -164,7 +147,7 @@ export default function Details() {
         </div>
 
         {/* task */}
-        <div className={styles.task_container_stretch}></div>
+        <div className={styles.task_container_stretch}><p>tasks</p></div>
 
         {/* sun and water levels */}
         <div className={styles.sun_water_container}>
@@ -284,13 +267,14 @@ export default function Details() {
 
         {/* graph */}
         <div className={styles.graph_container_stretch}>
+          <p className={styles.heigth_title}>height tracker</p>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
               width={500}
               height={300}
               data={data}
               margin={{
-                top: 50,
+                top: 55,
                 right: 30,
                 left: -10,
                 bottom: 10,
